@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>피클 가쿵이 — 런웨이 리듬 | 4레인 3D 리듬게임 소개·조작법·공략 — 쿵이가족</title>
+<meta name="description" content="음악을 넣으면 비트를 스스로 분석해 3D 런웨이에 노트가 떨어지는 무료 4레인 리듬게임 '피클 가쿵이 — 런웨이 리듬'. 모바일·PC 조작법, 판정 기준, 고득점 공략, 내 음악으로 바꾸는 방법까지 정리했습니다.">
+<meta name="keywords" content="리듬게임, 무료 웹게임, 4키 리듬게임, 3D 리듬게임, 피클 가쿵이, 런웨이 리듬, 브라우저 게임, 모바일 리듬게임">
+<meta name="theme-color" content="#09090B">
+<link rel="canonical" href="https://shimkung.github.io/Koong_family/games/pickle-gakoongi-rhythm.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="쿵이가족 KOONG FAMILY">
+<meta property="og:title" content="피클 가쿵이 — 런웨이 리듬 | 4레인 3D 리듬게임">
+<meta property="og:description" content="음악만 넣으면 무대가 열리는 브라우저 리듬게임. 조작법부터 고득점 공략까지.">
+<meta property="og:url" content="https://shimkung.github.io/Koong_family/games/pickle-gakoongi-rhythm.html">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090B'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-size='34' font-weight='900' fill='%23E2FF00' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+<!-- ADSENSE: 승인 후 아래 주석을 해제하고 ca-pub-XXXXXXXXXXXXXXXX 를 실제 게시자 ID로 교체하세요 -->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "피클 가쿵이 — 런웨이 리듬",
+  "alternateName": "Pickle Gakoongi: Runway Rhythm",
+  "url": "https://shimkung.github.io/Koong_family/games/pickle-gakoongi-rhythm.html",
+  "gamePlatform": ["웹 브라우저", "모바일 브라우저"],
+  "applicationCategory": "Game",
+  "genre": ["리듬 게임", "음악 게임", "캐주얼 게임"],
+  "operatingSystem": "Web",
+  "inLanguage": "ko-KR",
+  "playMode": "SinglePlayer",
+  "numberOfPlayers": 1,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+  "publisher": { "@type": "Organization", "name": "쿵이가족" },
+  "description": "음악을 넣으면 비트를 실시간으로 분석해 3D 런웨이 4레인에 노트가 떨어지는 브라우저 리듬게임. 설치와 회원가입 없이 무료로 플레이할 수 있다."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "설치 없이 정말 플레이할 수 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "네. Chrome·Safari 최신 버전 브라우저에서 링크를 열면 바로 시작됩니다. 앱 설치나 회원가입, 결제가 필요하지 않습니다." } },
+    { "@type": "Question", "name": "제가 가진 음악 파일을 넣어도 되나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "가능합니다. '음악 넣기' 버튼으로 mp3·wav·m4a 같은 오디오 파일을 선택하면 브라우저가 비트와 온셋을 분석해 자동으로 채보합니다. 파일은 기기 안에서만 처리되고 서버로 전송되지 않습니다." } },
+    { "@type": "Question", "name": "모바일에서도 잘 되나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "화면 아래 4개의 터치 패드를 손가락으로 두드려 연주합니다. 세로 화면에서는 레인과 패드가 자동으로 재배치되며, 이어폰 사용을 권장합니다." } },
+    { "@type": "Question", "name": "점수는 어떻게 매겨지나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "판정선에 노트가 닿는 순간과 입력 시점의 차이로 Perfect(±85ms, 300점), Great(±155ms, 150점), Good(±230ms, 70점)을 판정합니다. 정확도 95% 이상이면 최고 등급 S입니다." } },
+    { "@type": "Question", "name": "소리가 늦게 들리거나 판정이 밀려요.",
+      "acceptedAnswer": { "@type": "Answer", "text": "블루투스 이어폰은 기기마다 지연이 커서 판정이 밀릴 수 있습니다. 유선 이어폰이나 기기 스피커로 시도하고, 백그라운드 앱을 정리한 뒤 다시 플레이해 보세요." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="../index.html" aria-label="쿵이가족 홈">
+      <span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko">패밀리</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-controls="siteNav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="siteNav" aria-label="주요 메뉴">
+      <a href="../index.html">홈</a>
+      <a href="../index.html?cat=game" aria-current="page">게임</a>
+      <a href="../index.html?cat=test">심리테스트</a>
+      <a href="../index.html?cat=read">읽을거리</a>
+      <a href="../about.html">소개</a>
+      <a class="btn btn--neon btn--sm header-cta" href="pickle-gakoongi-rhythm-app.html">바로 플레이</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="위치">
+        <a href="../index.html">홈</a><span>/</span><a href="../index.html?cat=game">게임</a><span>/</span><strong>피클 가쿵이 — 런웨이 리듬</strong>
+      </nav>
+      <span class="eyebrow">Game · Rhythm</span>
+      <h1>피클 가쿵이<br>런웨이 리듬</h1>
+      <p class="lede">
+        드레스가 아니라 <strong>음악이 런웨이를 걷습니다.</strong> 음악을 넣으면 비트와 온셋을 실시간으로 분석해
+        4개의 3D 레인에 노트가 떨어지고, 박자에 맞춰 레인을 두드리면 콤보가 쌓입니다.
+        기본 트랙이 들어 있어서 준비 없이도 바로 시작할 수 있는 무료 브라우저 리듬게임입니다.
+      </p>
+      <div class="page-meta">
+        <span class="chip chip--dim">4레인</span>
+        <span class="chip chip--dim">3D 런웨이</span>
+        <span class="chip chip--dim">내 음악 사용</span>
+        <span class="chip chip--dim">모바일·PC</span>
+        <span class="chip chip--dim">무료</span>
+      </div>
+      <div class="btn-row" style="margin-top:26px">
+        <a class="btn btn--neon" href="pickle-gakoongi-rhythm-app.html">▶ 바로 플레이하기</a>
+        <a class="btn btn--ghost" href="#howto">조작법 먼저 보기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 광고 슬롯: 게임 소개 상단 (플레이 버튼과 충분히 떨어진 콘텐츠 영역) -->
+  <div class="wrap">
+    <!-- ADSENSE_SLOT: game-top | 게임 페이지 상단 · CTA 버튼과 40px 이상 간격 -->
+    <div class="ad-slot" id="ad-game-top" data-ad-ready="false" data-ad-slot="game-top">
+      <span class="ad-slot__label">Advertisement</span>
+      <!-- 애드센스 반응형 광고 코드 삽입 위치 -->
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="prose">
+
+        <h2 id="overview">한눈에 보는 게임</h2>
+        <p>
+          <strong>피클 가쿵이 — 런웨이 리듬</strong>은 하이쿠튀르 쇼의 런웨이를 무대로 삼은 4레인 리듬게임입니다.
+          화면 앞쪽으로는 크리스탈 판정 바가 놓이고, 그 위로 노트가 3D 공간을 가로질러 날아옵니다.
+          양옆 쇼케이스에는 영상이 흐르고, 콤보가 올라갈수록 무대의 조명과 카메라가 비트에 맞춰 숨을 쉬듯 반응합니다.
+        </p>
+        <div class="stat-row">
+          <div class="stat"><strong>4</strong><span>레인 · D F J K</span></div>
+          <div class="stat"><strong>±85ms</strong><span>Perfect 판정 폭</span></div>
+          <div class="stat"><strong>0.125s</strong><span>노트 최소 간격</span></div>
+          <div class="stat"><strong>4</strong><span>무드 테마</span></div>
+        </div>
+        <p>
+          가장 큰 특징은 <strong>채보가 미리 정해져 있지 않다는 점</strong>입니다. 게임에 들어 있는 기본 트랙을 그대로 즐겨도 되지만,
+          좋아하는 곡을 넣으면 그 곡의 드럼·베이스·하이햇을 분석해 노트를 즉석에서 만들어 냅니다.
+          같은 곡이라도 매번 같은 자리에 노트가 떨어지고, 처음 듣는 곡도 바로 플레이할 수 있습니다.
+        </p>
+
+        <h2 id="howto">조작법 — 모바일과 PC</h2>
+        <p>
+          규칙은 단순합니다. <strong>판정선에 노트가 닿는 순간</strong> 해당 레인의 패드를 누르면 됩니다.
+          판정선보다 일찍 누르면 노트가 사라지지 않고 그대로 지나가며 Miss가 됩니다.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">모바일과 PC 조작 방법 비교</caption>
+            <thead>
+              <tr><th scope="col">동작</th><th scope="col">모바일 (터치)</th><th scope="col">PC (키보드·마우스)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>레인 연주</td><td>화면 아래 4개 패드를 손가락으로 두드림</td><td><code>D</code> <code>F</code> <code>J</code> <code>K</code> 또는 <code>1</code> <code>2</code> <code>3</code> <code>4</code></td></tr>
+              <tr><td>시작 / 일시정지</td><td>화면 아래 <b>게임 시작</b> 버튼</td><td><b>게임 시작</b> 버튼 또는 <code>Space</code></td></tr>
+              <tr><td>무대 시점 회전</td><td>빈 공간을 드래그</td><td>마우스로 드래그</td></tr>
+              <tr><td>확대 / 축소</td><td>두 손가락 핀치</td><td>마우스 휠</td></tr>
+              <tr><td>시점 고정 ↔ 자유</td><td colspan="2">오른쪽 아래 <b>시점 고정</b> 버튼으로 전환 (고정 시 판정선이 정면에 붙어 연주에 집중)</td></tr>
+              <tr><td>음악 교체</td><td colspan="2"><b>음악 넣기</b> → 기기에서 오디오 파일 선택</td></tr>
+              <tr><td>쇼케이스 영상 교체</td><td colspan="2"><b>영상 넣기</b> → 왼쪽 / 오른쪽 / 양쪽 중 선택 → 동영상 파일 선택</td></tr>
+              <tr><td>무드 테마</td><td colspan="2">NOIR · PEARL · CRIMSON · ICE 중 선택 (노트 색과 조명이 함께 바뀜)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <strong>처음이라면 이렇게 시작해 보세요.</strong>
+         ① 아무 설정 없이 <b>게임 시작</b>을 누르고 기본 트랙을 한 번 끝까지 플레이합니다.
+         ② 판정선이 어디인지 눈에 익으면 <b>시점 고정</b>으로 두고 다시 도전합니다.
+         ③ 손이 익숙해지면 <b>음악 넣기</b>로 좋아하는 곡을 넣어 봅니다.
+        </div>
+
+        <h2 id="judge">판정과 점수는 어떻게 계산되나요</h2>
+        <p>
+          리듬게임의 재미는 결국 <strong>내가 누른 순간</strong>과 <strong>노트가 도착한 순간</strong>의 차이에 있습니다.
+          이 게임은 입력 시점과 노트 시각의 오차를 밀리초 단위로 재서 네 단계로 나눕니다.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">판정</th><th scope="col">허용 오차</th><th scope="col">기본 점수</th><th scope="col">느낌</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Perfect</b></td><td>±85ms 이내</td><td class="num">300</td><td>정확히 박자 위에 올라탄 상태</td></tr>
+              <tr><td><b>Great</b></td><td>±155ms 이내</td><td class="num">150</td><td>살짝 앞서거나 처짐</td></tr>
+              <tr><td><b>Good</b></td><td>±230ms 이내</td><td class="num">70</td><td>박자를 놓쳤지만 노트는 살림</td></tr>
+              <tr><td><b>Miss</b></td><td>그 외 / 노트 통과</td><td class="num">0</td><td>콤보가 끊김</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          점수는 판정 점수의 누적이고, 화면 위쪽에는 <strong>Score · Combo · Accuracy</strong>가 함께 표시됩니다.
+          정확도(Accuracy)는 판정 결과를 평균 낸 값으로, 곡이 끝나면 등급으로 바뀝니다.
+          정확도 <strong>95% 이상이면 S</strong>, 85% 이상 A, 70% 이상 B이고, 그 아래는 무대 뒤에서 쉬어 가는
+          ‘Backstage Pass’ 라벨이 붙습니다. 즉 <strong>많이 치는 것보다 정확하게 치는 것</strong>이 등급에 유리합니다.
+        </p>
+
+        <h2 id="notes-from-music">음악이 노트가 되기까지</h2>
+        <p>
+          노트는 곡을 재생하면서 미리 스캔해서 만들어집니다. 화면에 ‘스캔 · 비트 분석 중’이 뜨는 몇 초가 그 과정입니다.
+          내부 동작을 아주 간단히 요약하면 이렇습니다.
+        </p>
+        <ol>
+          <li><strong>소리를 주파수 대역으로 나눕니다.</strong> 저역(킥·베이스), 중역, 고역(하이햇·스네어)의 에너지 변화를 각각 추적합니다.</li>
+          <li><strong>에너지가 갑자기 튀는 지점을 찾습니다.</strong> 이른바 온셋(onset) 검출로, 박자마다 새 소리가 시작되는 순간을 잡습니다.</li>
+          <li><strong>주변 값과 비교해 진짜 타격만 남깁니다.</strong> 국소 중앙값을 기준으로 약한 잔향과 노이즈를 걸러 냅니다.</li>
+          <li><strong>연주 가능한 밀도로 줄입니다.</strong> 세기가 약한 하위 40%는 버리고, 노트 사이 최소 간격을 0.125초로 두어 손이 따라갈 수 있게 합니다.</li>
+          <li><strong>레인을 배정합니다.</strong> 킥처럼 저역이 강한 타격은 바깥쪽 레인, 하이햇·스네어처럼 고역이 강한 타격은 안쪽 레인으로 보내고, 어느 한쪽으로 몰리지 않게 비율을 조정합니다.</li>
+        </ol>
+        <p>
+          그래서 드럼이 촘촘한 곡은 노트가 많아지고, 발라드처럼 타격이 적은 곡은 노트도 적어집니다.
+          ‘내 음악이 잘 안 맞는다’ 싶으면 드럼과 베이스가 또렷한 곡으로 바꿔 보세요. 훨씬 손맛이 좋아집니다.
+        </p>
+
+        <!-- 광고 슬롯: 본문 중간 (문단 사이, 클릭 유도 요소 없음) -->
+        <!-- ADSENSE_SLOT: game-mid | 본문 중간 · 소제목 사이 안전 구역 -->
+        <div class="ad-slot" id="ad-game-mid" data-ad-ready="false" data-ad-slot="game-mid">
+          <span class="ad-slot__label">Advertisement</span>
+          <!-- 애드센스 반응형 광고 코드 삽입 위치 -->
+        </div>
+
+        <h2 id="tips">고득점 공략 7가지</h2>
+        <h3>1. 판정선만 본다</h3>
+        <p>
+          노트가 날아오는 궤적을 쫓으면 시선이 위로 끌려 판정이 늦어집니다. 시선은 <strong>판정선 위에 고정</strong>하고,
+          노트는 시야 가장자리로만 감지하세요. 리듬게임 상급자들이 공통으로 말하는 첫 번째 원칙입니다.
+        </p>
+        <h3>2. 시점을 고정한다</h3>
+        <p>
+          카메라를 돌리는 재미는 크지만, 기록을 노린다면 <b>시점 고정</b>이 유리합니다. 레인과 판정선이 매 프레임 같은 위치에
+          고정되므로 손가락이 외운 위치를 그대로 쓸 수 있습니다.
+        </p>
+        <h3>3. 손가락은 홈 포지션에</h3>
+        <p>
+          PC에서는 <code>D</code> <code>F</code> <code>J</code> <code>K</code>에 검지·중지를 올려 두고, 누른 뒤에도 손을 떼지 마세요.
+          손을 들어 올리는 동작이 0.05초만 늦어도 Perfect가 Great로 내려갑니다. 모바일은 양손 엄지로 2레인씩 나눠 맡는 방식이 편합니다.
+        </p>
+        <h3>4. 이어폰은 유선으로</h3>
+        <p>
+          블루투스 이어폰은 기기마다 100~300ms의 지연이 있습니다. 화면과 소리가 어긋나면 아무리 잘 쳐도 판정이 밀립니다.
+          기록 도전은 <strong>유선 이어폰이나 기기 스피커</strong>로 하세요.
+        </p>
+        <h3>5. 콤보보다 정확도</h3>
+        <p>
+          등급은 정확도로 결정됩니다. 콤보를 이어 가려고 없는 노트를 미리 두드리면 Good과 Miss가 늘어 오히려 손해입니다.
+          확실한 박자만 정확히 처리하는 편이 S에 가깝습니다.
+        </p>
+        <h3>6. 곡은 2~3분, 드럼이 또렷한 곡으로</h3>
+        <p>
+          처음에는 짧고 리듬이 일정한 곡이 좋습니다. 4분이 넘는 곡은 후반에 집중력이 떨어져 정확도가 흔들립니다.
+        </p>
+        <h3>7. 세 번 하고 쉬기</h3>
+        <p>
+          같은 곡을 연속으로 열 번 하면 손이 굳고 판정이 무너집니다. 3회 플레이 후 30초 쉬는 편이 기록이 더 잘 나옵니다.
+        </p>
+
+        <h2 id="my-music">내 음악·내 영상으로 바꾸는 법</h2>
+        <p>
+          준비물은 오디오 파일 하나면 충분합니다. <code>mp3</code>, <code>wav</code>, <code>m4a</code> 등 브라우저가 재생할 수 있는 형식이면 됩니다.
+        </p>
+        <ol>
+          <li>플레이 화면 아래 <b>음악 넣기</b>를 누릅니다.</li>
+          <li>기기의 파일 선택 창에서 곡을 고릅니다.</li>
+          <li>잠시 ‘음악 분석 중’ 표시가 뜹니다. 곡 길이에 따라 몇 초 정도 걸립니다.</li>
+          <li>분석이 끝나면 <b>게임 시작</b>을 눌러 플레이합니다. 곡 이름과 노트 수가 결과 화면에 함께 표시됩니다.</li>
+        </ol>
+        <p>
+          영상은 <b>영상 넣기</b> → <b>왼쪽 쇼케이스 / 오른쪽 쇼케이스 / 양쪽 모두</b> 중 하나를 고른 뒤 동영상 파일을 선택하면 됩니다.
+          세로 영상과 가로 영상 모두 무대 비율에 맞춰 배치됩니다.
+        </p>
+        <div class="note">
+          <strong>파일은 밖으로 나가지 않습니다.</strong> 선택한 음악과 영상은 브라우저 안에서만 분석·재생되고 서버로 업로드되지 않습니다.
+          인터넷이 끊겨도 이미 열어 둔 게임은 계속 플레이할 수 있습니다(첫 실행 시 3D 엔진 로딩만 인터넷이 필요합니다).
+        </div>
+
+        <h2 id="behind">제작 비하인드</h2>
+        <p>
+          이 게임은 외부 게임 엔진 없이 <strong>브라우저 기술만으로</strong> 만들었습니다. 3D 무대는 WebGL 기반의
+          three.js로 그리고, 음악 분석은 Web Audio API로, 판정 시계는 오디오 재생 시간을 기준으로 삼습니다.
+          화면에 보이는 물방울 파동, 노트가 지나가는 궤적, 콤보에 반응하는 조명은 모두 실시간으로 계산됩니다.
+        </p>
+        <p>
+          만들면서 가장 오래 붙잡았던 부분은 <strong>‘누르는 맛’</strong>이었습니다. 처음에는 버튼과 판정선이 따로 놀아서
+          아무리 잘 쳐도 어긋난 느낌이 났습니다. 결국 3D 공간에 있는 판정선의 좌표를 매 프레임 화면 좌표로 다시 계산해
+          버튼을 그 위에 정확히 붙이는 방식으로 바꿨고, 누를 때마다 판정 지점에서 물방울이 튀는 연출을 더했습니다.
+          그 뒤로는 같은 입력에도 손맛이 확실히 달라졌습니다.
+        </p>
+        <p>
+          두 번째는 <strong>모바일 최적화</strong>였습니다. 폰 화면에서는 레인이 좁아 손가락이 겹치기 쉬워서,
+          세로 화면일 때 판정 바와 패드의 간격을 다시 배치하고 해상도를 자동으로 낮추도록 조정했습니다.
+          지금도 더 나은 버전을 만들고 있고, 새 버전이 완성되면 이 페이지에서 안내할 예정입니다.
+        </p>
+
+        <h2 id="faq">자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>설치 없이 정말 플레이할 수 있나요?</summary>
+            <div class="faq__a"><p>네. Chrome·Safari 최신 버전에서 링크를 열면 바로 시작됩니다. 앱 설치, 회원가입, 결제가 필요 없습니다. 다만 3D 무대를 그리는 엔진을 처음 불러올 때만 인터넷 연결이 필요합니다.</p></div>
+          </details>
+          <details>
+            <summary>제가 가진 음악 파일을 넣어도 되나요?</summary>
+            <div class="faq__a"><p>가능합니다. ‘음악 넣기’로 오디오 파일을 고르면 브라우저가 비트와 온셋을 분석해 자동으로 채보합니다. 파일은 기기 안에서만 처리되고 서버로 전송되지 않습니다.</p></div>
+          </details>
+          <details>
+            <summary>모바일에서도 잘 되나요?</summary>
+            <div class="faq__a"><p>화면 아래 4개의 터치 패드를 두드려 연주합니다. 세로 화면에 맞춰 레이아웃이 자동으로 바뀌고, 해상도도 기기 성능에 맞게 조정됩니다. 이어폰 사용을 권장합니다.</p></div>
+          </details>
+          <details>
+            <summary>점수는 어떻게 매겨지나요?</summary>
+            <div class="faq__a"><p>Perfect ±85ms(300점), Great ±155ms(150점), Good ±230ms(70점), 그 밖은 Miss입니다. 정확도 95% 이상이면 S 등급입니다.</p></div>
+          </details>
+          <details>
+            <summary>소리가 늦게 들리거나 판정이 밀려요.</summary>
+            <div class="faq__a"><p>블루투스 이어폰의 지연이 가장 흔한 원인입니다. 유선 이어폰이나 기기 스피커로 바꾸고, 백그라운드 앱을 정리한 뒤 다시 시도해 보세요.</p></div>
+          </details>
+          <details>
+            <summary>화면이 검게만 나오고 게임이 안 열려요.</summary>
+            <div class="faq__a"><p>3D 가속(WebGL)을 지원하지 않는 브라우저이거나, 하드웨어 가속이 꺼져 있을 수 있습니다. Chrome·Safari 최신 버전으로 다시 열어 주세요.</p></div>
+          </details>
+        </div>
+
+        <div class="btn-row" style="margin:2.6em 0 0">
+          <a class="btn btn--neon" href="pickle-gakoongi-rhythm-app.html">▶ 지금 플레이하기</a>
+          <a class="btn btn--ghost" href="../tests/ai-persona-test.html">성향 테스트도 해 보기</a>
+        </div>
+
+        <div class="author-box">
+          <div class="author-box__avatar" aria-hidden="true">쿵</div>
+          <div>
+            <strong>쿵이가족</strong>
+            <p>직접 만들고 직접 플레이하며 남긴 기록을 올립니다. 게임에 대한 의견이나 버그 제보는 <a href="../contact.html">문의하기</a> 또는 osy500133@gmail.com으로 보내 주세요.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:760px">
+        <h2 style="font-size:1.1rem;margin:2.4em 0 .8em">함께 보면 좋은 글</h2>
+        <div class="related">
+          <a href="../articles/3d-web-guide.html">
+            <small>읽을거리</small>
+            <strong>설치 없이 웹에서 즐기는 3D 게임의 원리</strong>
+          </a>
+          <a href="../articles/ai-music-guide.html">
+            <small>읽을거리</small>
+            <strong>AI 음악·비주얼 제작 트렌드 5분 정리</strong>
+          </a>
+          <a href="../tests/ai-persona-test.html">
+            <small>심리테스트</small>
+            <strong>나는 어떤 크리에이터·리더 유형일까?</strong>
+          </a>
+        </div>
+
+        <!-- ADSENSE_SLOT: game-bottom | 페이지 하단 · 관련 링크 아래 -->
+        <div class="ad-slot" id="ad-game-bottom" data-ad-ready="false" data-ad-slot="game-bottom">
+          <span class="ad-slot__label">Advertisement</span>
+          <!-- 애드센스 반응형 광고 코드 삽입 위치 -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html"><span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko">패밀리</span></a>
+        <p>설치 없이 브라우저에서 즐기는 게임과 테스트, 그리고 만드는 사람의 기록. 쿵이가족이 운영합니다.</p>
+      </div>
+      <div>
+        <h4>Play</h4>
+        <ul>
+          <li><a href="pickle-gakoongi-rhythm.html">피클 가쿵이 소개</a></li>
+          <li><a href="pickle-gakoongi-rhythm-app.html">게임 바로 플레이</a></li>
+          <li><a href="../tests/ai-persona-test.html">성향 테스트</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="../articles/ai-music-guide.html">AI 음악 가이드</a></li>
+          <li><a href="../articles/3d-web-guide.html">웹 3D 가이드</a></li>
+          <li><a href="../about.html">소개</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a class="footer-mail" href="mailto:osy500133@gmail.com">osy500133@gmail.com</a></li>
+          <li><a href="../contact.html">문의하기</a></li>
+          <li><a href="../privacy.html">개인정보처리방침</a></li>
+          <li><a href="../terms.html">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> 쿵이가족 KOONG FAMILY. All rights reserved.</span>
+      <span class="legal">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+        <a href="../sitemap.xml">사이트맵</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

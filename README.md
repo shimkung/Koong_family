@@ -1,0 +1,202 @@
+# 쿵이가족 KOONG FAMILY
+
+가족이 만든 게임·심리테스트·읽을거리를 모아 두는 작은 웹 놀이터입니다.
+정적 파일만으로 동작하며, GitHub Pages로 배포됩니다.
+
+- **사이트 주소**: https://shimkung.github.io/Koong_family/
+- **저장소**: https://github.com/shimkung/Koong_family
+- **테마**: 검은 바탕(`#09090B`) + 형광 노랑(`#E2FF00`)
+
+> ⚠️ 저장소 이름은 대문자 `K`와 언더바 `_`를 쓰는 **`Koong_family`** 입니다.
+> GitHub Pages 주소의 경로도 대소문자를 구분하므로, 링크·canonical·sitemap에는 항상
+> `/Koong_family/` 로 적어 주세요. (`/koong-family/` 는 404가 됩니다.)
+
+---
+
+## 1. 폴더 구조
+
+```
+.
+├─ index.html                      메인 (히어로 · 카드 그리드 · 카테고리 필터)
+├─ about.html                      소개
+├─ privacy.html                    개인정보처리방침 (AdSense 쿠키·맞춤광고 안내 포함)
+├─ terms.html                      이용약관
+├─ contact.html                    문의하기 (osy500133@gmail.com)
+├─ 404.html                        없는 페이지 안내
+├─ robots.txt / sitemap.xml / ads.txt
+├─ data/
+│   └─ catalog.js                  ★ 콘텐츠 목록 (여기만 고치면 메인 카드가 바뀝니다)
+├─ assets/
+│   ├─ css/style.css               공용 디자인
+│   └─ js/site.js                  메뉴 · 카드 렌더 · 필터
+├─ games/
+│   ├─ pickle-gakoongi-rhythm.html    게임 소개 · 조작법 · 공략 (긴 글)
+│   └─ pickle-gakoongi-rhythm-app.html 게임 실행 파일 (단일 HTML)
+├─ tests/
+│   └─ ai-persona-test.html        심리테스트 (10문항 / 6유형)
+└─ articles/
+    ├─ ai-music-guide.html
+    └─ 3d-web-guide.html
+```
+
+---
+
+## 2. 새 콘텐츠 추가하는 법
+
+### (1) 파일 만들기
+
+- 게임 → `games/내게임.html`
+- 심리테스트 → `tests/내테스트.html`
+- 글 → `articles/내글.html`
+
+기존 페이지 하나를 복사해서 내용만 바꾸는 방법이 가장 빠릅니다.
+(공용 CSS `assets/css/style.css`와 `assets/js/site.js`를 그대로 쓰면 디자인이 자동으로 맞습니다.)
+
+### (2) 목록에 등록하기
+
+`data/catalog.js` 배열 맨 위에 항목을 하나 추가하면 메인 화면 카드와 필터에 자동으로 나타납니다.
+
+```js
+{
+  id: 'my-new-game',              // 고유 아이디(영문·하이픈)
+  cat: 'game',                    // 'game' | 'test' | 'read'
+  emoji: '🎯',
+  title: '새로 만든 게임',
+  desc: '카드에 보일 두 줄 소개.',
+  href: 'games/my-new-game.html', // 최상위 기준 경로
+  tag: '무료 게임',
+  meta: ['1인 플레이', '모바일 지원'],
+  date: '2026-12-01'              // 최신 날짜가 위로 정렬됨
+}
+```
+
+`featured: true` 를 넣으면 메인 상단 큰 배너 후보가 됩니다(현재는 게임 1개 고정 마크업).
+
+### (3) 푸시
+
+```bash
+git add .
+git commit -m "새 콘텐츠: ..."
+git push
+```
+
+푸시 후 1~2분 안에 사이트에 반영됩니다.
+
+---
+
+## 3. 게임 최신본(v2)으로 교체하기
+
+지금 게임 실행 파일은 **`games/pickle-gakoongi-rhythm-app.html`** 하나입니다.
+새 버전이 나오면 아래 둘 중 하나로 교체하면 됩니다.
+
+**방법 A — 파일만 갈아끼우기 (기존 주소 유지)**
+
+```bash
+cp 새게임.html games/pickle-gakoongi-rhythm-app.html
+git add . && git commit -m "게임 v2 적용" && git push
+```
+
+**방법 B — 새 파일로 추가하고 링크만 변경**
+
+1. `games/pickle-gakoongi-rhythm-v2.html` 로 업로드
+2. `games/pickle-gakoongi-rhythm.html` 안의 `바로 플레이하기` 링크를 v2로 수정
+3. (선택) 이전 버전은 `archive/` 폴더로 옮겨 보관
+
+> 게임 파일은 약 7MB(내장 기본 트랙·영상 포함)입니다.
+> GitHub는 파일당 100MB까지 허용하므로 문제없지만, 너무 커지면 로딩이 느려집니다.
+
+---
+
+## 4. Google AdSense 켜는 순서
+
+1. **사이트 승인 신청** — https://adsense.google.com 에서 사이트 URL
+   `https://shimkung.github.io/Koong_family/` 추가 → 소유 확인(사이트에 코드 삽입 또는 Search Console 인증).
+2. **게시자 ID 확인** — `ca-pub-XXXXXXXXXXXXXXXX` 형식의 ID를 발급받습니다.
+3. **모든 HTML 파일의 주석 해제** — `<head>` 안에 아래 주석이 있습니다.
+
+   ```html
+   <!--
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+   -->
+   ```
+
+   주석 기호를 지우고 `ca-pub-...` 를 실제 ID로 바꿉니다.
+   (index, 게임 소개, 테스트, 글 2편, about, privacy, terms, contact 전부)
+
+4. **광고 슬롯 켜기** — 페이지 안의 아래 형태를 찾아 `data-ad-ready="false"` → `"true"` 로 바꾸고,
+   그 안에 애드센스 광고 단위 코드를 넣습니다.
+
+   ```html
+   <!-- ADSENSE_SLOT: home-top | 메인 상단 -->
+   <div class="ad-slot" data-ad-ready="false" data-ad-slot="home-top"> ... </div>
+   ```
+
+   기본 CSS는 `display:none` 이라, 승인 전에는 빈 회색 박스가 보이지 않습니다.
+
+5. **ads.txt 활성화** — `ads.txt` 안의 마지막 줄 주석을 풀고 `pub-...` 를 실제 ID로 바꿉니다.
+
+### 현재 광고 슬롯 위치
+
+| 슬롯 ID | 페이지 | 위치 |
+|---|---|---|
+| `home-top` | 메인 | 히어로 아래, 콘텐츠 시작 전 |
+| `home-bottom` | 메인 | 카드·소개 섹션 아래 |
+| `game-top` | 게임 소개 | 제목·플레이 버튼과 40px 이상 떨어진 곳 |
+| `game-mid` | 게임 소개 | 조작법/판정 설명 뒤, 본문 중간 |
+| `game-bottom` | 게임 소개 | 관련 링크 아래 |
+| `test-top` | 심리테스트 | 테스트 시작 영역 위 |
+| `test-bottom` | 심리테스트 | 설명·관련 링크 아래 |
+| `article-top` / `article-mid` / `article-bottom` | 글 2편 | 본문 상·중·하 |
+
+게임 **실행 페이지**(`-app.html`)에는 광고를 넣지 않았습니다. 전체 화면 캔버스 게임 위에 광고를 얹으면
+오클릭·플레이 방해로 정책 위반이 되기 쉽기 때문입니다.
+
+### 피해야 할 배치 (정책)
+
+- 플레이 버튼·메뉴 버튼 **바로 옆/위**에 광고 두기
+- 광고를 닫기 어려운 팝업·플로팅 박스로 띄우기
+- “클릭해 주세요”, 화살표 등으로 클릭 유도
+- 광고와 콘텐츠를 구분할 수 없게 만들기
+- 게임 화면을 가리는 배치
+
+---
+
+## 5. 로컬에서 미리 보기
+
+```bash
+python3 -m http.server 8000
+# 브라우저에서 http://localhost:8000 접속
+```
+
+`file://` 로 열면 상대 경로·일부 스크립트가 동작하지 않을 수 있으니 로컬 서버 사용을 권장합니다.
+
+---
+
+## 6. 배포 (GitHub Pages)
+
+- 브랜치: `main` / 폴더: `/` (root)
+- 설정 위치: 저장소 → Settings → Pages
+- 배포 후 주소: https://shimkung.github.io/Koong_family/
+- `.nojekyll` 파일이 있어 Jekyll 처리를 건너뜁니다. (지우지 마세요)
+
+---
+
+## 7. 애드센스 승인 전 체크리스트
+
+- [x] 소개·문의·개인정보처리방침·이용약관 4종 페이지 + 모든 페이지 하단 링크
+- [x] 실제 문의 이메일 표기 (`osy500133@gmail.com`)
+- [x] 쿠키·맞춤형 광고·거부 방법 안내 (privacy.html)
+- [x] `robots.txt` 에서 Mediapartners-Google 허용
+- [x] `sitemap.xml` 최신 URL
+- [x] HTTPS (GitHub Pages 기본 제공)
+- [x] 모바일 대응 (반응형)
+- [ ] 승인 후: 게시자 ID 교체 + 광고 슬롯 활성화 + ads.txt
+- [ ] 승인 후: Search Console·애널리틱스 연결(선택)
+
+---
+
+## 8. 참고
+
+- 폰트: Pretendard(CDN), Black Han Sans·Bebas Neue(Google Fonts)
+- 3D 엔진: three.js 0.160.0 (게임 파일이 unpkg → jsDelivr 순으로 불러옴)
+- 게임에서 넣은 음악·영상은 브라우저 안에서만 처리되며 서버로 전송되지 않습니다.

@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow:
+
+# Google AdSense 크롤러 (광고 게재 심사용) — 반드시 허용
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+# 이미지 검색 노출
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://shimkung.github.io/Koong_family/sitemap.xml
