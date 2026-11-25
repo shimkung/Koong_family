@@ -538,3 +538,61 @@ td.num{font-family:var(--font-latin);font-size:1.05rem;color:var(--neon);letter-
   .site-header,.site-footer,.ad-slot,.share-row,.filters{display:none !important}
   body{background:#fff;color:#000}
 }
+
+/* ==========================================================================
+   12) 2026-11 리뉴얼 — 상단 드롭다운 · KR/EN · 심플 홈 · 언어 블록
+   ========================================================================== */
+
+/* 언어 전환: html[data-lang] 에 따라 한쪽만 보인다 (JS 없이도 동작) */
+html[data-lang="en"] .lang-ko{display:none !important}
+html[data-lang="ko"] .lang-en{display:none !important}
+
+/* 헤더 — 읽을거리 드롭다운 */
+.nav-item{position:relative;display:flex;align-items:center;gap:2px}
+.nav-item__link{padding:9px 6px 9px 13px !important;border-radius:999px 0 0 999px !important}
+.nav-item__toggle{display:inline-flex;align-items:center;justify-content:center;width:26px;height:34px;border-radius:0 999px 999px 0;
+  color:var(--ink-dim);transition:color .15s ease,background .15s ease}
+.nav-item__toggle svg{width:11px;height:11px;transition:transform .18s ease}
+.nav-item__toggle:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.nav-item.open .nav-item__toggle svg{transform:rotate(180deg)}
+.nav-item.open .nav-item__link{color:var(--neon)}
+.subnav{position:absolute;top:calc(100% + 8px);left:0;min-width:190px;padding:8px;border:1px solid var(--line);
+  border-radius:14px;background:rgba(12,12,16,.98);backdrop-filter:blur(14px);
+  box-shadow:0 24px 50px -28px rgba(0,0,0,.9);opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .16s ease,transform .16s ease,visibility .16s;z-index:70}
+.nav-item:hover .subnav,.nav-item.open .subnav{opacity:1;visibility:visible;transform:none}
+.subnav a{display:block;padding:10px 12px !important;border-radius:9px !important;font-size:.9rem !important;font-weight:700;color:var(--ink-dim) !important}
+.subnav a:hover{background:rgba(226,255,0,.1) !important;color:var(--neon) !important}
+
+/* KR / EN 스위치 */
+.lang-switch{display:flex;align-items:center;gap:3px;margin-left:8px;padding:3px;border:1px solid var(--line);border-radius:999px}
+.lang-switch button{padding:4px 9px;border-radius:999px;font-family:var(--font-latin);font-size:.82rem;letter-spacing:.1em;color:var(--ink-faint);line-height:1.2}
+.lang-switch button:hover{color:var(--ink)}
+.lang-switch button[aria-pressed="true"]{background:var(--neon);color:#08080A}
+.lang-switch span{color:var(--ink-faint);font-size:.75rem;opacity:.6}
+
+/* 심플 홈 */
+.home-head{padding:clamp(34px,6vw,58px) 0 clamp(22px,3vw,30px);border-bottom:1px solid var(--line)}
+.home-head h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,5.4vw,3rem);line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
+.home-head h1 em{font-style:normal;color:var(--neon)}
+.home-head p{color:var(--ink-dim);margin:0;max-width:54ch;font-size:clamp(.98rem,2vw,1.08rem);line-height:1.65}
+.home-catalog{padding:clamp(26px,4vw,38px) 0 clamp(40px,6vw,60px)}
+.home-catalog .filters{margin-bottom:22px}
+.card__cat{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);font-family:var(--font-latin);opacity:.85}
+
+/* 게임 랜딩/임베드 */
+.game-frame{width:100%;height:min(78vh,720px);border:1px solid var(--line-strong);border-radius:16px;background:#000;display:block}
+@media (max-width:760px){.game-frame{height:78vh;min-height:520px}}
+
+/* 모바일 메뉴 안에서 서브메뉴는 항상 펼침 */
+@media (max-width:760px){
+  .nav-item{flex-direction:column;align-items:stretch;gap:0;position:static}
+  .nav-item__link{padding:14px 12px !important;border-radius:10px !important;font-size:1rem !important;display:block}
+  .nav-item__toggle{display:none}
+  .subnav{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;
+    border:0;border-left:2px solid rgba(226,255,0,.35);border-radius:0;margin:0 0 6px 16px;padding:0 0 0 8px;min-width:0}
+  .subnav a{padding:9px 10px !important;font-size:.92rem !important}
+  .lang-switch{margin:12px 0 0;align-self:flex-start;border-color:var(--line-strong)}
+  .lang-switch button{padding:7px 14px;font-size:.9rem}
+}
+@media print{html[data-lang="en"] .lang-ko,html[data-lang="ko"] .lang-en{display:none !important}}

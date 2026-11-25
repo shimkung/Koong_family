@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/css/style.css?v=20261126b">
+<link rel="stylesheet" href="assets/css/style.css?v=20261127a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,19 +44,33 @@
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href="index.html" aria-label="쿵이가족 홈">
-      <span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko">패밀리</span>
+    <a class="brand" href="index.html" aria-label="쿵이가족 홈" data-ko-aria="쿵이가족 홈" data-en-aria="Koong Family home">
+      <span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko" data-ko="패밀리" data-en="FAMILY">패밀리</span>
     </a>
-    <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-controls="siteNav" aria-expanded="false">
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기" data-ko-aria="메뉴 열기" data-en-aria="Open menu" aria-controls="siteNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <nav class="nav" id="siteNav" aria-label="주요 메뉴">
-      <a href="index.html">홈</a>
-      <a href="index.html?cat=game">게임</a>
-      <a href="index.html?cat=test">심리테스트</a>
-      <a href="index.html?cat=read">읽을거리</a>
-      <a href="about.html">소개</a>
-      <a class="btn btn--neon btn--sm header-cta" href="games/pickle-gakoongi-rhythm-app.html">게임 하기</a>
+    <nav class="nav" id="siteNav" aria-label="주요 메뉴" data-ko-aria="주요 메뉴" data-en-aria="Main menu">
+      <a href="index.html" data-ko="홈" data-en="Home">홈</a>
+      <a href="index.html?cat=game" data-ko="쿵게임" data-en="Koong Game">쿵게임</a>
+      <a href="index.html?cat=test" data-ko="쿵심리테스트" data-en="Koong Test">쿵심리테스트</a>
+      <div class="nav-item">
+        <a class="nav-item__link" href="index.html#catalog" data-ko="읽을거리" data-en="Read">읽을거리</a>
+        <button class="nav-item__toggle" type="button" aria-expanded="false" aria-label="읽을거리 하위 메뉴" data-ko-aria="읽을거리 하위 메뉴" data-en-aria="Read submenu">
+          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5 6 8.5l4-4"/></svg>
+        </button>
+        <div class="subnav">
+          <a href="index.html?cat=drama" data-ko="드라마 · 영화" data-en="Drama &amp; Film">드라마 · 영화</a>
+          <a href="index.html?cat=book" data-ko="책 리뷰" data-en="Book Reviews">책 리뷰</a>
+          <a href="index.html?cat=ai" data-ko="AI 가이드" data-en="AI Guides">AI 가이드</a>
+        </div>
+      </div>
+      <a href="about.html" data-ko="소개" data-en="About">소개</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="ko" aria-pressed="true">KR</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
     </nav>
   </div>
 </header>
@@ -150,63 +164,76 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="index.html"><span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko">패밀리</span></a>
-        <p>설치 없이 브라우저에서 즐기는 게임과 테스트, 그리고 만드는 사람의 기록. 쿵이가족이 운영합니다.</p>
+        <a class="brand" href="index.html"><span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko" data-ko="패밀리" data-en="FAMILY">패밀리</span></a>
+        <p class="lang-ko">설치 없이 브라우저에서 즐기는 게임과 테스트, 그리고 만드는 사람의 기록. 쿵이가족이 운영합니다.</p>
+        <p class="lang-en">Games and tests you can play without installing anything, plus notes from the person making them. Run by Koong Family.</p>
       </div>
       <div>
         <h4>Play</h4>
         <ul>
-          <li><a href="games/pickle-gakoongi-rhythm.html">피클 가쿵이 소개</a></li>
-          <li><a href="games/pickle-gakoongi-rhythm-app.html">게임 바로 플레이</a></li>
-          <li><a href="tests/ai-persona-test.html">성향 테스트</a></li>
+          <li><a href="games/pickle-gakoongi-rhythm.html" data-ko="쿵이 게임" data-en="Koong Game">쿵이 게임</a></li>
+          <li><a href="games/pickle-gakoongi-rhythm-app.html" data-ko="게임 바로 플레이" data-en="Play now">게임 바로 플레이</a></li>
+          <li><a href="tests/ai-persona-test.html" data-ko="심리테스트" data-en="Personality test">심리테스트</a></li>
         </ul>
       </div>
       <div>
         <h4>Read</h4>
         <ul>
-          <li><a href="articles/ai-music-guide.html">AI 음악 가이드</a></li>
-          <li><a href="articles/3d-web-guide.html">웹 3D 가이드</a></li>
-          <li><a href="about.html">소개</a></li>
+          <li><a href="articles/remarried-empress-review.html" data-ko="드라마 · 영화" data-en="Drama &amp; Film">드라마 · 영화</a></li>
+          <li><a href="articles/intelligence-origin-review.html" data-ko="책 리뷰" data-en="Book review">책 리뷰</a></li>
+          <li><a href="articles/ai-music-guide.html" data-ko="AI 가이드" data-en="AI guides">AI 가이드</a></li>
+          <li><a href="about.html" data-ko="소개" data-en="About">소개</a></li>
         </ul>
       </div>
       <div>
         <h4>Contact</h4>
         <ul>
           <li><a class="footer-mail" href="mailto:osy500133@gmail.com">osy500133@gmail.com</a></li>
-          <li><a href="contact.html">문의하기</a></li>
-          <li><a href="privacy.html">개인정보처리방침</a></li>
-          <li><a href="terms.html">이용약관</a></li>
+          <li><a href="contact.html" data-ko="문의하기" data-en="Contact">문의하기</a></li>
+          <li><a href="privacy.html" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a></li>
+          <li><a href="terms.html" data-ko="이용약관" data-en="Terms">이용약관</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> 쿵이가족 KOONG FAMILY. All rights reserved.</span>
       <span class="legal">
-        <a href="about.html">소개</a>
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
-        <a href="contact.html">문의</a>
-        <a href="sitemap.xml">사이트맵</a>
+        <a href="about.html" data-ko="소개" data-en="About">소개</a>
+        <a href="privacy.html" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a>
+        <a href="terms.html" data-ko="이용약관" data-en="Terms">이용약관</a>
+        <a href="contact.html" data-ko="문의" data-en="Contact">문의</a>
+        <a href="sitemap.xml" data-ko="사이트맵" data-en="Sitemap">사이트맵</a>
       </span>
     </div>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/site.js?v=20261126b"></script>
+<script src="assets/js/site.js?v=20261127a"></script>
 <script>
-document.getElementById('copyMail').addEventListener('click', function () {
+(function () {
   var t = document.getElementById('toast');
-  navigator.clipboard.writeText('osy500133@gmail.com').then(function () {
-    t.textContent = '이메일 주소를 복사했어요';
+  var en = function () { return document.documentElement.getAttribute('data-lang') === 'en'; };
+  function show(msg, ms) {
+    if (!t) return;
+    t.textContent = msg;
     t.classList.add('show');
-    setTimeout(function () { t.classList.remove('show'); }, 2000);
-  }, function () {
-    t.textContent = '복사가 막혔어요. 주소를 직접 선택해 주세요';
-    t.classList.add('show');
-    setTimeout(function () { t.classList.remove('show'); }, 2400);
-  });
-});
+    setTimeout(function () { t.classList.remove('show'); }, ms || 2000);
+  }
+  function bind(id) {
+    var b = document.getElementById(id);
+    if (!b) return;
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText('osy500133@gmail.com').then(function () {
+        show(en() ? 'Email address copied' : '이메일 주소를 복사했어요', 2000);
+      }, function () {
+        show(en() ? 'Copy was blocked — select the address manually' : '복사가 막혔어요. 주소를 직접 선택해 주세요', 2400);
+      });
+    });
+  }
+  bind('copyMail');
+  bind('copyMailEn');
+})();
 </script>
 </body>
 </html>

@@ -17,7 +17,7 @@
 
 ```
 .
-├─ index.html                      메인 (히어로 · 카드 그리드 · 카테고리 필터)
+├─ index.html                      메인 (짧은 소개 · 카드 그리드 · 카테고리 필터)
 ├─ about.html                      소개
 ├─ privacy.html                    개인정보처리방침 (AdSense 쿠키·맞춤광고 안내 포함)
 ├─ terms.html                      이용약관
@@ -30,13 +30,15 @@
 │   ├─ css/style.css               공용 디자인
 │   └─ js/site.js                  메뉴 · 카드 렌더 · 필터
 ├─ games/
-│   ├─ pickle-gakoongi-rhythm.html    게임 소개 · 조작법 · 공략 (긴 글)
-│   └─ pickle-gakoongi-rhythm-app.html 게임 실행 파일 (단일 HTML)
+│   ├─ pickle-gakoongi-rhythm.html    쿵이 게임 소개 · 조작법 · 공략 (긴 글)
+│   └─ pickle-gakoongi-rhythm-app.html 게임 실행 파일 (단일 HTML, 주소 유지)
 ├─ tests/
-│   └─ ai-persona-test.html        심리테스트 (10문항 / 6유형)
+│   └─ ai-persona-test.html        심리테스트 (10문항 / 6유형, KR·EN)
 └─ articles/
-    ├─ ai-music-guide.html
-    └─ 3d-web-guide.html
+    ├─ remarried-empress-review.html   《재혼황후》 드라마 리뷰
+    ├─ intelligence-origin-review.html 《지능의 기원》 책 리뷰
+    ├─ ai-music-guide.html             AI 가이드
+    └─ 3d-web-guide.html               AI 가이드
 ```
 
 ---
@@ -59,18 +61,29 @@
 ```js
 {
   id: 'my-new-game',              // 고유 아이디(영문·하이픈)
-  cat: 'game',                    // 'game' | 'test' | 'read'
+  cat: 'game',                    // 'game' | 'test' | 'drama' | 'book' | 'ai'
   emoji: '🎯',
-  title: '새로 만든 게임',
-  desc: '카드에 보일 두 줄 소개.',
+  title: { ko: '새로 만든 게임', en: 'My new game' },
+  desc: { ko: '카드에 보일 두 줄 소개.', en: 'Two lines for the card.' },
   href: 'games/my-new-game.html', // 최상위 기준 경로
-  tag: '무료 게임',
-  meta: ['1인 플레이', '모바일 지원'],
+  tag: { ko: '무료 게임', en: 'Free game' },
+  meta: [{ ko: '1인 플레이', en: 'Single player' }, { ko: '모바일 지원', en: 'Mobile' }],
   date: '2026-12-01'              // 최신 날짜가 위로 정렬됨
 }
 ```
 
-`featured: true` 를 넣으면 메인 상단 큰 배너 후보가 됩니다(현재는 게임 1개 고정 마크업).
+`new: true` 를 넣으면 카드 배지가 살짝 빛납니다.
+
+### KR / EN 두 언어로 쓰는 법
+
+모든 페이지는 상단 오른쪽 `KR / EN` 버튼으로 언어를 바꿉니다. 선택은 `localStorage('koong_lang')` 에 저장되어
+페이지를 옮겨도 유지되고, 게임 화면도 같은 값을 씁니다.
+
+- **본문처럼 긴 내용**은 `<div class="lang-ko"> … </div>` 와 `<div class="lang-en"> … </div>` 두 블록으로 나눠 씁니다.
+  CSS가 `html[data-lang]` 값에 따라 한쪽만 보여 줍니다.
+- **버튼·메뉴처럼 짧은 문구**는 한 요소에 `data-ko="홈" data-en="Home"` 처럼 적습니다. (`data-ko-aria`, `data-ko-title` 도 같습니다)
+- 접근성 라벨 등은 `data-ko-aria` / `data-en-aria` 쌍으로 적습니다.
+- 새 글을 쓸 때도 같은 방식으로 두 블록을 함께 넣으면 영어 모드에서 바로 읽힙니다.
 
 ### (3) 푸시
 
