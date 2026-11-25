@@ -317,6 +317,7 @@
     }
   };
   var ORDER = ['prod', 'muse', 'lab', 'boost', 'link', 'dream'];
+  var SHORT = { prod: '프로듀서', muse: '뮤즈', lab: '리서처', boost: '스타터', link: '커넥터', dream: '드리머' };
 
   var QUESTIONS = [
     { q: '새 프로젝트를 시작할 때 가장 먼저 하는 일은?', o: [
@@ -464,7 +465,7 @@
     var bars = ORDER.slice().sort(function (a, b) { return r.score[b] - r.score[a]; }).map(function (k) {
       var pct = Math.round((r.score[k] / total) * 100);
       return '<div class="score-bar' + (k === r.top ? ' top' : '') + '">' +
-        '<b>' + TYPES[k].name.replace('무대 뒤 ', '').replace('리서치 ', '') + '</b>' +
+        '<b>' + SHORT[k] + '</b>' +
         '<div class="track"><i style="width:' + pct + '%"></i></div>' +
         '<span>' + pct + '</span></div>';
     }).join('');
