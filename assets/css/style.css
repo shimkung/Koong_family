@@ -398,7 +398,7 @@ td.num{font-family:var(--font-latin);font-size:1.05rem;color:var(--neon);letter-
 .author-box strong{display:block;color:#fff;font-size:.96rem;margin-bottom:2px}
 
 /* 8) 퀴즈 ---------------------------------------------------------------- */
-.quiz-shell{max-width:760px;margin:0 auto}
+.quiz-shell{max-width:760px;margin:0}
 .quiz-progress{height:6px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:10px}
 .quiz-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--neon-deep),var(--neon));transition:width .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 18px var(--neon-glow)}
 .quiz-step{display:flex;justify-content:space-between;font-size:.82rem;color:var(--ink-faint);margin-bottom:22px;font-family:var(--font-latin);letter-spacing:.14em}
@@ -423,6 +423,9 @@ td.num{font-family:var(--font-latin);font-size:1.05rem;color:var(--neon);letter-
   letter-spacing:.06em;
 }
 .quiz-opt[data-picked="true"]{border-color:var(--neon);background:rgba(226,255,0,.12)}
+.quiz-opt--primary{border-color:rgba(226,255,0,.42);background:linear-gradient(120deg,rgba(226,255,0,.12),rgba(226,255,0,.03))}
+.quiz-opt--primary:hover{border-color:var(--neon);background:rgba(226,255,0,.16)}
+.quiz-opt--primary .k{font-size:1.1rem}
 .quiz-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px}
 .quiz-back{font-size:.88rem;color:var(--ink-faint);font-weight:700}
 .quiz-back:hover{color:var(--neon)}
