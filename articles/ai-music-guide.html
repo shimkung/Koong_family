@@ -7,6 +7,7 @@
 <meta name="description" content="AI 음악은 어떤 원리로 만들어지고, 프롬프트는 어떻게 쓰고, 마스터링·유통·영상 결합은 어떻게 하는지. 직접 곡을 만들며 확인한 2026년 AI 음악·비주얼 제작 흐름을 초보자 눈높이로 정리했습니다.">
 <meta name="keywords" content="AI 음악, AI 작곡, 수노, Suno, AI 음악 만들기, 프롬프트, 라우드니스, LUFS, AI 뮤직비디오, 음원 유통, AI 비주얼">
 <meta name="theme-color" content="#09090B">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://shimkung.github.io/Koong_family/articles/ai-music-guide.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="쿵이가족 KOONG FAMILY">
@@ -45,6 +46,72 @@
   "author": { "@type": "Organization", "name": "쿵이가족" },
   "publisher": { "@type": "Organization", "name": "쿵이가족" },
   "mainEntityOfPage": "https://shimkung.github.io/Koong_family/articles/ai-music-guide.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "음악을 전혀 모르는데 시작할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "가능합니다. BPM, 인트로·벌스·코러스 같은 기본 용어만 익히면 결과가 크게 달라집니다. 좋아하는 곡 3개의 장르와 분위기를 적어 보는 것부터 시작해 보세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "만든 곡을 유튜브에 올려도 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "대부분의 서비스가 유료 플랜에서 상업적 이용을 허용하지만 조건은 시점에 따라 다릅니다. 사용 중인 서비스 약관의 상업적 이용 조항을 직접 확인하세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI 판별기에서 걸리면 어떻게 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "유통사 정책에 따라 반려될 수 있습니다. 스템을 다시 편집하거나 악기를 직접 연주해 얹거나 MIDI로 재연주하는 방식으로 손을 대는 경우가 많습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "하루에 몇 곡까지 만들 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "서비스의 크레딧 정책에 따릅니다. 무료 플랜은 하루 몇 곡으로 제한되는 경우가 많으니 아이디어를 먼저 정리해 두고 크레딧을 아껴 쓰는 편이 좋습니다."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "홈",
+      "item": "https://shimkung.github.io/Koong_family/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "읽을거리",
+      "item": "https://shimkung.github.io/Koong_family/#catalog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "초보자도 5분 만에 이해하는 AI 음악·비주얼 제작 트렌드",
+      "item": "https://shimkung.github.io/Koong_family/articles/ai-music-guide.html"
+    }
+  ]
 }
 </script>
 </head>
@@ -107,6 +174,17 @@
           <a href="#master">④ 마스터링과 라우드니스</a>
           <a href="#distribution">⑤ 유통 전 체크리스트</a>
           <a href="#video">⑥ 영상으로 만들기</a>
+        </div>
+
+        <div class="tldr">
+          <span class="tldr__label">핵심 요약 · TL;DR</span>
+          <ul>
+            <li><strong>원리:</strong> AI 음악은 텍스트 프롬프트를 소리 토큰·확산 과정으로 바꿔 곡을 만듭니다. 2026년 모델은 보통 예측(구조)과 확산(질감)을 섞어 쓴 뒤 스템으로 나눠 줍니다.</li>
+            <li><strong>올해의 변화:</strong> ‘완성곡 한 번 뽑기’에서 <strong>스템 단위 편집</strong>으로 이동했습니다. 생성 도구가 아니라 작곡 도구로 써야 결과가 달라집니다.</li>
+            <li><strong>음량:</strong> 스트리밍은 <strong>-14 LUFS</strong> 부근이 기준입니다. 과하게 올리면 정규화로 다이내믹만 잃습니다.</li>
+            <li><strong>영상용 음원:</strong> 마스터링 없이 원음으로 두고, 최종 음량은 영상 편집에서 한 번만 잡는 편이 깔끔합니다.</li>
+            <li><strong>유통 전 확인:</strong> AI 사용 고지 · 유통사 정책 · 샘플과 가사 권리 · 커버 아트 조건.</li>
+          </ul>
         </div>
 
         <h2 id="principle">① AI 음악은 대체 어떤 원리로 만드나</h2>

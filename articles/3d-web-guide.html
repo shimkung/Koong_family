@@ -7,6 +7,7 @@
 <meta name="description" content="브라우저에서 3D 게임이 돌아가는 원리를 WebGL, 프레임 루프, 판정 타이밍, 오디오 분석, 모바일 최적화 순서로 풀었습니다. 직접 만든 4레인 리듬게임의 실제 사례와 코드 개념까지 함께 설명합니다.">
 <meta name="keywords" content="WebGL, three.js, 웹 3D 게임, 브라우저 게임 원리, 리듬게임 판정, Web Audio API, 오디오 분석, 모바일 최적화, 인터랙티브 웹">
 <meta name="theme-color" content="#09090B">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://shimkung.github.io/Koong_family/articles/3d-web-guide.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="쿵이가족 KOONG FAMILY">
@@ -45,6 +46,72 @@
   "author": { "@type": "Organization", "name": "쿵이가족" },
   "publisher": { "@type": "Organization", "name": "쿵이가족" },
   "mainEntityOfPage": "https://shimkung.github.io/Koong_family/articles/3d-web-guide.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "웹 게임은 앱보다 느리지 않나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "간단한 3D라면 체감 차이가 거의 없습니다. 첫 로딩에서 엔진과 리소스를 받아야 하므로 파일 크기를 줄이는 것이 중요하고, 두 번째 방문부터는 캐시로 빨라집니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "아이폰에서도 잘 돌아가나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "최신 Safari는 WebGL을 지원합니다. 다만 메모리 제한이 엄격해 큰 텍스처를 여러 개 쓰면 탭이 새로고침될 수 있으므로 텍스처 크기와 동시 로딩 수를 줄이는 것이 안전합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "음악 파일을 넣으면 서버로 올라가나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "구현에 따라 다릅니다. 저희 게임은 브라우저 안에서만 파일을 읽고 분석하며 서버로 전송하지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "코드를 꼭 알아야 만들 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "게임 제작 도구를 쓰면 코드 없이도 만들 수 있습니다. 다만 판정 폭, 카메라 각도, 레인 배치 같은 세부 조정은 코드를 다룰 때 훨씬 자유롭습니다."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "홈",
+      "item": "https://shimkung.github.io/Koong_family/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "읽을거리",
+      "item": "https://shimkung.github.io/Koong_family/#catalog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "설치 없이 웹에서 즐기는 3D 인터랙티브 게임의 원리",
+      "item": "https://shimkung.github.io/Koong_family/articles/3d-web-guide.html"
+    }
+  ]
 }
 </script>
 </head>
@@ -107,6 +174,17 @@
           <a href="#time">④ 음악과 시간 맞추기</a>
           <a href="#chart">⑤ 음악이 채보가 되기까지</a>
           <a href="#mobile">⑥ 모바일에서 버티기</a>
+        </div>
+
+        <div class="tldr">
+          <span class="tldr__label">핵심 요약 · TL;DR</span>
+          <ul>
+            <li><strong>구조:</strong> 브라우저 3D는 WebGL(최신은 WebGPU)로 그리기를 GPU에 맡기고, 실무에서는 three.js 같은 라이브러리로 장면을 다룹니다.</li>
+            <li><strong>성능:</strong> 60fps는 프레임당 <strong>16.7ms</strong> 예산입니다. 그리기 호출 수, 해상도 배율(DPR), 실시간 그림자가 가장 큰 비용입니다.</li>
+            <li><strong>판정:</strong> 리듬게임은 <strong>오디오 시계</strong>를 기준으로 시간을 재야 합니다. 블루투스 이어폰의 100~300ms 지연은 판정을 밀리게 합니다.</li>
+            <li><strong>자동 채보:</strong> 온셋 검출 + 적응 임계값 + 최소 간격(0.125초)으로 손이 따라갈 수 있는 밀도로 줄입니다.</li>
+            <li><strong>3D 위 버튼:</strong> 판정선의 3D 좌표를 매 프레임 화면 좌표로 <strong>투영</strong>해야 버튼과 노트가 어긋나지 않습니다.</li>
+          </ul>
         </div>
 
         <h2 id="render">① 3D가 화면에 나오기까지</h2>

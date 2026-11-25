@@ -353,6 +353,20 @@ td.num{font-family:var(--font-latin);font-size:1.05rem;color:var(--neon);letter-
 .note--warn{border-color:rgba(255,90,95,.35);background:rgba(255,90,95,.06)}
 .note--warn strong{color:#FF8A8E}
 
+/* 핵심 요약(TL;DR) — 검색엔진·AI 검색이 인용하기 쉬운 짧은 사실 블록 */
+.tldr{
+  border:1px solid rgba(226,255,0,.3);border-radius:16px;padding:20px 22px;margin:0 0 2.2em;
+  background:linear-gradient(160deg,rgba(226,255,0,.08),rgba(226,255,0,.015));
+}
+.tldr__label{
+  display:block;font-family:var(--font-latin);font-size:.8rem;letter-spacing:.24em;
+  color:var(--neon);margin-bottom:10px;text-transform:uppercase;
+}
+.tldr ul{margin:0;padding-left:1.1em;font-size:.96rem}
+.tldr li{margin-bottom:.45em}
+.tldr li::marker{color:var(--neon)}
+.tldr p{margin:0;font-size:.96rem}
+
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:2em 0}
 .stat{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--panel)}
 .stat strong{display:block;font-family:var(--font-latin);font-size:1.9rem;color:var(--neon);line-height:1.1;letter-spacing:.03em}

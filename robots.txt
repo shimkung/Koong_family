@@ -13,4 +13,8 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
+# 풀스크린 게임 실행 페이지만 크롤링 제외 (텍스트가 없는 캔버스 페이지)
+# 게임 소개·조작법·공략은 게임/피클가쿵이.html 에 텍스트로 정리되어 색인됩니다.
+Disallow: /Koong_family/games/pickle-gakoongi-rhythm-app.html
+
 Sitemap: https://shimkung.github.io/Koong_family/sitemap.xml
