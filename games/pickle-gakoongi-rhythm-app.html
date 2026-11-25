@@ -96,11 +96,11 @@
     transition:background .1s ease, box-shadow .12s ease, border-color .12s;
     transform:translate3d(0,0,0);will-change:transform,width,height;pointer-events:auto;
     touch-action:none;user-select:none;-webkit-user-select:none}
-  #pad .key .kin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  #pad .key .kin{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
     transform-origin:50% 64%;will-change:transform}
   #pad .key b{font-size:14px;letter-spacing:.16em;font-weight:500;text-shadow:0 1px 10px rgba(0,0,0,.6)}
   #pad .key .kl{font-size:7.5px;letter-spacing:.22em;opacity:.38}
-  #pad .key .rip{position:absolute;left:50%;top:54%;width:150%;height:150%;margin:-75% 0 0 -75%;border-radius:50%;
+  #pad .key .rip{position:absolute;z-index:1;left:50%;top:54%;width:150%;height:150%;margin:-75% 0 0 -75%;border-radius:50%;
     pointer-events:none;opacity:0;
     background:radial-gradient(circle,rgba(255,255,255,.52) 0%,rgba(255,255,255,.2) 36%,rgba(255,255,255,0) 64%);
     border:1px solid rgba(255,255,255,.42)}
@@ -2734,7 +2734,7 @@ function animate() {
     if (laneTiltHold <= 0) laneTiltTarget = 0;
     laneTilt += (laneTiltTarget - laneTilt) * (1 - Math.exp(-dt * 9));
 
-    const reactX = THREE.MathUtils.clamp(laneTilt * 9.0 + par.x * 0.26, -0.34, 0.34);
+    const reactX = THREE.MathUtils.clamp(laneTilt * 13.0 + par.x * 0.26, -0.38, 0.38);
     const reactY = par.y * 0.16;
     camera.position.copy(camBase);
     camera.position.x += reactX;
