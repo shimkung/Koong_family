@@ -151,6 +151,7 @@
 </header>
 
 <main>
+<div class="lang-ko">
   <div class="page-head">
     <div class="wrap">
       <nav class="breadcrumb" aria-label="위치">
@@ -405,6 +406,225 @@ pad.style.transform = `translate(${x}px, ${y}px)`;
       </div>
     </div>
   </div>
+</div>
+
+<div class="lang-en">
+  <div class="page-head">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../index.html?cat=ai">AI Guides</a><span>/</span><strong>Browser 3D games</strong>
+      </nav>
+      <span class="eyebrow">Guide · Web 3D</span>
+      <h1>How browser 3D games work<br>with no install at all</h1>
+      <p class="lede">
+        A 3D rhythm game opens from a link, analyses your music and runs on a phone. Underneath that is a chain of plain engineering decisions:
+        frame budgets, projection, audio clocks and note generation. This guide walks through the pieces that actually decide whether it feels good.
+      </p>
+      <div class="page-meta">
+        <span>Koong Family</span><i aria-hidden="true">·</i>
+        <span>26 November 2026</span><i aria-hidden="true">·</i>
+        <span>9 min</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ad-slot" id="ad-article-top-en" data-ad-ready="false" data-ad-slot="article-top">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+    <div class="section" style="padding-top:34px">
+      <div class="prose">
+        <div class="section-nav">
+          <a href="#render-en">1. How 3D reaches the screen</a>
+          <a href="#budget-en">2. The 16.7 ms budget</a>
+          <a href="#ui-en">3. Buttons on top of 3D</a>
+          <a href="#time-en">4. Keeping time with music</a>
+          <a href="#chart-en">5. From audio to a chart</a>
+          <a href="#mobile-en">6. Surviving on mobile</a>
+        </div>
+        <div class="tldr">
+          <span class="tldr__label">TL;DR</span>
+          <ul>
+            <li><strong>Structure:</strong> WebGL (now also WebGPU) hands drawing to the GPU; in practice a library such as three.js manages the scene.</li>
+            <li><strong>Performance:</strong> 60 fps means a <strong>16.7 ms</strong> budget per frame. Draw calls, resolution scale (DPR) and real-time shadows cost the most.</li>
+            <li><strong>Timing:</strong> a rhythm game must measure time against the <strong>audio clock</strong>. Bluetooth earphones add 100–300 ms and push every judgement late.</li>
+            <li><strong>Auto-charting:</strong> onset detection + adaptive threshold + a 0.125 s minimum gap keeps the note density playable.</li>
+            <li><strong>Buttons over 3D:</strong> the judge line’s 3D position must be <strong>projected</strong> to screen space every frame, or buttons drift away from the notes.</li>
+          </ul>
+        </div>
+        <h2 id="render-en">1. How 3D reaches the screen</h2>
+        <p>
+          Drawing 3D in a browser is the job of <strong>WebGL</strong> (and now <strong>WebGPU</strong>). JavaScript says “draw this shape at this position”
+          and the instruction goes to the GPU, which computes millions of pixels at once. What would be impossible pixel by pixel on a CPU is instant on a GPU.
+        </p>
+        <p>
+          WebGL itself is fiddly, so most projects use a library such as <strong>three.js</strong>. Scene, camera, lights and materials become objects, and the
+          library turns them into GPU commands. Our game builds its stage the same way.
+        </p>
+        <pre style="overflow-x:auto;border:1px solid var(--line);border-radius:12px;padding:16px;background:#0C0C10;font-size:.85rem"><code>// Minimal example of the concept
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 100);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+function frame(now) {
+  // 1) update motion  2) draw
+  cube.rotation.y += 0.01;
+  renderer.render(scene, camera);
+  requestAnimationFrame(frame);   // ask for the next frame
+}
+requestAnimationFrame(frame);</code></pre>
+        <p>
+          The last two lines are the point. The browser calls your function <strong>every time it repaints</strong>, and you handle motion and drawing inside it.
+          That loop is what everyone calls the <strong>frame loop</strong>.
+        </p>
+        <h2 id="budget-en">2. The 16.7 ms budget — what 60 fps means</h2>
+        <p>
+          At 60 refreshes a second, one frame gets about <strong>16.7 ms</strong>. Physics, collisions and drawing all have to finish inside it to look smooth.
+          Overrun and the image stutters; in a rhythm game that stutter is a timing error.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Expensive work</th><th scope="col">Why it costs</th><th scope="col">How to cut it</th></tr></thead>
+            <tbody>
+              <tr><td>Draw calls</td><td>Every object is a CPU–GPU conversation</td><td>Batch identical materials and shapes (instancing)</td></tr>
+              <tr><td>High resolution (DPR)</td><td>Four times the pixels is far more than four times the cost</td><td>Cap device pixel ratio at 1.5–2</td></tr>
+              <tr><td>Real-time shadows</td><td>An extra render pass for the shadow map</td><td>Turn shadows off on low-end devices</td></tr>
+              <tr><td>Particle count</td><td>Creating thousands each frame taxes memory and GC</td><td>Pre-allocate and reuse (object pools)</td></tr>
+              <tr><td>Transparency and blur</td><td>Overdraw multiplies fill cost</td><td>Reduce layers; substitute with CSS</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          A rhythm game adds one more: with <strong>hundreds of notes</strong> in flight, only the notes inside the current judgement window should be updated.
+          Do that and the frame cost stays roughly constant even in a five-minute track.
+        </p>
+        <h2 id="ui-en">3. Putting buttons exactly on top of 3D</h2>
+        <p>
+          In a rhythm game what matters is that <strong>“where I pressed” and “where the note arrived” are the same coordinate</strong>. But the judge line in 3D
+          moves on screen as the camera angle changes. Pin the buttons to the bottom of the page and a small camera turn desynchronises them.
+        </p>
+        <p>
+          The fix is <strong>projection</strong>: convert the 3D coordinate through the camera matrix into screen coordinates every frame, and place the buttons there.
+        </p>
+        <pre style="overflow-x:auto;border:1px solid var(--line);border-radius:12px;padding:16px;background:#0C0C10;font-size:.85rem"><code>// 3D judgement point → screen pixels
+const v = new THREE.Vector3(laneX, padY, judgeZ).project(camera);
+const x = (v.x * 0.5 + 0.5) * innerWidth;
+const y = (-v.y * 0.5 + 0.5) * innerHeight;
+pad.style.transform = `translate(${x}px, ${y}px)`;</code></pre>
+        <p>
+          With those lines the pads stay glued to the judge line even when the camera moves. Add a ripple at the judgement point on each press and the input
+          starts to feel like it lands on the stage. The feel of a rhythm game usually comes from a handful of small alignments like this one.
+        </p>
+        <h2 id="time-en">4. Keeping time with the music</h2>
+        <p>
+          Judgement rests on “what second is it now”. Browsers offer several ways to measure that, and they drift apart.
+        </p>
+        <ul>
+          <li><code>performance.now()</code> — accurate, but unrelated to audio.</li>
+          <li><code>audio.currentTime</code> — the real playback position, but its value can jump between frames.</li>
+          <li><strong>The Web Audio clock</strong> — based on the audio device’s sample position, so it drifts the least.</li>
+        </ul>
+        <p>
+          So rhythm games run on the <strong>audio clock</strong> and interpolate between screen updates. Judgement windows are set in milliseconds on the same
+          basis. Our game uses Perfect ±85 ms, Great ±155 ms, Good ±230 ms. People perceive “simultaneous” within roughly ±30–50 ms, and a wider window is
+          what lets a beginner enjoy the game.
+        </p>
+        <div class="note">
+          <strong>Why Bluetooth earphones are risky.</strong> Sound takes 100–300 ms to leave the device and reach the earphones. The picture has already moved on
+          while the sound arrives late, so even a perfectly timed press registers late. For score attempts, use wired earphones or speakers.
+        </div>
+        <div class="ad-slot" id="ad-article-mid-en" data-ad-ready="false" data-ad-slot="article-mid">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+        <h2 id="chart-en">5. From audio to a chart</h2>
+        <p>
+          Generating the chart <strong>live</strong> instead of authoring it is simpler than it sounds.
+        </p>
+        <ol>
+          <li><strong>Slice the sound.</strong> Compute the frequency content of short windows (e.g. 1024–2048 samples) with an FFT.</li>
+          <li><strong>Measure band energy.</strong> Split into low, mid and high and record the strength of each.</li>
+          <li><strong>Look for change.</strong> A sudden rise over the previous window means “a new sound started” (spectral flux).</li>
+          <li><strong>Compare with the neighbourhood.</strong> Discard weak reverb and noise against a local median (adaptive threshold).</li>
+          <li><strong>Reduce to something playable.</strong> Cut the weakest 40% and enforce a minimum gap of 0.125 s between notes.</li>
+          <li><strong>Assign lanes.</strong> Strong low-frequency hits go to the outer lanes, strong high-frequency hits inside, with a correction so one side is not overloaded.</li>
+        </ol>
+        <p>
+          The strength is that <strong>any track works immediately</strong>. The weakness is that it cannot reproduce a song’s intended rhythm — a human chart
+          follows the melody, while automatic charting follows transients. Tracks with clear drums and bass feel best; a reverb-heavy ballad produces few notes.
+        </p>
+        <h2 id="mobile-en">6. Surviving on mobile</h2>
+        <p>
+          More than half of visitors arrive on a phone. A game that runs well on desktop breaks in three places on mobile.
+        </p>
+        <h3>1) The screen is narrow</h3>
+        <p>
+          Four lanes designed for landscape overlap under two thumbs in portrait. <strong>Re-lay the judge bar and pads for portrait</strong> and adjust camera
+          distance. Use <code>env(safe-area-inset-*)</code> so buttons do not hide under a notch or home bar.
+        </p>
+        <h3>2) Performance is lower</h3>
+        <p>
+          Cap the pixel ratio at 1.5–2, turn off shadows and antialiasing, and reduce particles. Device power is hard to measure, so use
+          <code>matchMedia('(pointer: coarse)')</code> and screen size as a rough signal and start low.
+        </p>
+        <h3>3) Battery and heat</h3>
+        <p>
+          3D keeps the GPU busy and a phone gets warm within ten minutes. Pausing <coce>requestAnimationFrame</code> when the page is hidden, and stopping the
+          loop when the track ends, makes a noticeable difference.
+        </p>
+        <h2 id="start-en">If you want to build one</h2>
+        <p>Follow this order and you will not take the long way round.</p>
+        <ol>
+          <li><strong>HTML, CSS and JavaScript basics</strong> — events, async, array handling.</li>
+          <li><strong>A three.js tutorial</strong> — rotate one box, move the camera.</li>
+          <li><strong>Web Audio</strong> — play a sound and read the spectrum with an AnalyserNode.</li>
+          <li><strong>Finish one small game</strong> — build it in 2D first, then move it to 3D.</li>
+          <li><strong>Ship it</strong> — static files are enough for free hosting such as GitHub Pages.</li>
+        </ol>
+        <div class="note">
+          <strong>The most common mistake.</strong> Decorating the 3D first. Build the <strong>skeleton</strong> — judgement, score, restart — then add lights and
+          particles. Do it the other way and you will spend weeks polishing something that does not work.
+        </div>
+        <h2 id="faq-en">FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Are web games slower than apps?</summary>
+            <div class="faq__a"><p>For simple 3D the difference is barely noticeable. The first load has to fetch the engine and assets, so file size matters; after that, caching makes it fast.</p></div>
+          </details>
+          <details>
+            <summary>Do they run on iPhone?</summary>
+            <div class="faq__a"><p>Recent Safari supports WebGL, but memory limits are strict — several large textures can make the tab reload. Keep texture sizes and simultaneous loads low.</p></div>
+          </details>
+          <details>
+            <summary>Is my music uploaded?</summary>
+            <div class="faq__a"><p>It depends on the implementation. Our game reads and analyses files inside the browser and never uploads them. Check the privacy policy of any other service.</p></div>
+          </details>
+          <details>
+            <summary>Do I need to code?</summary>
+            <div class="faq__a"><p>Game-making tools can do it without code, but fine-tuning — timing windows, camera angles, lane layout — is far easier with code.</p></div>
+          </details>
+        </div>
+        <div class="author-box">
+          <div class="author-box__avatar" aria-hidden="true">K</div>
+          <div>
+            <strong>Koong Family</strong>
+            <p>Notes from building games and video that run in the browser. Send questions via <a href="../contact.html">contact</a>.</p>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:760px">
+        <h2 style="font-size:1.1rem;margin:2.4em 0 .8em">Read next</h2>
+        <div class="related">
+          <a href="ai-music-guide.html"><small>Guide</small><strong>AI music and visuals in 2026</strong></a>
+          <a href="../games/pickle-gakoongi-rhythm.html"><small>Game</small><strong>Koong Game — Runway Rhythm</strong></a>
+          <a href="../tests/ai-persona-test.html"><small>Test</small><strong>What kind of creator are you?</strong></a>
+        </div>
+        <div class="ad-slot" id="ad-article-bottom-en" data-ad-ready="false" data-ad-slot="article-bottom">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </main>
 
 <footer class="site-footer">

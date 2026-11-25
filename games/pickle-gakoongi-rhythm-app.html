@@ -357,7 +357,7 @@
   setTimeout(function(){
     if(!window.__ready){
       var el = document.getElementById('loader');
-      if(el){ var s = el.querySelector('.lt'); if(s) s.textContent = (typeof T === 'function' ? T('connecting') : '연결 확인 중'); }
+      if(el){ var s = el.querySelector('.lt'); if(s){ var _en = false; try { _en = localStorage.getItem('koong_lang') === 'en'; } catch (e2) {} s.textContent = _en ? 'Connecting' : '연결 확인 중'; } }
     }
   }, 9000);
 </script>

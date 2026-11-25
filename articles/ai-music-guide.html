@@ -151,6 +151,7 @@
 </header>
 
 <main>
+<div class="lang-ko">
   <div class="page-head">
     <div class="wrap">
       <nav class="breadcrumb" aria-label="위치">
@@ -415,6 +416,265 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="lang-en">
+  <div class="page-head">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../index.html?cat=ai">AI Guides</a><span>/</span><strong>AI music and visuals</strong>
+      </nav>
+      <span class="eyebrow">Guide · AI Music</span>
+      <h1>AI music and visuals in 2026:<br>a five-minute primer</h1>
+      <p class="lede">
+        “Making music with AI” no longer needs explaining. What is harder is starting: how to write a prompt, how much of the result is yours,
+        and how to release it. This guide condenses what actually happened when I made tracks and put video to them, into
+        <strong>where things stand in 2026</strong>.
+      </p>
+      <div class="page-meta">
+        <span>Koong Family</span><i aria-hidden="true">·</i>
+        <span>26 November 2026</span><i aria-hidden="true">·</i>
+        <span>8 min</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ad-slot" id="ad-article-top-en" data-ad-ready="false" data-ad-slot="article-top">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+
+    <div class="section" style="padding-top:34px">
+      <div class="prose">
+
+        <div class="section-nav">
+          <a href="#principle-en">1. How AI music is made</a>
+          <a href="#trend-en">2. Five shifts in 2026</a>
+          <a href="#prompt-en">3. Writing a prompt</a>
+          <a href="#master-en">4. Mastering and loudness</a>
+          <a href="#distribution-en">5. Before you release</a>
+          <a href="#video-en">6. Turning it into video</a>
+        </div>
+
+        <div class="tldr">
+          <span class="tldr__label">TL;DR</span>
+          <ul>
+            <li><strong>How it works:</strong> text prompts become sound tokens and a diffusion process. 2026 models mix prediction (structure) with diffusion (texture), then split the result into stems.</li>
+            <li><strong>What changed:</strong> the move is from “generate a finished song” to <strong>editing by stem</strong>. Use the model as a composing tool, not a vending machine.</li>
+            <li><strong>Loudness:</strong> streaming normalises around <strong>-14 LUFS</strong>. Push louder and you only lose dynamics.</li>
+            <li><strong>Music for video:</strong> leave it unmastered and set the level once, in the edit.</li>
+            <li><strong>Before release:</strong> AI disclosure, label policy, sample and lyric rights, cover art terms.</li>
+          </ul>
+        </div>
+
+        <h2 id="principle-en">1. How AI music actually works</h2>
+        <p>
+          Type “deep house, 120 BPM, warm synth pads, female vocal” into an AI music service and a finished track comes back in thirty seconds to a minute.
+          It looks like magic, but what happens inside breaks into <strong>three stages</strong>.
+        </p>
+        <h3>1) Sound becomes numbers</h3>
+        <p>
+          A computer stores sound as a waveform. Models cannot work on the waveform directly, so they learn from short slices converted into frequency
+          information (a spectrogram) or into compressed audio tokens. Once a model that understands text is connected to a model that handles sound,
+          sentences can become audio.
+        </p>
+        <h3>2) The sound is filled in by diffusion or prediction</h3>
+        <p>
+          Two approaches dominate: <strong>diffusion</strong>, which starts from noise and refines it toward something musical, and
+          <strong>autoregressive prediction</strong>, which continues from what came before. Recent models mix both — prediction for the large structure
+          (intro, verse, chorus), diffusion for timbre and texture.
+        </p>
+        <h3>3) The result is split back into stems</h3>
+        <p>
+          The biggest change in 2026 is that you get <strong>ingredients rather than a finished song</strong>. Vocals, drums, bass and synths arrive as separate
+          tracks, and any one can be regenerated or moved. AI music is no longer “generate once and done”; it is an <strong>editable project</strong>.
+        </p>
+
+        <h2 id="trend-en">2. Five things that actually changed in 2026</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Shift</th><th scope="col">What happened</th><th scope="col">What it means for you</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>1. Studio-ification</b></td>
+                <td>Stem editing, effects and length changes now happen on one screen</td>
+                <td>Treat it as a composing tool, not a generator, and results improve</td>
+              </tr>
+              <tr>
+                <td><b>2. AI detectors</b></td>
+                <td>Labels and platforms increasingly flag or check AI-generated audio</td>
+                <td>Check policy before release; re-performing and re-editing is now common</td>
+              </tr>
+              <tr>
+                <td><b>3. Video first</b></td>
+                <td>More listening happens through short-form and playlist video than audio alone</td>
+                <td>Frame compositions for both 16:9 and 9:16 from the start</td>
+              </tr>
+              <tr>
+                <td><b>4. Local and open source</b></td>
+                <td>Music models that run on your own machine became practical</td>
+                <td>More options for cost, rights and speed</td>
+              </tr>
+              <tr>
+                <td><b>5. Standardisation</b></td>
+                <td>Loudness (-14 LUFS) and metadata (ISRC and so on) are now defaults</td>
+                <td>Matching loudness alone makes tracks sound less squashed on streaming</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          In one sentence: we have moved from <strong>“the era of good generations” to “the era of good finishing”</strong>. That is why the same model
+          produces wildly different results in different hands.
+        </p>
+
+        <h2 id="prompt-en">3. Write the prompt like an order form</h2>
+        <p>
+          It is easy to start with “an upbeat song”. The result then changes every time and rarely lands where you wanted. Prompts that work share a
+          <strong>sequence</strong>.
+        </p>
+        <ol>
+          <li><strong>Genre</strong> — deep house, city pop, lo-fi, orchestral. Put it first.</li>
+          <li><strong>Tempo</strong> — a BPM number. 118–124 sits in lounge territory, 128–132 in club, around 90 for R&amp;B.</li>
+          <li><strong>Instruments and texture</strong> — “analogue synth pad”, “TR-808 kick”, “warm Rhodes piano”. Be specific.</li>
+          <li><strong>Atmosphere</strong> — scene language works surprisingly well: 3 a.m., neon, rain on a window.</li>
+          <li><strong>Structure</strong> — an eight-bar intro, verse, chorus, and whether there is a breakdown.</li>
+          <li><strong>Vocal</strong> — timbre, diction and delivery if there is one; otherwise say “instrumental” clearly.</li>
+        </ol>
+        <div class="note">
+          <strong>Example prompt.</strong><br>
+          “Deep house, 124 BPM, analogue synth pads and warm bass, TR-909 hi-hats, neon city at 3 a.m., eight-bar intro into verse and chorus,
+          main beat continuous with no breakdown, low languid female vocal, plus an instrumental version.”
+        </div>
+        <p>
+          Do not expect perfection on the first pass — <strong>draw four to eight takes from the same prompt and compare</strong>. Generation is
+          probabilistic, so judging from one result is a loss. When something works, save the prompt and change one or two words for the next track;
+          building a series that way is the most efficient route.
+        </p>
+
+        <h2 id="master-en">4. Mastering and loudness — where tracks diverge</h2>
+        <p>
+          Streaming platforms normalise playback loudness; the reference is commonly cited as <strong>-14 LUFS</strong>. Push a track to -9 LUFS and the
+          platform turns it down, leaving you with <strong>lost dynamics and nothing gained</strong>. Too quiet and it sits under everything else.
+          Aim for “comfortably loud, not squashed”.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Use</th><th scope="col">Target loudness</th><th scope="col">Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Streaming release</td><td class="num">-14 LUFS</td><td>Keeps the original dynamics within platform normalisation</td></tr>
+              <tr><td>YouTube background music</td><td class="num">-14 to -16 LUFS</td><td>Stays audible under narration and effects</td></tr>
+              <tr><td>Music for video</td><td class="num">Unmastered</td><td>The edit sets the level once; avoid processing twice</td></tr>
+              <tr><td>Store or event playback</td><td class="num">-12 to -14 LUFS</td><td>Audible over ambient noise without fatigue</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          In practice, a hard limiter on a track made for video, followed by another volume lift in the edit, is what smears the sound.
+          <strong>Leave music that will be paired with video unmastered</strong> and set the final level once, inside the video.
+        </p>
+
+        <div class="ad-slot" id="ad-article-mid-en" data-ad-ready="false" data-ad-slot="article-mid">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+
+        <h2 id="distribution-en">5. Six checks before release</h2>
+        <p>
+          Releasing AI-made music is technically simple; <strong>policy and rights</strong> are where it breaks. Requirements differ by distributor,
+          so check these first.
+        </p>
+        <ol>
+          <li><strong>AI disclosure</strong> — more applications ask whether AI was used. Answer truthfully.</li>
+          <li><strong>Distributor policy</strong> — some refuse AI output, some accept it conditionally, some review it separately. Get it in writing before signing.</li>
+          <li><strong>Lyrics and samples</strong> — avoid prompts asking to imitate a specific song, quoting well-known lyrics, or naming a real artist.</li>
+          <li><strong>Metadata</strong> — keep title, artist name, genre, language and ISRC (issued by the distributor) consistent.</li>
+          <li><strong>Cover art</strong> — AI images carry their own terms. Check each platform’s policy and avoid logos and famous characters.</li>
+          <li><strong>Description</strong> — a line such as “made with AI assistance” builds trust and prevents later disputes.</li>
+        </ol>
+        <div class="note note--warn">
+          <strong>Careful.</strong> “It was made by AI, so there is no copyright to worry about” is not accurate. Protection differs by country and platform,
+          and the training-data argument is still running. For a serious project, get professional advice before signing. This article describes the general
+          landscape; it is not legal advice.
+        </div>
+
+        <h2 id="video-en">6. Music into video — the finish that matters most</h2>
+        <p>
+          Audio alone is hard to find. What actually gets views is <strong>video</strong>. This is the order I use.
+        </p>
+        <ol>
+          <li><strong>Choose one scene for the track.</strong> Do not try to explain the whole song; pick the single image people will remember.</li>
+          <li><strong>Cut on the beat.</strong> Cuts on four- and eight-bar boundaries look far more deliberate.</li>
+          <li><strong>Add movement.</strong> A still image with a slow zoom gets boring fast. Camera moves, light flow and particles do the work.</li>
+          <li><strong>Design the loop.</strong> If the start and end connect, repeat plays hold attention longer.</li>
+          <li><strong>Subtitles are optional.</strong> Unless you plan to show lyrics, an empty screen suits the mood better.</li>
+        </ol>
+        <p>
+          Aspect ratio follows purpose: 16:9 (1920×1080 or 3840×2160) for YouTube and web backgrounds, 9:16 (1080×1920) for short-form.
+          When making both versions from one track, <strong>compose for both from the start</strong> so the crop does not fall apart later.
+        </p>
+
+        <h2 id="mistakes-en">Five mistakes beginners make</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Mistake</th><th scope="col">Why it hurts</th><th scope="col">Do this instead</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Releasing the first result</td><td>It is usually the most average one</td><td>Draw several from the same prompt and compare</td></tr>
+              <tr><td>Packing everything into one prompt</td><td>The model ignores parts and the result smears</td><td>Three to five items: genre, tempo, texture</td></tr>
+              <tr><td>Over-limiting</td><td>Normalisation cuts level and only dynamics are lost</td><td>Finish near -14 LUFS</td></tr>
+              <tr><td>Still image plus zoom</td><td>Watch time collapses</td><td>Add real motion, lighting changes, beat sync</td></tr>
+              <tr><td>Skipping the distribution policy</td><td>Rejection, takedown, account risk</td><td>Read the distributor’s AI policy before applying</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="faq-en">FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Can I start with no music background?</summary>
+            <div class="faq__a"><p>Yes. Learning a few basics — BPM, intro, verse, chorus — changes the results a lot. Start by writing down the genre and mood of three songs you love.</p></div>
+          </details>
+          <details>
+            <summary>Can I put the result on YouTube?</summary>
+            <div class="faq__a"><p>Most services allow commercial use on paid plans, but the terms differ by service and change over time. Read the commercial-use clause of the service you use.</p></div>
+          </details>
+          <details>
+            <summary>What if an AI detector flags it?</summary>
+            <div class="faq__a"><p>Distributors may reject it under their policy. Common fixes are re-editing the stems, playing an instrument over the top, or re-performing it as MIDI. Checking the policy before applying is the surest route.</p></div>
+          </details>
+          <details>
+            <summary>How many tracks can I make a day?</summary>
+            <div class="faq__a"><p>It depends on the service’s credits. Free plans are often limited to a few a day, so plan your ideas first and spend credits sparingly.</p></div>
+          </details>
+        </div>
+
+        <div class="author-box">
+          <div class="author-box__avatar" aria-hidden="true">K</div>
+          <div>
+            <strong>Koong Family</strong>
+            <p>Notes from making AI music and video and putting them on YouTube and streaming. Corrections and opinions are welcome via <a href="../contact.html">contact</a>.</p>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:760px">
+        <h2 style="font-size:1.1rem;margin:2.4em 0 .8em">Read next</h2>
+        <div class="related">
+          <a href="3d-web-guide.html"><small>Guide</small><strong>How browser 3D games work</strong></a>
+          <a href="../games/pickle-gakoongi-rhythm.html"><small>Game</small><strong>Koong Game — Runway Rhythm</strong></a>
+          <a href="../tests/ai-persona-test.html"><small>Test</small><strong>What kind of creator are you?</strong></a>
+        </div>
+        <div class="ad-slot" id="ad-article-bottom-en" data-ad-ready="false" data-ad-slot="article-bottom">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </main>
 
 <footer class="site-footer">
