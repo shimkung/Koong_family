@@ -566,7 +566,7 @@ html[data-lang="ko"] .lang-en{display:none !important}
 
 /* KR / EN 스위치 */
 .lang-switch{display:flex;align-items:center;gap:3px;margin-left:8px;padding:3px;border:1px solid var(--line);border-radius:999px}
-.lang-switch button{padding:4px 9px;border-radius:999px;font-family:var(--font-latin);font-size:.82rem;letter-spacing:.1em;color:var(--ink-faint);line-height:1.2}
+.lang-switch button{padding:5px 11px;border-radius:999px;font-family:var(--font-latin);font-size:.82rem;letter-spacing:.1em;color:var(--ink-faint);line-height:1.2}
 .lang-switch button:hover{color:var(--ink)}
 .lang-switch button[aria-pressed="true"]{background:var(--neon);color:#08080A}
 .lang-switch span{color:var(--ink-faint);font-size:.75rem;opacity:.6}

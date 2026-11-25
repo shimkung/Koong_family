@@ -455,7 +455,7 @@ function applyGameLang(lang) {
     lb.textContent = LANG === 'en' ? 'KR' : 'EN';
     lb.setAttribute('aria-label', LANG === 'en' ? '한국어로 보기' : 'View in English');
   }
-  if (typeof refreshGameLabel === 'function') refreshGameLabel();
+  try { if (typeof refreshGameLabel === 'function') refreshGameLabel(); } catch (e) {}
 }
 document.addEventListener('DOMContentLoaded', () => {
   applyGameLang(LANG);
@@ -2696,7 +2696,7 @@ function togglePlay() {
   else startGame();
 }
 
-let labelKey = 'start';
+var labelKey = 'start';
 function setLabel(t) {
   labelKey = t;
   const el = $('playLabel');
@@ -2706,9 +2706,12 @@ function setLabel(t) {
 }
 function refreshGameLabel() {
   const el = $('playLabel');
-  if (el) el.textContent = (typeof T === 'function') ? T(labelKey) : labelKey;
+  if (el) el.textContent = T(typeof labelKey === 'string' ? labelKey : 'start');
   const cam = $('camLabel');
-  if (cam) cam.textContent = T(camView === 'free' ? 'camFree' : 'camFixed');
+  if (cam) {
+    try { cam.textContent = T(camView === 'free' ? 'camFree' : 'camFixed'); }
+    catch (e) { cam.textContent = T('camFixed'); }
+  }
 }
 
 function finishGame() {
