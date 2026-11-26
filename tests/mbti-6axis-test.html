@@ -832,6 +832,8 @@
     el.body.hidden = true;
     el.result.hidden = false;
     paint();
+    /* 공유 링크로 들어온 사람은 결과부터 보도록 바로 이동 */
+    setTimeout(function () { el.result.scrollIntoView({ block: 'start' }); }, 80);
     return true;
   }
 
