@@ -12,6 +12,28 @@
    ========================================================================== */
 window.KOONG_CATALOG = [
   {
+    id: 'mbti-6axis-test',
+    cat: 'test',
+    emoji: '🧩',
+    title: {
+      ko: '6축 성격유형 심층 테스트 — 무료 최신 성격유형 검사, 64유형',
+      en: '6-axis personality test — 64 types, six percentages, free'
+    },
+    desc: {
+      ko: '전통 4축에 자신감(A/O)과 감정 온도(H/C)를 더한 24문항 검사. 6축 퍼센트 게이지와 심층·연애·직업 리포트까지 2분 만에, 100% 무료.',
+      en: 'Twenty-four questions on top of the classic four axes, plus confidence and emotional temperature. Six gauges and deep, love and work reports in two minutes.'
+    },
+    href: 'tests/mbti-6axis-test.html',
+    tag: { ko: '심리테스트', en: 'Personality Test' },
+    meta: [
+      { ko: '24문항', en: '24 questions' },
+      { ko: '약 2분', en: 'About 2 min' },
+      { ko: '6축 · 64유형', en: '6 axes · 64 types' }
+    ],
+    date: '2026-11-26',
+    new: true
+  },
+  {
     id: 'remarried-empress-review',
     cat: 'drama',
     emoji: '👑',

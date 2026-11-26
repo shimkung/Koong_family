@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261127d">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261127e">
 
 <script type="application/ld+json">
 {
@@ -128,7 +128,16 @@
     <nav class="nav" id="siteNav" aria-label="주요 메뉴" data-ko-aria="주요 메뉴" data-en-aria="Main menu">
       <a href="../index.html" data-ko="홈" data-en="Home">홈</a>
       <a href="../index.html?cat=game" data-ko="쿵미니게임" data-en="Koong Mini Games">쿵미니게임</a>
-      <a href="../index.html?cat=test" data-ko="쿵심리테스트" data-en="Koong Test">쿵심리테스트</a>
+      <div class="nav-item">
+        <a class="nav-item__link" href="../index.html?cat=test" data-ko="쿵심리테스트" data-en="Koong Test">쿵심리테스트</a>
+        <button class="nav-item__toggle" type="button" aria-expanded="false" aria-label="쿵심리테스트 하위 메뉴" data-ko-aria="쿵심리테스트 하위 메뉴" data-en-aria="Koong Test submenu">
+          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5 6 8.5l4-4"/></svg>
+        </button>
+        <div class="subnav">
+          <a href="../tests/mbti-6axis-test.html" data-ko="6축 성격유형 심층 테스트" data-en="6-axis personality test">6축 성격유형 심층 테스트</a>
+          <a href="../tests/ai-persona-test.html" data-ko="크리에이터·리더 유형" data-en="Creator &amp; leader type">크리에이터·리더 유형</a>
+        </div>
+      </div>
       <div class="nav-item">
         <a class="nav-item__link" href="../index.html#catalog" aria-current="page" data-ko="읽을거리" data-en="Read">읽을거리</a>
         <button class="nav-item__toggle" type="button" aria-expanded="false" aria-label="읽을거리 하위 메뉴" data-ko-aria="읽을거리 하위 메뉴" data-en-aria="Read submenu">
@@ -726,6 +735,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/site.js?v=20261127d"></script>
+<script src="../assets/js/site.js?v=20261127e"></script>
 </body>
 </html>
