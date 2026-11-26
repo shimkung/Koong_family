@@ -3,13 +3,14 @@
 가족이 만든 게임·심리테스트·읽을거리를 모아 두는 작은 웹 놀이터입니다.
 정적 파일만으로 동작하며, GitHub Pages로 배포됩니다.
 
-- **사이트 주소**: https://shimkung.github.io/Koong_family/
+- **사이트 주소**: https://beathousemusic.today/
 - **저장소**: https://github.com/shimkung/Koong_family
 - **테마**: 검은 바탕(`#09090B`) + 형광 노랑(`#E2FF00`)
 
-> ⚠️ 저장소 이름은 대문자 `K`와 언더바 `_`를 쓰는 **`Koong_family`** 입니다.
-> GitHub Pages 주소의 경로도 대소문자를 구분하므로, 링크·canonical·sitemap에는 항상
-> `/Koong_family/` 로 적어 주세요. (`/koong-family/` 는 404가 됩니다.)
+> 🌐 사이트는 커스텀 도메인 **`beathousemusic.today`** 로 서비스되고, 루트(`/`)에서 바로 열립니다.
+> 링크·canonical·og:url·sitemap에는 항상 `https://beathousemusic.today/` 기준으로 적어 주세요.
+> 옛 GitHub Pages 주소로 들어와도 GitHub Pages가 새 도메인으로 넘겨줍니다.
+> 저장소 이름은 대문자 `K`와 언더바 `_`를 쓰는 **`Koong_family`** 입니다(저장소 URL에만 해당).
 
 ---
 
@@ -133,7 +134,7 @@ git add . && git commit -m "게임 v2 적용" && git push
 ## 4. Google AdSense 켜는 순서
 
 1. **사이트 승인 신청** — https://adsense.google.com 에서 사이트 URL
-   `https://shimkung.github.io/Koong_family/` 추가 → 소유 확인(사이트에 코드 삽입 또는 Search Console 인증).
+   `https://beathousemusic.today/` 추가 → 소유 확인(사이트에 코드 삽입 또는 Search Console 인증).
 2. **게시자 ID 확인** — `ca-pub-XXXXXXXXXXXXXXXX` 형식의 ID를 발급받습니다.
 3. **모든 HTML 파일의 주석 해제** — `<head>` 안에 아래 주석이 있습니다.
 
@@ -199,7 +200,9 @@ python3 -m http.server 8000
 
 - 브랜치: `main` / 폴더: `/` (root)
 - 설정 위치: 저장소 → Settings → Pages
-- 배포 후 주소: https://shimkung.github.io/Koong_family/
+- 배포 후 주소: https://beathousemusic.today/
+- 커스텀 도메인: `CNAME` 파일에 `beathousemusic.today` (지우면 GitHub Pages 기본 주소로 돌아갑니다)
+- 설정 → Pages → Custom domain 에도 `beathousemusic.today` + Enforce HTTPS 체크
 - `.nojekyll` 파일이 있어 Jekyll 처리를 건너뜁니다. (지우지 마세요)
 
 ---
