@@ -711,3 +711,8 @@ html[data-lang="ko"] .lang-en{display:none !important}
   font-weight:800;margin:0 0 2px;display:flex;align-items:center;gap:8px;
 }
 .mbti-axes__label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(226,255,0,.35),transparent)}
+
+/* ── 6축 테스트 참고 문헌 목록 ───────────────────────────── */
+.prose ol.refs{padding-left:1.4em;font-size:.92rem;line-height:1.62}
+.prose ol.refs li{margin:0 0 .55em}
+.prose ol.refs em{color:var(--ink-dim)}

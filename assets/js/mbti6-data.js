@@ -11,12 +11,24 @@
      mods.ao   : A(자신감) / O(과사고) 보정 문단
      mods.hc   : H(온기) / C(냉철) 보정 문단
      combos    : A/O × H/C 4조합의 헤드라인과 심층·연애·직업 문단
-     questions : 24문항 (축마다 4문항, 선택지 4개는 왼쪽 극 → 오른쪽 극 순서)
+     questions : 36문항 (축마다 6문항, 선택지 4개)
+
+   문항 설계 원칙 (v2 · 36문항)
+     1) 한 문항은 한 축만 잰다. S/N 문항에는 감정·관계 단서를 넣지 않고,
+        T/F 문항은 '판단의 최종 기준'을, J/P 문항은 '닫고 싶은가 열어 두고
+        싶은가'를, A/O는 '흔들린 뒤 얼마나 빨리 돌아오는가'를, H/C는
+        '사람에게 얼마나 가까이 가는가'를 묻는다.
+     2) 선택지 순서 편향(primacy effect)을 줄이기 위해 문항마다 극의 방향을
+        뒤집고, 선택지별 가중치(w)를 데이터에 명시한다.
+          정방향 w: [-3, -1, +1, +3]   (왼쪽 극 강 → 오른쪽 극 강)
+          역방향 w: [+3, +1, -1, -3]   (오른쪽 극 강 → 왼쪽 극 약)
+        축마다 정방향 3문항 + 역방향 3문항으로 균형을 맞춰, 첫 번째 선택지만
+        계속 고르는 응답 편향이 생겨도 축 점수가 0(50%)으로 상쇄된다.
+     3) 축별 합계 범위는 -18 ~ +18 (6문항 × |3|)이며, 양수면 오른쪽 극
+        (I · N · F · P · O · C), 음수면 왼쪽 극(E · S · T · J · A · H)이다.
    ========================================================================== */
 
 window.KOONG_MBTI6 = {
-
-  /* ---------- 6축 ---------- */
   axes: [
     {
       key: 'EI',
@@ -207,66 +219,63 @@ window.KOONG_MBTI6 = {
   ],
 
   /* ---------- A/O · H/C 보정 문단 ---------- */
+  /* ---------- A/O · H/C 보정 문단 ---------- */
   mods: {
     ao: {
       A: {
         ko: {
-          label: '단단한 자신감', intro: '흔들려도 다시 중심을 잡는 사람',
-          deep: '당신은 실수해도 오래 붙잡지 않아요. 민망한 일이 생기면 얼굴이 뜨거워지긴 해도, 한 시간 뒤에는 다른 얘기를 하고 있죠. 그래서 주변은 당신을 부러워하고, 실제로 그 단단함이 당신을 오래 굴러가게 해요. 다만 그 속도가 너무 빨라서, 옆 사람이 아직 그 장면에서 헤어나오지 못했을 때 당신은 이미 다음으로 넘어가 있어요.',
-          love: '연애에서 당신은 확인을 자주 요구하지 않아요. 좋으면 좋다고 하고, 싫으면 싫다고 말하고, 대개 그 자리에서 정리해요. 그래서 함께 있으면 편안하지만, 상대는 "이 사람은 나 없어도 잘 살 것 같다"고 느낄 수 있어요. 필요 없다는 말 대신, 필요하다는 말을 한 번 더 꺼내 보세요.',
-          work: '일에서는 결정이 빨라요. 70%의 정보로 방향을 잡고 나머지는 가면서 고치죠. 그 결단이 팀을 앞으로 밀어요. 대신 준비를 오래 하는 사람에게는 조급함으로 보일 수 있으니, "왜 빨리 가는지"를 한 번 설명해 주면 좋아요.',
-          shadow: '이 조합의 그림자는 무던함이에요. 너무 잘 견디다 보니 아무도 당신의 한계를 몰라요.'
+          label: '단단한 자신감',
+          deep: '당신은 실수해도 그 자리에 오래 머물지 않아요. 얼굴이 뜨거워지는 건 잠깐이고, 한 시간 뒤엔 다른 얘기를 하고 있죠. 그래서 주변은 당신을 부러워하고, 그 단단함이 실제로 당신을 오래 굴러가게 해요. 다만 그 속도가 너무 빨라서, 옆 사람이 아직 그 장면에서 헤어나오지 못했을 때 당신은 이미 다음으로 넘어가 있어요. 그래서 가끔 "너는 왜 하나도 안 힘들어 보이냐"는 말을 들어요.',
+          love: '연애에서 당신은 확인을 자주 요구하지 않아요. 좋으면 좋다고 하고, 싫으면 그 자리에서 정리해요. 함께 있으면 편안하지만, 상대는 "이 사람은 나 없어도 잘 살 것 같다"고 느낄 수 있어요. 필요 없다는 말 대신, 필요하다는 말을 한 번 더 꺼내 보세요.',
+          work: '일에서는 결정이 빨라요. 정보가 70%만 모여도 방향을 잡고 나머지는 가면서 고치죠. 그 결단이 팀을 앞으로 밀어요. 대신 오래 준비하는 사람에게는 조급함으로 보일 수 있으니, 왜 빨리 가는지 한 번만 설명해 주세요.'
         },
         en: {
-          label: 'Grounded confidence', intro: 'the one who finds their centre again',
-          deep: 'A mistake does not hold you long. Your face may burn for a minute, but an hour later you are talking about something else. People envy that, and honestly it is what keeps you moving. The cost is speed: while someone beside you is still stuck in that moment, you are already on the next thing.',
-          love: 'You do not keep asking for reassurance. If you like someone, you say it; if you do not, you say that too — usually on the spot. It makes being with you easy, but a partner can end up feeling “this person would be fine without me.” Try saying you need them, not just that you do not.',
-          work: 'You decide fast — 70% of the information is enough to set a direction, and the rest gets fixed in motion. That decisiveness pushes a team forward. Someone who prepares slowly may read it as impatience, so explain once why you move at that speed.',
-          shadow: 'The shadow of this pairing is that you are too good at enduring — so nobody learns where your limit is.'
+          label: 'Grounded confidence',
+          deep: 'A mistake does not hold you long. Your face burns for a minute, then an hour later you are talking about something else. People envy it, and it genuinely keeps you moving. The cost is speed: while someone beside you is still inside that moment, you are already on the next thing. That is why you hear “how are you never bothered?”',
+          love: 'You do not keep asking for reassurance. You say it if you like someone, and you settle it on the spot if you do not. Being with you is easy — and a partner can feel “this person would be fine without me”. Say that you need them, not only that you do not.',
+          work: 'You decide fast: seventy percent of the information sets a direction, the rest gets fixed in motion. That decisiveness pushes a team. To someone who prepares slowly it reads as impatience, so explain once why you move at that speed.'
         }
       },
       O: {
         ko: {
-          label: '섬세한 과사고', intro: '한 장면을 백 번 되감는 사람',
-          deep: '당신은 방금 한 말을 밤에 다시 들어요. 표정 하나, 답장의 속도, 말끝의 온도까지 읽고 그게 무슨 뜻이었을지 여러 번 상상하죠. 이건 예민함이라기보다 해상도예요. 남들이 흘려보내는 것을 당신은 선명하게 봐요. 그래서 사람을 잘 이해하지만, 그 선명함이 자기 자신을 향할 때는 오래 아파요.',
-          love: '연애에서 당신의 세심함은 무기예요. 상대가 말하지 않은 기분을 먼저 알아채고, 필요한 순간에 정확히 그 말을 해요. 다만 확인받고 싶은 마음을 돌려 말하다 보니, 상대는 가끔 시험을 받는 기분이 들어요. 원하는 것을 원문 그대로 말해 보세요. 대개 그게 제일 잘 통해요.',
-          work: '일에서는 위험을 먼저 봐요. 남들이 신나서 달릴 때 "이 부분이 터지면 어떡하지"를 생각하죠. 그래서 당신이 있는 프로젝트는 사고가 적어요. 대신 결정 전에 스스로에게 시간 제한을 걸어야 해요. 그렇지 않으면 완벽한 답을 기다리다 판이 끝나요.',
-          shadow: '이 조합의 대가는 자기 감정이 늘 뒷순위가 된다는 거예요.'
+          label: '섬세한 과사고',
+          deep: '당신은 방금 한 말을 밤에 다시 들어요. 표정 하나, 답장의 속도, 말끝의 온도까지 읽고 그게 무슨 뜻이었을지 여러 번 상상하죠. 이건 예민함이라기보다 해상도예요. 남들이 흘려보내는 것을 당신은 선명하게 봐요. 그래서 사람을 깊이 이해하지만, 그 선명함이 자기 자신을 향할 때는 오래 아파요.',
+          love: '연애에서 세심함은 당신의 무기예요. 상대가 말하지 않은 기분을 먼저 알아채고, 필요한 순간에 정확한 말을 해요. 다만 확인받고 싶은 마음을 돌려 말하다 보니, 상대는 가끔 시험을 받는 기분이 들어요. 원하는 것을 원문 그대로 말해 보세요. 대개 그게 제일 잘 통해요.',
+          work: '일에서는 위험을 먼저 봐요. 남들이 신나서 달릴 때 "이 부분이 터지면 어떡하지"를 생각하죠. 그래서 당신이 있는 프로젝트는 사고가 적어요. 대신 결정 전에 스스로 시간 제한을 걸어야 해요. 그렇지 않으면 완벽한 답을 기다리다 판이 끝나요.'
         },
         en: {
-          label: 'Fine-grained overthinking', intro: 'the one who replays a scene a hundred times',
+          label: 'Fine-grained overthinking',
           deep: 'You listen back to what you said tonight. A look, the speed of a reply, the temperature at the end of a sentence — you read all of it and imagine what it meant. That is not touchiness, it is resolution: you see clearly what others let pass. It makes you deeply understanding, and when it turns on yourself it hurts for a long time.',
-          love: 'In love your attentiveness is a weapon. You catch a mood before it is spoken and say exactly the right thing at the right moment. But when you ask for reassurance sideways, a partner feels tested. Say what you want in plain words — that is usually what works best.',
-          work: 'You see risk first. While others run at it cheerfully, you are asking what happens if this part breaks — and projects you are on have fewer accidents because of it. The trade-off is that you need to cap your own decision time, or you wait for the perfect answer until the chance is gone.',
-          shadow: 'What this pairing charges you is that your own feelings always end up last in the queue.'
+          love: 'Attentiveness is your weapon. You catch a mood before it is spoken and find the exact words at the exact moment. But asking for reassurance sideways makes a partner feel tested. Say what you want in plain words — that usually works best.',
+          work: 'You see risk first. While others run at it cheerfully, you are asking what happens if this part breaks — and projects you are on have fewer accidents. Cap your own decision time, though, or you wait for the perfect answer until the chance is gone.'
         }
       }
     },
     hc: {
       H: {
         ko: {
-          label: '따뜻한 온기', intro: '먼저 마음을 데우는 사람',
+          label: '따뜻한 온기',
           deep: '당신은 사람의 기분을 온도로 먼저 느껴요. 방에 들어갔을 때 공기가 차가우면 말보다 표정이 먼저 풀리죠. 그래서 사람들이 당신 옆에서 긴장을 늦춰요. 이 온기는 노력해서 나오는 게 아니라서, 당신은 자기가 얼마나 큰 일을 하고 있는지 모르는 경우가 많아요.',
           love: '연애에서 당신은 상대를 안심시키는 방식으로 사랑해요. 밥은 먹었는지, 잘 자라고, 별것 아닌 걸 기억해 두죠. 다만 그 마음이 늘 말로 표현되지는 않아서, 상대가 "좋아하는 건지 그냥 착한 건지" 헷갈릴 때가 있어요.',
           work: '일에서는 사람을 다루는 자리에 강해요. 갈등이 생기면 누가 맞는지보다 어떻게 풀지부터 생각하죠. 대신 정작 자기 몫을 뒤로 미루다 마감에 몰리는 일이 생겨요.'
         },
         en: {
-          label: 'Warmth', intro: 'the one who warms the room first',
-          deep: 'You feel a person’s mood as temperature. If the air in the room is cold, your face softens before you speak, and people around you stop bracing. This warmth is not effort for you, which is why you often have no idea how much it does.',
-          love: 'You love by making someone feel safe — did you eat, sleep well — remembering small things. Because it does not always reach words, a partner can be unsure whether you like them or are simply kind.',
-          work: 'You are strong where people are involved. When conflict appears you think about how to untangle it before who was right. The catch is that your own work slides to the deadline.'
+          label: 'Warmth',
+          deep: 'You feel a person’s mood as temperature. If the air in the room is cold, your face softens before you speak, and people stop bracing. The warmth is not effort for you, which is why you often have no idea how much it does.',
+          love: 'You love by making someone feel safe — did you eat, sleep well — and by remembering small things. Because it does not always reach words, a partner can be unsure whether you like them or are simply kind.',
+          work: 'You are strong wherever people are involved. Conflict makes you think about how to untangle it before who was right. The catch is that your own work slides to the deadline.'
         }
       },
       C: {
         ko: {
-          label: '냉철한 칼날', intro: '감정보다 정확함이 먼저인 사람',
-          deep: '당신은 상처받아도 표정이 잘 안 바뀌어요. 속으로는 정리하고 있고, 밖으로는 아무 일 없는 얼굴이죠. 그래서 주변은 당신을 강하다고 생각하지만, 사실은 아픈 것을 아프다고 말하는 방법을 배우지 않았을 뿐이에요. 이 냉철함은 당신을 지키는 갑옷이자, 사람을 조금 멀리 세우는 벽이에요.',
+          label: '냉철한 칼날',
+          deep: '당신은 상처받아도 표정이 잘 안 바뀌어요. 속으로는 정리하고 있고, 밖으로는 아무 일 없는 얼굴이죠. 그래서 주변은 당신을 강하다고 생각하지만, 사실은 아픈 것을 아프다고 말하는 방법을 배우지 않았을 뿐이에요. 이 냉철함은 당신을 지키는 갑옷이자, 사람을 한 걸음 멀리 세우는 벽이에요.',
           love: '연애에서 당신은 과장하지 않아요. "보고 싶었어"를 아껴 쓰고, 대신 약속은 정확히 지켜요. 그 신뢰가 당신의 사랑법이에요. 다만 상대는 말로 듣고 싶어 하죠. 한 달에 한 번, 계산 없는 말을 연습해 보세요.',
-          work: '일에서는 감정에 휘둘리지 않는 판단이 강점이에요. 불리한 사실도 정확히 말하고, 필요한 사람을 잘라야 할 때 칼을 들 수 있죠. 대신 그 정확함이 차갑게 느껴질 때가 있어요. 결론 앞에 사람을 먼저 언급하는 문장 하나를 붙여 보세요.'
+          work: '일에서는 감정에 휘둘리지 않는 판단이 강점이에요. 불리한 사실도 정확히 말하고, 사람을 정리해야 할 때 칼을 들 수 있죠. 대신 그 정확함이 차갑게 느껴질 때가 있어요. 결론 앞에 사람을 먼저 언급하는 문장 하나를 붙여 보세요.'
         },
         en: {
-          label: 'Cool precision', intro: 'the one who picks accuracy over comfort',
-          deep: 'Your face barely moves when you are hurt. Inside you are filing it; outside nothing happened. People read that as strength, when really you were never taught how to say it hurts. This coolness is armour — and a wall that keeps people a step away.',
+          label: 'Cool precision',
+          deep: 'Your face barely moves when you are hurt. Inside you are filing it; outside nothing happened. People read that as strength, when really you were never taught how to say it hurts. This coolness is armour — and a wall that keeps people one step away.',
           love: 'You do not exaggerate. You ration “I missed you” and keep your promises exactly instead. That reliability is how you love. But a partner wants to hear it. Practise one uncalculated sentence a month.',
           work: 'Your strength is judgement that feeling cannot sway. You state the unfavourable fact precisely and can hold the knife when someone has to go. Sometimes that precision reads as cold — put the person first in one sentence before the conclusion.'
         }
@@ -285,15 +294,15 @@ window.KOONG_MBTI6 = {
       },
       en: {
         headline: 'Steady and warm — rarer than people think',
-        deep: 'Confidence plus warmth makes you the person others call easy to be around and easy to trust. You do not fall apart over a mistake, and that steadiness calms the people next to you. The problem is how strong it is: nobody knows your limit, so nobody may notice until you break. You need one person you can say “I am not okay” to.',
-        love: 'In love you are stable — rarely thrown, attentive to your partner, and still anchored in yourself. That is why your relationships last. The habit to watch is saying “it is fine” when it is not. Every time you say that, the distance grows a little.',
+        deep: 'Confidence plus warmth makes you the person others call easy to be around and easy to trust. A mistake does not take you down, and that steadiness calms the room. The problem is how strong it is: nobody knows your limit, so nobody may notice until you break. You need one person you can say “I am not okay” to.',
+        love: 'In love you are stable — rarely thrown, attentive, and still anchored. That is why your relationships last. The habit to watch is saying “it is fine” when it is not. Every time you say that, the distance grows a little.',
         work: 'You combine drive with the ability to handle people. You do not delay decisions and still avoid wounding anyone. Roles that pull people along — team lead, project lead, founder of something small — suit you especially well.'
       }
     },
     AC: {
       ko: {
         headline: '빠르고 정확하다. 그래서 가끔, 너무 차갑다',
-        deep: '자신감(A)과 냉철함(C)의 조합은 결정이 빠르고 감정에 흔들리지 않아요. 문제가 생기면 한숨부터 나오는 대신 해결 순서를 짜죠. 조직에서는 이보다 강한 조합이 드물어요. 대신 가까운 사람에게는 "나를 사람으로 보지 않는 것 같다"는 인상을 줄 수 있어요. 당신이 아끼는 사람에게는 결론보다 과정을 조금 보여 주세요.',
+        deep: '자신감(A)과 냉철함(C)의 조합은 결정이 빠르고 감정에 흔들리지 않아요. 문제가 생기면 한숨부터 나오는 대신 해결 순서를 짜죠. 조직에서는 이보다 강한 조합이 드물어요. 대신 가까운 사람에게는 "나를 사람으로 보지 않는 것 같다"는 인상을 줄 수 있어요. 아끼는 사람에게는 결론보다 과정을 조금 보여 주세요.',
         love: '연애할 때 당신은 과장이 없어요. 좋아하면 좋아한다고 하고, 아닌 건 아니라고 말하죠. 그 솔직함이 매력이지만, 상대가 원하는 건 정답이 아니라 온도일 때가 있어요. 결론을 말하기 전에 "그래서 내 마음은 이래"를 한 줄 붙여 보세요.',
         work: '일에서는 결단과 냉정함이 무기예요. 어려운 결정을 미루지 않고 감정 소모 없이 처리하죠. 협상, 구조조정, 위기 대응처럼 모두가 머뭇거리는 자리에서 당신이 필요해요.'
       },
@@ -301,7 +310,7 @@ window.KOONG_MBTI6 = {
         headline: 'Fast and precise — and occasionally, too cold',
         deep: 'Confidence and coolness make you quick and hard to shake. When something breaks you skip the sigh and map the order of fixes. Few combinations are stronger inside an organisation. Close up, though, you can give the impression of not seeing people as people. Show someone you love a little of your process, not just the conclusion.',
         love: 'You do not exaggerate in love. You say it when you like someone and say it when you do not. That honesty is attractive — but sometimes what a partner wants is not the correct answer, it is warmth. Before the conclusion, add one line: “and here is how I feel.”',
-        work: 'Decisiveness and cool are your weapons. You do not postpone hard calls and you make them without emotional drag. Negotiation, restructuring, crisis response — the places where everyone hesitates — is where you are needed.'
+        work: 'Decisiveness and cool are your weapons. You do not postpone hard calls and you make them without emotional drag. Negotiation, restructuring, crisis response — where everyone hesitates — is where you are needed.'
       }
     },
     OH: {
@@ -313,7 +322,7 @@ window.KOONG_MBTI6 = {
       },
       en: {
         headline: 'You read everyone’s heart and reach your own last',
-        deep: 'Overthinking plus warmth means you read people so well that you exhaust yourself. You feel the disappointment they did not mention and carry it as your responsibility. Deep empathy is the gift here; your own feelings always paying the bill is the cost. For one day, ask how you feel before you read how they do.',
+        deep: 'Overthinking plus warmth means you read people so well that you exhaust yourself. You feel the disappointment they did not mention and carry it as your responsibility. Deep empathy is the gift here; your own feelings paying the bill is the cost. For one day, ask how you feel before you read how they do.',
         love: 'You notice every small change in your partner, so both loving and being loved come out finely detailed. The risk is when that detail turns into a need for confirmation. When you want to ask “how am I lately?”, say “I have been fond of you lately” first. Same words, opposite direction.',
         work: 'Your strength is reading the subtle signals of people — planning, counselling, teaching, content. Just set a boundary so you are not carrying the emotional labour alone. The one who listens to everything eventually has nothing left to listen with.'
       }
@@ -333,7 +342,6 @@ window.KOONG_MBTI6 = {
       }
     }
   },
-
   /* ---------- 16유형 ---------- */
   types: {
 
@@ -341,815 +349,962 @@ window.KOONG_MBTI6 = {
       emoji: '♟️',
       ko: {
         nick: '청사진 설계자', tag: '말없이 다섯 수 앞을 그린다',
-        outer: '남들은 당신을 차분하고 예의 바른 사람으로 기억해요. 말수가 적고, 웃을 때도 크게 웃지 않고, 회의에서는 대개 마지막에 한 번 정확하게 말하죠. 그래서 "무슨 생각을 하는지 모르겠다"는 말을 자주 들어요. 사실 그때 당신은 이미 세 가지 시나리오를 돌려보고 있어요.',
-        inner: '속마음은 훨씬 시끄러워요. 사람들이 지나치는 앞뒤를 계속 맞춰 보고, 지금 이 대화가 3년 뒤에 어떤 의미가 될지까지 상상해요. 그런데 그 생각을 굳이 꺼내지 않아요. 설명하는 데 드는 시간이 아깝거나, 설명해도 안 통할 것 같아서요. 그래서 당신의 진짜 마음은 말이 아니라 미리 준비된 행동으로 먼저 도착해요.',
-        strengths: ['복잡한 문제를 구조로 바꿔 버리는 정리력', '모두가 흥분할 때 혼자 냉정해지는 힘', '한번 세운 기준을 쉽게 흔들지 않는 일관성', '필요한 것을 미리 준비해 두는 조용한 예지력'],
-        alone: '혼자 있을 때 당신은 아무것도 안 하는 것처럼 보여요. 그런데 그 시간에 머릿속에서 한 해 계획이 다시 짜이고 있어요. 당신에게 혼자는 낭비가 아니라 정비 시간이에요.',
-        trigger: '갑자기 바뀌는 계획, 이유 없이 반복되는 회의, "왜 그렇게까지 생각하냐"는 말. 준비한 것을 아무도 안 봐줄 때 가장 크게 지쳐요.',
-        recover: '회복은 대화가 아니라 정리에서 와요. 메모에 지금 걸린 것을 다 쏟아내고, 그중 내일 할 세 개만 남겨 보세요. 그리고 아무도 없는 시간을 한 시간 확보하세요. 그 정도면 대개 원래 속도로 돌아와요.',
-        charm: '당신의 매력은 과묵함이 만드는 여백이에요. 좋아하는 사람에게는 준비가 보여요. 지난달에 흘려 말한 취향을 기억하고, 아무도 신경 쓰지 않는 부분을 미리 챙겨 두죠. 그 조용한 확실함이 사람을 붙잡아요.',
-        flaw: '약점은 마음을 말로 확인하지 않는다는 거예요. "알아서 알겠지"라고 생각하지만 상대는 몰라요. 그리고 당신 기준으로 실망이 한참 쌓인 뒤에야 말하기 때문에, 상대는 그때 처음 듣죠.',
+        outer: '남들은 당신을 차분하고 예의 바른 사람으로 기억해요. 크게 웃지 않고, 회의에서는 대개 마지막에 한 번 정확하게 말하죠. 그래서 "저 사람은 지금 무슨 생각을 하나" 싶다가도, 다음 날 보면 이미 다 정리해 와 있어요. 조용한 게 무관심이 아니라, 말을 꺼내기 전에 결론까지 가 본 것뿐이에요.',
+        inner: '머릿속은 훨씬 시끄러워요. 누가 흘린 말 하나를 3년 뒤 계획에 끼워 보고, 지금 이 선택이 1년 뒤에 어떻게 돌아올지 미리 돌려 봐요. 그런데 그 과정을 설명하지 않아요. 설명이 길어질 것 같고, 어차피 다 이해되지는 않을 거란 걸 알거든요. 그래서 당신의 마음은 말보다 "미리 준비된 행동"으로 먼저 도착해요.',
+        strengths: ['어질러진 문제를 구조로 바꿔 버리는 정리력', '다들 흥분할 때 혼자 온도를 낮추는 힘', '한 번 세운 기준을 쉽게 팔지 않는 일관성', '남들이 당연하게 넘기는 구멍을 미리 막아 두는 감각'],
+        alone: '혼자 있으면 아무것도 안 하는 것처럼 보여요. 그런데 그 시간에 머릿속에서 내년 계획이 다시 짜이고, 밀린 생각들이 서랍에 정리돼요. 당신에게 혼자는 낭비가 아니라 정비소예요.',
+        trigger: '말없이 바뀐 계획, 이유 없이 반복되는 회의, "왜 그렇게까지 생각하냐"는 말. 그리고 애써 준비한 걸 아무도 안 봤을 때. 그때 제일 지쳐요.',
+        recover: '회복은 수다가 아니라 정리에서 와요. 걸리는 걸 메모에 다 쏟고, 그중 내일 할 세 개만 남기세요. 그리고 아무도 없는 한 시간을 확보하세요. 그 정도면 원래 속도로 돌아와요.',
+        charm: '매력은 과묵함이 남기는 여백이에요. 좋아하는 사람 앞에서는 준비가 들켜요. 한 달 전에 흘린 취향을 기억하고, 아무도 안 챙기는 부분을 조용히 해 둬요. 그 확실함이 사람을 붙잡아요.',
+        flaw: '마음을 말로 확인하지 않는 게 약점이에요. "알아서 알겠지"라고 믿지만 상대는 몰라요. 게다가 실망을 혼자 쌓아 두다가 한계에서 처음 말하기 때문에, 상대는 그때 처음 듣고 "갑자기 왜?"라고 느껴요.',
         partners: ['ENFP', 'ENTP'],
-        partnerNote: '당신의 조용한 계획에 웃음과 우연을 얹어 주는 사람들. 당신이 미처 말하지 않은 것을 웃으면서 꺼내 줘요.',
-        avoid: '감정을 즉석에서 확인하려는 사람, 계획을 당일 아침에 바꾸는 사람. 당신은 그걸 배신으로 기억해요.',
-        openLine: '"네가 조용한 게 무관심인 줄 알았어. 근데 그게 다 챙기고 있던 거였네."',
-        work: '일에서는 목표가 주어지면 경로를 스스로 설계해요. 시키지 않아도 필요한 자료를 미리 모아 두고, 예상되는 반대 논리를 먼저 막아 두죠. 그래서 당신이 맡은 일은 중간에 흔들리는 일이 적어요.',
+        partnerNote: '당신의 조용한 계획 위에 웃음과 우연을 얹어 주는 사람들. 당신이 끝내 말하지 않은 것까지 웃으면서 꺼내 줘요.',
+        avoid: '감정을 그 자리에서 확인하라고 요구하는 사람, 계획을 당일 아침에 바꾸는 사람. 당신은 그걸 배신으로 기억해요.',
+        openLine: '\"네가 조용한 게 무관심인 줄 알았어. 근데 그게 다 미리 챙겨 둔 거였네.\"',
+        work: '목표가 주어지면 경로를 직접 설계해요. 시키지 않은 자료를 미리 모아 두고, 나올 반대 논리를 먼저 막아 두죠. 그래서 당신이 맡은 일은 중간에 잘 안 흔들려요.',
         jobs: ['전략 기획', '데이터 아키텍트', '게임 시스템 디자이너', '기술 연구 · R&D'],
-        leap: '한 단계 도약의 열쇠는 완성도가 아니라 공개예요. 90%에서 한 번 공개하고 피드백을 받아 보세요. 당신의 계획은 세상과 부딪히는 순간 훨씬 정교해져요.'
+        leap: '도약의 열쇠는 완성도가 아니라 공개예요. 90%에서 한 번 보여 주고 피드백을 받아 보세요. 계획은 세상과 부딪히는 순간 훨씬 정교해져요.'
       },
       en: {
         nick: 'The Blueprint Architect', tag: 'draws five moves ahead without saying so',
-        outer: 'People remember you as calm and polite. You speak little, do not laugh loudly, and in meetings you usually say one precise thing at the end. So you hear “I never know what you are thinking.” In fact, three scenarios are already running in your head.',
-        inner: 'Inside it is much louder. You keep matching up what everyone skipped, imagining what this conversation will mean in three years. You just do not say it — the explanation costs time, or it will not land anyway. So your real feelings arrive as preparation rather than words.',
-        strengths: ['Turning tangled problems into structure', 'Staying cold-headed while others get swept up', 'A consistency that does not bend once set', 'Quietly preparing what will be needed'],
-        alone: 'Alone, you look like you are doing nothing. That is when the year gets replanned. Solitude is not waste for you, it is maintenance.',
-        trigger: 'Plans that change without notice, meetings that repeat for no reason, “why do you think so much?”. Nothing drains you faster than preparation nobody looks at.',
-        recover: 'Recovery comes from tidying, not talking. Dump everything on your mind into a note and keep three things for tomorrow. Then take one hour with nobody around. That usually restores your speed.',
-        charm: 'Your charm is the space your silence leaves. With someone you like, the preparation shows: you remember a preference they mentioned in passing, you handle the part nobody thinks about. That quiet certainty holds people.',
-        flaw: 'Your weak spot is not confirming feelings out loud. You assume it is understood; it is not. And because you only speak after disappointment has piled up by your own standard, they hear it for the first time.',
+        outer: 'People remember you as calm and polite. You do not laugh loudly, and in meetings you usually speak once, at the end, precisely. So people wonder what you are thinking — and then the next day find it already sorted out. Your quiet is not indifference; you simply walked all the way to the conclusion before opening your mouth.',
+        inner: 'Inside it is much louder. A remark someone dropped gets fitted into a plan three years out, and this choice gets run forward a year to see how it comes back. You never explain that. The explanation would run long, and you already know it would not fully land. So your real feelings arrive as preparation rather than words.',
+        strengths: ['Turning a mess of a problem into structure', 'Lowering the temperature while everyone else heats up', 'A standard that does not go on sale', 'Sealing the hole everyone else steps over'],
+        alone: 'Alone, you look like you are doing nothing. That is when next year gets replanned and the loose thoughts get filed. For you solitude is not waste, it is the workshop.',
+        trigger: 'Plans changed without a word, meetings that repeat for no reason, “why do you have to think that far?” — and preparation nobody looks at. That is what wears you out.',
+        recover: 'Recovery comes from tidying, not talking. Dump everything that snags into a note, keep three things for tomorrow, then take an hour with nobody around. That usually restores your speed.',
+        charm: 'Your charm is the space your silence leaves. Around someone you like, the preparation shows: a preference mentioned a month ago is remembered, the part nobody handles is quietly handled. That certainty holds people.',
+        flaw: 'Not confirming feelings out loud is the weak spot. You trust that it is understood; it is not. And because you stack disappointments privately until your limit, they hear it for the first time at the door — and it feels sudden to them.',
         partners: ['ENFP', 'ENTP'],
-        partnerNote: 'The people who lay laughter and accident over your quiet plan — and say out loud what you never got around to saying.',
-        avoid: 'Anyone who demands emotional confirmation on the spot, or moves a plan the morning of. You remember that as betrayal.',
-        openLine: '“I thought your silence meant you did not care. Turns out you were handling all of it.”',
-        work: 'Given a goal, you design the route yourself. Material gets gathered before anyone asks and the counter-arguments are blocked in advance, so work you own rarely wobbles halfway.',
+        partnerNote: 'The people who lay laughter and accident over your quiet plan, and say out loud the thing you never got around to saying.',
+        avoid: 'Anyone who demands emotional confirmation on the spot, or moves a plan on the morning of. You remember that as betrayal.',
+        openLine: '“I thought your silence meant you did not care. Turns out you were carrying all of it.”',
+        work: 'Given a goal, you design the route. Material you were not asked for is gathered first, and the counter-argument is blocked before it arrives, so work you own rarely wobbles halfway.',
         jobs: ['Strategy planning', 'Data architecture', 'Game systems design', 'Research & development'],
-        leap: 'The key to the next level is not polish but publication. Ship one thing at 90% and take the feedback. Your plan gets sharper the moment it meets the world.'
+        leap: 'The key is not polish but publication. Show one thing at 90% and take the feedback. Your plan gets sharper the moment it meets the world.'
       }
     },
 
     INTP: {
       emoji: '🔎',
       ko: {
-        nick: '원리 탐정', tag: '"왜?"가 멈추지 않는 사람',
-        outer: '남들은 당신을 조용하고 느긋한 사람으로 봐요. 말은 적은데 갑자기 엉뚱한 질문을 던져서, 사람들은 당신이 어디까지 생각했는지 가늠을 못 하죠. 회의에서도 대개 흐름을 한 번 끊고 "근데 그게 왜 그렇게 되는데요?"를 물어요.',
-        inner: '속에서는 질문이 계속 이어져요. 하나를 이해하면 그 전제가 궁금해지고, 그 전제의 예외가 궁금해져요. 그래서 남들은 이미 지나간 주제를 당신은 사흘 뒤에 다시 꺼내기도 해요. 당신에게 세상은 정답을 외우는 곳이 아니라, 원리를 알아내는 곳이에요.',
-        strengths: ['남들이 당연하게 여기는 것을 의심하는 힘', '서로 다른 분야를 연결해 새 관점을 만드는 재주', '복잡한 이론을 끝까지 파고드는 집요함', '자기 생각을 스스로 교정하는 정직함'],
-        alone: '혼자 있는 시간에 세상이 조용히 확장돼요. 밤새 한 주제를 파다가 아침에 전혀 다른 결론에 도착하죠. 그런데 그 결론을 아무에게도 말하지 않아서, 세상은 당신이 얼마나 깊이 들어갔는지 몰라요.',
-        trigger: '형식만 있는 절차, "원래 그렇게 하는 거야"라는 말, 생각할 시간을 주지 않고 답을 요구하는 회의. 당신은 이유 없는 규칙 앞에서 가장 빨리 지쳐요.',
-        recover: '회복은 아무것도 안 하기로 결정하는 데서 와요. 좋아하는 주제 하나를 목적 없이 30분만 읽어 보세요. 결과물을 만들 필요 없는 사고가 당신의 충전이에요.',
-        charm: '당신의 매력은 관심을 가진 사람에게만 갑자기 깊어지는 데 있어요. 평소엔 무던한데, 상대가 흥미로운 말을 하면 눈빛이 바뀌죠. 그 순간의 집중이 사람에게는 특권처럼 느껴져요.',
-        flaw: '약점은 시작은 잘하는데 끝을 안 맺는다는 거예요. 흥미가 식으면 그냥 멈추고, 상대는 그걸 "나에 대한 관심이 식은 것"으로 받아들여요. 그리고 감정의 확인을 귀찮아해서, 상대는 늘 혼자 확인해요.',
+        nick: '원리 탐정', tag: '\"왜?\"가 멈추지 않는 사람',
+        outer: '조용하고 느긋해 보이는데, 갑자기 엉뚱한 질문을 던져서 사람들이 당신의 위치를 못 잡아요. 회의에서도 흐름을 한 번 끊고 "근데 그게 왜 그렇게 되는데요?"를 물어요. 악의가 아니라, 정말 궁금해서요.',
+        inner: '머릿속에선 질문이 끝나지 않아요. 하나를 이해하면 그 전제가 궁금해지고, 그 전제의 예외가 또 궁금해져요. 그래서 남들이 사흘 전에 끝낸 주제를 당신은 오늘 밤 다시 꺼내요. 퍼즐이 딱 맞아떨어지는 순간, 그게 당신이 세상에서 제일 좋아하는 순간이에요.',
+        strengths: ['당연하게 여기는 것을 의심하는 힘', '멀리 떨어진 분야를 이어 붙여 새 관점을 만드는 재주', '이론을 끝까지 파고드는 집요함', '내 생각이 틀렸으면 바로 고치는 정직함'],
+        alone: '혼자 있는 시간에 세상이 조용히 넓어져요. 한 주제를 밤새 파다가 아침에 전혀 다른 결론에 도착하죠. 그런데 그 결론을 아무한테도 말하지 않아서, 아무도 당신이 얼마나 깊이 들어갔는지 몰라요.',
+        trigger: '형식만 남은 절차, "원래 그렇게 하는 거야", 생각할 시간 없이 답을 재촉하는 회의. 이유 없는 규칙 앞에서 제일 빨리 지쳐요.',
+        recover: '회복은 "아무것도 안 하기"로 결정하는 데서 와요. 좋아하는 주제를 목적 없이 30분만 읽어 보세요. 결과물을 안 만들어도 되는 사고가 당신의 충전이에요.',
+        charm: '평소엔 무던한데, 상대가 흥미로운 말을 하면 눈빛이 바뀌어요. 그때의 집중이 사람에게는 특권처럼 느껴져요. 좋아하는 사람 앞에서는 평소 논리가 잠깐 고장 나서, 괜히 쓸데없는 팩트를 던지기도 하죠.',
+        flaw: '시작은 잘하는데 끝을 안 맺어요. 흥미가 식으면 그냥 멈추고, 상대는 그걸 "나에 대한 관심이 식은 것"으로 받아요. 그리고 감정 확인을 귀찮아해서, 확인은 늘 상대 몫이 돼요.',
         partners: ['ENFJ', 'ESFJ'],
-        partnerNote: '당신의 생각을 세상 말로 번역해 주는 사람들. 당신이 흩뿌린 아이디어를 실제 자리로 데려가 줘요.',
-        avoid: '감정을 즉시 언어로 요구하는 사람, 설명 없이 규칙만 강요하는 사람.',
-        openLine: '"네가 그 얘기 할 때 표정이 완전히 달라지는 거 알아? 나는 그게 제일 좋아."',
-        work: '일에서는 문제의 뿌리를 찾아요. 남들이 증상을 고칠 때 원인을 파고들어, 같은 문제가 다시 안 생기게 만들죠. 대신 마감보다 완결성을 우선하는 습관이 있어서, 마무리 규칙을 정해 두면 성과가 두 배가 돼요.',
-        jobs: ['소프트웨어 엔지니어', '데이터 분석', '연구원', '기술 작가 · 테크니컬 라이터'],
-        leap: '도약의 열쇠는 말로 꺼내는 거예요. 머릿속 완성본을 세 줄 요약으로 남기는 습관 하나만 붙여도, 당신의 생각이 처음으로 남의 것이 돼요.'
+        partnerNote: '당신의 생각을 사람의 말로 번역해 주는 사람들. 흩뿌린 아이디어를 실제 자리까지 데려가 줘요.',
+        avoid: '감정을 즉시 말로 요구하는 사람, 왜 그런지 설명 없이 규칙만 강요하는 사람.',
+        openLine: '\"네가 그 얘기할 때 표정 완전히 달라지는 거 알아? 나는 그게 제일 좋아.\"',
+        work: '증상이 아니라 뿌리를 찾아요. 남들이 고칠 때 당신은 원인을 파서 같은 문제가 다시 안 생기게 만들죠. 대신 마감보다 완결성을 우선하는 버릇이 있어요. 마무리 규칙 하나만 정해 두면 성과가 확 올라가요.',
+        jobs: ['소프트웨어 엔지니어', '데이터 분석', '연구원', '테크니컬 라이터'],
+        leap: '도약의 열쇠는 말로 꺼내는 거예요. 머릿속 완성본을 세 줄로 남기는 습관 하나만 붙여도, 당신 생각이 처음으로 남의 것이 돼요.'
       },
       en: {
         nick: 'The Principle Detective', tag: 'never stops asking why',
-        outer: 'People see you as quiet and unhurried. You say little, then drop an unexpected question, and nobody can tell how far you have already gone. In meetings you tend to break the flow once: “but why does it work that way?”',
-        inner: 'The questions keep going. Understanding one thing makes you curious about its premise, then about the exceptions to that premise. So you bring up a topic others finished three days ago. To you the world is not a place to memorise answers, it is a place to work out the mechanism.',
-        strengths: ['Doubting what everyone takes for granted', 'Connecting distant fields into a new angle', 'Digging a theory to the end', 'Correcting your own thinking honestly'],
-        alone: 'Your world expands quietly in private. You dig all night and arrive at a completely different conclusion by morning — then tell nobody, so nobody knows how deep you went.',
-        trigger: 'Procedures with no purpose, “that is how it is done”, meetings that demand an answer before you can think. Nothing tires you faster than a rule without a reason.',
-        recover: 'Recovery begins with deciding to do nothing. Read about something you love for thirty minutes with no output in mind. Thinking without a deliverable is how you recharge.',
-        charm: 'Your charm is how suddenly deep you become for someone who interests you. Usually easy-going — then they say something interesting and your eyes change. That focus feels like a privilege.',
-        flaw: 'You start well and do not close. When interest fades you simply stop, and the other person reads it as interest in them fading. You also find emotional check-ins tedious, so they end up doing all the checking.',
+        outer: 'You seem quiet and unhurried, then drop a question from nowhere and nobody can place you. In meetings you break the flow once: “but why does it work that way?” Not out of spite — you genuinely want to know.',
+        inner: 'The questions do not end. Understanding one thing makes you curious about its premise, then about the exceptions to it. So a topic others finished three days ago comes back out tonight. That click when the puzzle fits is your favourite sound in the world.',
+        strengths: ['Doubting what everyone has agreed to stop questioning', 'Joining distant fields into a new angle', 'Following a theory all the way down', 'Correcting yourself the moment you are wrong'],
+        alone: 'Your world widens quietly in private. You dig all night and land on a completely different conclusion by morning — then tell nobody, so nobody knows how far down you went.',
+        trigger: 'Procedures kept for their own sake, “that is how it is done”, meetings that want an answer before you can think. A rule without a reason tires you fastest.',
+        recover: 'Recovery starts with deciding to do nothing. Read about something you love for thirty minutes with no output in mind. Thinking with no deliverable is your charger.',
+        charm: 'Usually unbothered — then someone says something interesting and your eyes change. That focus feels like a privilege to be on the receiving end of. Around a crush your logic briefly breaks and you throw out a completely useless fact.',
+        flaw: 'You start beautifully and do not close. When interest fades you simply stop, and they read it as interest in them fading. Emotional check-ins feel like admin, so the checking ends up being their job.',
         partners: ['ENFJ', 'ESFJ'],
-        partnerNote: 'The people who translate your thinking into the world’s language and carry your scattered ideas to an actual place.',
-        avoid: 'Anyone who demands feelings immediately in words, or enforces rules without explaining them.',
+        partnerNote: 'The people who translate your thinking into human speech and walk your scattered ideas to an actual place.',
+        avoid: 'Anyone who demands feelings in words immediately, or enforces rules with no explanation.',
         openLine: '“Do you know your whole face changes when you talk about that? That is my favourite thing.”',
-        work: 'You find the root of a problem. While others fix symptoms you dig for the cause and stop it recurring. Finishing can lose to completeness, though — set a closing rule and your output doubles.',
+        work: 'You go for the root, not the symptom. While others patch, you find the cause so it cannot happen again. Completeness can beat the deadline, though — set one closing rule and your output jumps.',
         jobs: ['Software engineer', 'Data analysis', 'Researcher', 'Technical writer'],
-        leap: 'The key is saying it out loud. One habit — a three-line summary of each finished thought — and your thinking starts belonging to someone else for the first time.'
+        leap: 'The key is saying it out loud. One habit — a three-line summary of each finished thought — and your thinking belongs to someone else for the first time.'
       }
     },
-
     ENTJ: {
       emoji: '🧭',
       ko: {
-        nick: '판을 키우는 지휘자', tag: '목표가 생기면 지형부터 바꾼다',
-        outer: '사람들은 당신을 "일할 때 제일 멋있는 사람"으로 기억해요. 말이 빠르고 결정이 빠르고, 회의가 길어지면 자연스럽게 정리해서 결론을 내죠. 그래서 누군가에게는 리더고, 누군가에게는 조금 부담스러운 사람이에요.',
-        inner: '속에서는 늘 목표가 돌아가요. 지금 하는 일이 1년 뒤 어떤 결과로 이어질지 계산하고, 그 계산이 안 맞으면 잠이 잘 안 와요. 그런데 그 계산 과정을 설명하지 않아서, 사람들은 당신이 그냥 밀어붙인다고 생각해요.',
-        strengths: ['큰 그림을 그리고 자원을 배분하는 능력', '결정을 미루지 않는 결단', '사람의 강점을 빨리 읽고 자리를 맞춰 주는 눈', '압박 속에서 오히려 선명해지는 집중'],
-        alone: '혼자 있을 때도 머릿속 회의가 계속돼요. 쉬는 법을 몰라서, 쉬는 것도 일정에 넣어야 하는 사람이에요.',
-        trigger: '결론 없이 반복되는 회의, 책임을 미루는 사람, "그건 좀 어려울 것 같은데"만 반복하는 태도.',
-        recover: '회복에는 몸을 쓰는 게 좋아요. 머리로만 도는 사람은 몸을 움직여야 꺼져요. 운동, 산책, 설거지처럼 손이 바쁜 일을 30분만 해 보세요.',
-        charm: '당신의 매력은 앞을 보고 걷는 사람의 등이에요. 상대가 망설일 때 "그거 해보자"고 먼저 말해 주는 사람. 그 한마디에 사람들이 힘을 얻어요.',
-        flaw: '약점은 감정의 속도를 못 기다린다는 거예요. 상대가 마음을 정리할 시간을 주지 않고 결론을 요구해서, "나는 이 사람의 프로젝트인가" 싶게 만들어요.',
-        partners: ['INFP', 'ISFP'],
-        partnerNote: '당신이 놓치는 결을 읽어 주는 사람들. 다만 결정을 재촉하면 그들은 말없이 문을 닫아요.',
-        avoid: '결정을 회피하는 사람, 감정을 이유로 아무것도 정하지 않는 사람.',
-        openLine: '"너 옆에 있으면 이상하게 다 할 수 있을 것 같아."',
-        work: '목표를 숫자로 바꾸고 사람을 배치하는 데 능해요. 회의가 흩어질 때 방향을 다시 세우고, 필요한 사람을 필요한 자리에 놓죠. 그래서 당신이 들어간 일은 속도가 달라져요.',
-        jobs: ['조직 리더십', '사업 개발', '프로덕트 매니저', '전략 컨설팅'],
-        leap: '도약의 열쇠는 설득이 아니라 경청이에요. 결정 전에 한 사람의 반대 의견을 끝까지 들어 보세요. 당신의 판은 그 한 번으로 더 단단해져요.'
+        nick: '판을 짜는 지휘자', tag: '목표가 보이면 사람부터 세운다',
+        outer: '들어가면 분위기가 정리되는 사람이에요. 말이 빠르고 결론이 분명하고, 회의가 산으로 가면 "그래서 뭘 하기로 한 거죠?"로 한 번에 끌어내리죠. 그래서 누군가는 당신을 대하기 긴장하지만, 막상 일이 굴러가면 제일 먼저 당신을 찾아요.',
+        inner: '속은 생각보다 단순해요. "이걸 어떻게 굴릴까" 하나만 계속 돌아가요. 사람을 무기로 보는 게 아니라, 목표까지 가는 길에 누가 어디에 서야 하는지를 보는 거예요. 다만 그 계산이 빨라서, 느린 사람의 사정을 나중에 알아차려요. 미안하다고 말하는 타이밍을 자주 놓치는 이유예요.',
+        strengths: ['흩어진 사람을 한 방향으로 세우는 힘', '정보가 반쯤 모였을 때 방향을 정하는 결단', '문제를 사람 문제와 구조 문제로 나눠 보는 눈', '책임을 자기 쪽으로 가져오는 태도'],
+        alone: '혼자 있을 때는 다음 판을 그려요. 쉬는 것처럼 보여도 머릿속에선 회의실이 돌아가고 있어요. 그래서 진짜로 쉬려면 "아무것도 안 하기"를 일정에 넣어야 해요. 안 그러면 휴가도 프로젝트가 돼요.',
+        trigger: '결정을 미루는 사람, 같은 얘기를 세 번째 반복하는 회의, "그건 좀 아닌 것 같아요"만 하고 대안은 없는 말. 그 앞에서 제일 예민해져요.',
+        recover: '회복은 혼자 몸을 쓰는 데서 와요. 걷기, 운동, 정리. 머리를 비우는 게 아니라 몸으로 옮겨야 해요. 그리고 잘한 일 하나를 소리 내어 인정해 주세요. 당신은 칭찬을 잘 못 받는 사람이에요.',
+        charm: '매력은 앞에서 끌어 주는 힘이에요. 무서운 사람인데, 당신이 편애하는 사람에게는 갑자기 다정해져요. 그 온도 차이를 아는 사람은 그 다정함을 받기 위해 오래 옆에 있어요.',
+        flaw: '약점은 속도를 사람에게 요구한다는 거예요. 당신에게는 쉬운 일이 누군가에게는 몇 배 걸리는 일이라, 그 차이를 배려 없이 지나가요. 그리고 화가 나면 말이 정확해서 더 아파요. 논리로 이기고 관계를 잃는 순간이에요.',
+        partners: ['INFP', 'INTP'],
+        partnerNote: '당신에게 "왜 그렇게까지"라고 물어봐 주는 사람들. 속도를 늦추면 세상이 무너지는 게 아니라는 걸 알려 줘요.',
+        avoid: '결정을 계속 미루면서 불만만 쌓는 사람, 당신의 결단을 무시하고 뒤에서 판을 바꾸는 사람.',
+        openLine: '\"너는 앞에서 다 끌고 가면서, 정작 자기 얘기는 안 하잖아. 나한테는 해도 돼.\"',
+        work: '일에서는 목표를 쪼개고 사람을 배치해요. 안 되는 이유를 찾는 데 시간을 안 쓰고, 되는 경로를 먼저 만듭니다. 그래서 당신이 들어간 팀은 몇 달 만에 속도가 달라져요. 대신 그 속도를 따라오지 못한 사람이 조용히 사라지는 걸 나중에 알게 돼요.',
+        jobs: ['사업 총괄 · CEO', '프로젝트 디렉터', '컨설팅', '영업 조직 리드'],
+        leap: '도약의 열쇠는 "설명하는 시간"이에요. 결론을 말할 때 이유를 세 문장 더 붙이세요. 그 세 문장이 당신 편을 두 배로 만들어요.'
       },
       en: {
-        nick: 'The Scale-maker', tag: 'changes the terrain once a goal appears',
-        outer: 'People remember you as the one who looks most alive at work. You speak fast, decide fast, and when a meeting drags you tidy it into a conclusion. To some you are the leader; to others you are a little intimidating.',
-        inner: 'A goal is always running in you. You calculate what this work becomes a year from now, and if the maths does not add up you cannot sleep. You just do not explain the maths, so people think you simply push.',
-        strengths: ['Seeing the big picture and moving resources', 'Decisiveness', 'Reading strengths fast and putting them in the right seat', 'Clarity that sharpens under pressure'],
-        alone: 'The meeting continues in your head even alone. You do not know how to rest, so rest has to go in the calendar.',
-        trigger: 'Meetings with no conclusion, people who dodge responsibility, “that might be difficult” repeated as a full sentence.',
-        recover: 'Use your body. A head that will not stop needs movement — thirty minutes of exercise, a walk, washing dishes.',
-        charm: 'Your charm is the back of someone walking forward. When a person hesitates you are the one saying “let us try it.” One sentence, and they find strength.',
-        flaw: 'You cannot wait for feeling to catch up. Demanding a conclusion before they have sorted their mind makes them wonder whether they are a person to you or a project.',
-        partners: ['INFP', 'ISFP'],
-        partnerNote: 'The people who read the grain you miss — though push them for a decision and they close the door without a word.',
-        avoid: 'People who avoid decisions, and people who use feeling as a reason to settle nothing.',
-        openLine: '“When you are next to me I feel like I can do anything.”',
-        work: 'You turn goals into numbers and place people well. When a meeting scatters, you reset the direction and put the right person in the right seat, and work you enter moves at a different speed.',
-        jobs: ['Organisational leadership', 'Business development', 'Product manager', 'Strategy consulting'],
-        leap: 'The key is listening, not persuading. Hear one opponent to the end before deciding. Your plan gets stronger on that one hearing.'
+        nick: 'The One Who Sets the Board', tag: 'sees the goal, then moves the people',
+        outer: 'The room organises itself when you walk in. You talk fast, conclusions are clear, and when a meeting drifts you pull it back with “so what are we actually doing?” Some people brace around you — and then come straight to you the moment things stall.',
+        inner: 'Inside it is simpler than it looks. One loop runs: how do we move this. You do not see people as tools; you see where each person has to stand for the goal to be reachable. The calculation is just fast, so the slower person’s situation registers late. That is why you miss the moment to say sorry.',
+        strengths: ['Getting scattered people to face one direction', 'Deciding when half the information is in', 'Separating a people problem from a structure problem', 'Taking the responsibility onto your side'],
+        alone: 'Alone, you draw the next board. It looks like rest, but the meeting room is running. To actually rest you have to schedule doing nothing — otherwise even a holiday becomes a project.',
+        trigger: 'People who postpone decisions, a meeting on its third round of the same topic, and “I am not sure that works” with no alternative attached. That is where you get sharpest.',
+        recover: 'Recovery comes from moving your body alone. Walk, train, tidy. Do not try to empty your head, move it into your legs. Then say one thing you did well out loud — you are bad at receiving praise.',
+        charm: 'Your charm is the pull from the front. You are intimidating, and then suddenly tender with the people you favour. Anyone who has felt that temperature difference stays a long time, hoping for more of it.',
+        flaw: 'You ask people to match your speed. What is easy for you takes someone else three times as long, and you walk past that gap. And anger makes you precise, which makes it hurt more. That is the moment you win the argument and lose the person.',
+        partners: ['INFP', 'INTP'],
+        partnerNote: 'The people who ask “why that far?” — and show you the world does not collapse when you slow down.',
+        avoid: 'Anyone who keeps postponing while resentment piles up, or quietly rewrites the board behind your decision.',
+        openLine: '“You drag everyone forward and never talk about yourself. You are allowed to do that with me.”',
+        work: 'You split the goal and place the people. No time is spent listing why it cannot work; you build the route that can. A team you join moves differently within months. The cost is that the person who could not keep up disappears quietly, and you find out later.',
+        jobs: ['Founder / CEO', 'Project director', 'Consulting', 'Sales organisation lead'],
+        leap: 'The key is the explanation. Add three sentences of why after every conclusion. Those three sentences double your side.'
       }
     },
 
     ENTP: {
-      emoji: '⚗️',
+      emoji: '⚡',
       ko: {
-        nick: '가설 제조기', tag: '금기를 가지고 노는 발명가',
-        outer: '유쾌하고 말이 빠른 사람. 규칙에 "근데 왜요?"를 붙이는 걸 좋아해서, 어떤 자리에서는 분위기 메이커고 어떤 자리에서는 골치 아픈 사람이에요. 본인은 대개 후자를 의식하지 못하죠.',
-        inner: '머릿속에서 아이디어가 동시에 여러 개 돌아가요. 하나에 집중하기보다 연결을 찾는 쪽이라, 대화 중에 전혀 다른 얘기로 튀어도 당신 안에서는 다 이어져 있어요. 그 연결을 남들이 못 따라오면 조금 외로워요.',
-        strengths: ['남들이 못 보는 연결을 만드는 발상', '반대 입장을 끝까지 밀어 보는 사고 실험', '위기에서 오히려 재미를 찾는 태도', '설득과 협상의 언어 감각'],
-        alone: '혼자 있으면 머리가 더 바빠요. 누군가와 이야기할 때 오히려 정리가 돼요. 당신에게 말은 사치가 아니라 연산이에요.',
-        trigger: '"원래 이렇게 해요", 재미없는 반복, 생각을 말하기 전에 결론부터 요구하는 자리.',
-        recover: '쓸데없는 주제로 누군가와 30분 떠들어 보세요. 아무 성과 없는 대화가 당신의 정비 시간이에요.',
-        charm: '대화가 끊기지 않는 사람. 상대가 하던 말의 반대편까지 상상해서 던져 주니까, 함께 있으면 머리가 좋아진 기분이 들어요.',
-        flaw: '약점은 시작은 많은데 끝이 없다는 것. 그리고 논쟁에서 이기고 나서야 상대의 표정을 봐요. 그때는 이미 늦어 있어요.',
-        partners: ['INFJ', 'ISFJ'],
-        partnerNote: '당신의 아이디어에 결말을 붙여 주는 사람들. 이들이 없으면 아이디어는 계속 아이디어로 남아요.',
-        avoid: '자존심으로 말하는 사람, 아이디어를 "안 될 이유"로만 받아 주는 사람.',
-        openLine: '"너랑 얘기하면 내가 좀 더 똑똑해지는 기분이야."',
-        work: '새 판을 여는 데 강해요. 아무도 안 해 본 방식을 먼저 시도하고, 실패해도 웃으면서 다음을 던지죠. 기존 업무를 개선하는 자리보다 없는 것을 만드는 자리에서 빛나요.',
-        jobs: ['스타트업 창업', '마케팅 기획', '브랜드 전략', '방송 · 콘텐츠 기획'],
-        leap: '도약은 아이디어를 하나만 남기는 데서 와요. 후보 다섯 개 중 하나를 골라 30일만 끝까지 붙잡아 보세요. 그 하나가 당신의 이력을 바꿔요.'
+        nick: '토론 연금술사', tag: '반대 의견에서 불꽃이 튄다',
+        outer: '재밌고 말이 빠른 사람으로 보여요. 어떤 주제든 일단 반대쪽에서 한 번 밀어 보고, 그 과정에서 웃음이 나요. 그래서 사람들은 당신과 얘기하면 머리가 깨어나지만, 가끔 "이 사람 진심이 뭐지" 하고 헷갈려 해요.',
+        inner: '속에서는 가능성이 계속 켜져요. 하나를 보면 "이거면 저것도 되겠는데"가 붙고, 그 조합이 또 다른 조합을 불러요. 문제는 그중 10개 중 9개가 안 해도 되는 일이라는 거예요. 재밌는 건 많은데 끝까지 가는 게 적어서, 스스로도 그게 답답할 때가 있어요.',
+        strengths: ['막힌 상황에서 새 문을 만들어 내는 순발력', '상대 논리의 약한 고리를 귀신같이 찾는 감각', '처음 보는 사람과 어색함 없이 말을 트는 재주', '실패를 오래 안 끌고 가는 회복력'],
+        alone: '혼자 있을 때 머릿속에서 토론이 열려요. 아무도 없는 방에서 혼자 "아니 그건 아닌데"를 중얼거리죠. 그 시간에 아이디어가 폭발하지만, 정작 정리는 안 해서 메모가 산더미예요.',
+        trigger: '이미 정해진 답을 확인만 시키는 자리, "그건 원래 안 돼"로 끝나는 대화, 같은 루틴이 6개월째 반복될 때. 지루함이 당신에게는 통증이에요.',
+        recover: '회복은 새 자극이에요. 안 가 본 곳, 안 읽어 본 주제, 처음 보는 사람. 쉬는 것보다 갈아타는 게 당신에게는 회복이에요. 대신 밤 두 시에 시작한 검색은 스스로 끊어야 해요.',
+        charm: '매력은 같이 있으면 세상이 넓어지는 느낌이에요. 당신이 던진 한마디에 상대의 생각이 옆으로 확장돼요. 그리고 웃기면서도 진짜 관심을 가진 사람에게는 놀랄 만큼 깊어져요.',
+        flaw: '약점은 시작한 걸 안 끝내는 것, 그리고 농담이 상대에게는 칼이 될 수 있다는 걸 늦게 아는 거예요. 특히 가까운 사람에게는 "이 정도는 괜찮겠지" 하고 더 세게 던져요. 그게 쌓이면 관계가 조용히 멀어져요.',
+        partners: ['INFJ', 'INTJ'],
+        partnerNote: '당신의 폭발하는 아이디어를 하나로 골라 끝까지 데려가 주는 사람들. 당신이 놓친 마지막 10%를 채워요.',
+        avoid: '아이디어를 "그거 해서 뭐 해"로 먼저 자르는 사람, 농담을 진지하게만 받는 사람.',
+        openLine: '\"너랑 얘기하면 내가 똑똑해진 것 같아. 근데 너는 그거 알아? 너도 나 때문에 웃고 있다는 거.\"',
+        work: '일에서는 초반에 제일 강해요. 아무것도 없을 때 구조를 던지고, 막힌 곳을 뚫어요. 대신 마무리 단계에서 지루해져서, 마지막 20%를 붙잡아 줄 동료나 규칙이 필요해요. 그 하나만 있으면 당신은 팀에서 대체 불가가 돼요.',
+        jobs: ['신사업 기획', '브랜드 마케팅', '제품 매니저', '창업 · 1인 사업'],
+        leap: '도약의 열쇠는 "하나만 고르기"예요. 아이디어 열 개 중 하나를 골라 90일만 끝까지 가 보세요. 당신의 재능은 그 한 번의 완주에서 처음 증명돼요.'
       },
       en: {
-        nick: 'The Hypothesis Machine', tag: 'plays with the untouchable',
-        outer: 'Funny and quick. You like attaching “but why?” to a rule, which makes you the life of one room and a headache in another — usually without noticing which you are.',
-        inner: 'Several ideas run at once. You look for connections rather than focus, so even when you jump to something unrelated the thread is intact inside you. When nobody can follow, it gets a little lonely.',
-        strengths: ['Ideas from connections others cannot see', 'Running an opposite position to its end', 'Finding the fun in a crisis', 'A feel for the language of persuasion'],
-        alone: 'Alone, your head gets busier. Talking to someone is when things sort themselves out — speech is computation for you, not luxury.',
-        trigger: '“That is how we do it”, joyless repetition, rooms that want a conclusion before you can think.',
-        recover: 'Thirty minutes of pointless conversation. Talk with no deliverable is your maintenance.',
-        charm: 'Conversation that never stalls. You imagine the other side of what they just said and throw it back, so people feel sharper around you.',
-        flaw: 'Many starts, no endings. And you check the other person’s face only after winning the argument — by then it is late.',
-        partners: ['INFJ', 'ISFJ'],
-        partnerNote: 'The people who give your ideas an ending. Without them, an idea stays an idea.',
-        avoid: 'People who argue with their ego, and people who receive ideas only as reasons it will not work.',
-        openLine: '“Talking to you makes me feel smarter.”',
-        work: 'You are strong at opening new ground. You try what nobody has tried and, if it fails, laugh and throw the next one. You shine where something does not exist yet, more than where something needs improving.',
-        jobs: ['Startup founder', 'Marketing planning', 'Brand strategy', 'Broadcast & content planning'],
-        leap: 'The leap comes from keeping one idea. Pick one of five and hold it for thirty days. That one changes your record.'
+        nick: 'The Debate Alchemist', tag: 'sparks off the opposing view',
+        outer: 'You come across as fun and fast. Whatever the topic, you push from the other side once, and it makes people laugh. Conversations wake up around you — and occasionally someone wonders what you actually believe.',
+        inner: 'Possibilities stay switched on. Seeing one thing attaches “then that would work too”, and the combination calls up another. The problem is that nine of ten of them do not need doing. Plenty of sparks, few finishes — and that frustrates you too.',
+        strengths: ['Making a new door where the wall was', 'Finding the weak joint in an argument instantly', 'Talking to a stranger with no awkwardness', 'Not carrying a failure around for long'],
+        alone: 'Alone, a debate opens in your head. You mutter “no, that is not right” to an empty room. Ideas explode in that hour, and nothing is ever organised, so the notes become a mountain.',
+        trigger: 'Being asked to confirm a decision already made, conversations that end in “that just is not done”, the same routine for six months. Boredom registers as pain for you.',
+        recover: 'Recovery is novelty — a place you have not been, a topic you have not read, a person you have not met. Switching is how you rest. Just be the one who ends the two a.m. search.',
+        charm: 'Being near you makes the world wider. One line from you and their thinking expands sideways. You are funny, and then astonishingly deep with the few you truly care about.',
+        flaw: 'You do not finish, and you learn late that a joke can land as a knife. With people close to you it goes harder — “they can take it”. It piles up, and the relationship quietly backs away.',
+        partners: ['INFJ', 'INTJ'],
+        partnerNote: 'The people who pick one of your explosions and walk it to the end, filling the last ten percent you dropped.',
+        avoid: 'Anyone who opens with “what is the point of that”, or takes every joke as a position.',
+        openLine: '“Talking to you makes me feel smart. Do you know you laugh more when I am around?”',
+        work: 'You are strongest at the start — throwing a structure over nothing and breaking the blockage. Boredom arrives at the finish, so you need one colleague or rule that holds the last twenty percent. With that, you are irreplaceable on a team.',
+        jobs: ['New business planning', 'Brand marketing', 'Product manager', 'Founder / solo business'],
+        leap: 'The key is choosing one. Take a single idea and run ninety days to the end. Your talent gets proven for the first time by one finish.'
       }
     },
-
     INFJ: {
       emoji: '🕯️',
       ko: {
-        nick: '사람을 읽는 등대', tag: '남의 마음이 먼저 보인다',
-        outer: '조용하고 다정하고, 어딘가 비밀스러운 사람. 말수는 적은데 사람들이 당신에게 고민을 털어놓아요. 처음 보는 사람도 이상하게 다 말하게 되죠. 그래서 당신은 늘 남의 이야기의 창고예요.',
-        inner: '사람의 말과 표정 사이의 간격을 읽어요. 말은 괜찮다는데 눈이 아니라고 하면, 당신은 그 눈을 기억해요. 그런데 그렇게 읽은 것을 다 품고 있어서, 정작 자기 이야기는 잘 꺼내지 못해요.',
-        strengths: ['말하지 않은 감정을 읽는 감수성', '사람 안의 최선의 가능성을 보는 눈', '오래 봐도 흔들리지 않는 신념', '어수선한 분위기를 조용히 정리하는 힘'],
-        alone: '혼자 있어야 사람을 다시 사랑할 수 있어요. 사람을 많이 만난 날 조용한 시간이 없으면 다음 날이 무너져요.',
-        trigger: '무례함, 사람을 도구로 쓰는 대화, 내가 공들인 것을 가볍게 넘기는 태도.',
-        recover: '혼자 있는 시간과 글쓰기. 머릿속 사람들을 종이에 내려놓아야 다시 숨이 쉬어져요.',
-        charm: '당신이 사람을 이해하는 방식이 매력이에요. 상대가 말로 다 하지 않은 것까지 알아주니까, 함께 있으면 처음으로 이해받는 기분이 들어요.',
-        flaw: '약점은 이상이 높다는 것. 그리고 실망을 말하지 않고 마음속에서 결론을 내려요. 상대는 어느 날 갑자기 끝난 관계를 통보받죠.',
+        nick: '의미 해석가', tag: '말보다 표정을 먼저 읽는다',
+        outer: '예의 바르고 부드러운 사람으로 보여요. 누구에게나 고르게 다정하고, 대화에서 상대가 원하는 말을 정확히 골라 주죠. 그래서 사람들은 당신에게 속마음을 털어놓고, 정작 당신에 대해서는 아는 게 별로 없어요. 다정함이 벽처럼 보이는 순간이 그때예요.',
+        inner: '속에서는 계속 의미를 읽어요. 저 사람이 오늘 세 번 웃었는데 눈은 안 웃었다든지, 회의에서 누가 말을 끊겼을 때 표정이 어떻게 굳었다든지. 그걸 다 기억해요. 그리고 그 관찰로 사람의 3년 뒤를 그려요. 문제는 그 그림이 너무 선명해서, 아직 일어나지 않은 일에 미리 마음을 쓰느라 오늘을 놓친다는 거예요.',
+        strengths: ['말하지 않은 감정을 정확히 짚어 내는 감각', '사람 사이에서 벌어진 일의 진짜 원인을 보는 눈', '오래 봐도 질리지 않는 깊이', '자기 신념 앞에서 놀랍도록 단단해지는 힘'],
+        alone: '혼자 있는 시간이 없으면 사람이 되어 버려요. 남의 감정을 계속 읽다 보면 내 감정이 어디 있는지 모르게 되죠. 그래서 당신에게 혼자는 사치가 아니라 필수예요. 아무도 없는 밤에 혼자 조용히 있는 그 시간에 당신이 돌아와요.',
+        trigger: '가벼운 사람들 사이에서 계속 표정 관리해야 할 때, 내 진심을 "너무 진지하다"고 넘길 때, 그리고 내가 맞춰 준 걸 아무도 몰랐을 때. 그때 조용히 마음이 닫혀요.',
+        recover: '회복은 표현이에요. 글로 써도 되고, 그림이어도 되고, 누군가에게 한 번 말해도 돼요. 읽기만 하면 더 깊어져요. 몸을 움직여서 머리에서 내려오는 것도 당신에게는 약이에요.',
+        charm: '매력은 "이 사람은 나를 진짜로 본다"는 감각이에요. 사람들이 당신 앞에서 처음으로 솔직해지는 이유가 그거예요. 그리고 당신이 마음을 연 사람에게는 상상 이상으로 헌신적이에요.',
+        flaw: '약점은 참다가 한 번에 끊는다는 거예요. 서운함을 말하지 않고 쌓아 두다가, 어느 날 갑자기 조용히 연락을 끊어요. 상대는 영문을 몰라요. 그 문 닫는 속도가 당신을 더 외롭게 해요.',
         partners: ['ENTP', 'ENFP'],
-        partnerNote: '당신의 깊이에 밝음을 얹어 주는 사람들. 이들과 있으면 무거운 생각이 잠깐 가벼워져요.',
-        avoid: '감정을 가볍게 다루는 사람, 자기 이야기만 하는 사람.',
-        openLine: '"네가 그걸 알아챘을 때, 나는 처음으로 덜 외로웠어."',
-        work: '사람의 동기를 읽고 장기 비전을 세우는 데 강해요. 겉으로 드러난 요구가 아니라 그 아래의 필요를 보기 때문에, 당신이 쓴 기획은 오래 살아남아요.',
-        jobs: ['상담 · 코칭', '콘텐츠 기획', '브랜드 스토리텔링', '교육 · 커리큘럼 설계'],
-        leap: '도약은 완벽한 사람을 기다리지 않는 것에서 와요. 준비가 80%일 때 한 번 문을 두드려 보세요. 세상은 당신이 생각한 것보다 덜 무서워요.'
+        partnerNote: '당신의 깊은 생각을 가볍게 받아 주고, 침묵을 어색해하지 않는 사람들. 당신이 말하지 않은 것도 기다려 줘요.',
+        avoid: '감정을 읽어 주기만 하고 자기 얘기는 안 하는 관계, 당신의 진심을 농담으로 넘기는 사람.',
+        openLine: '\"너는 늘 물어보기만 하잖아. 오늘은 내가 물어볼게. 너는 지금 어때?\"',
+        work: '일에서는 사람과 의미를 동시에 봐요. 이 일이 누구에게 어떤 의미인지 이해하기 때문에, 말 한마디로 팀의 방향을 바꿔요. 기획·상담·교육·글에서 강하고, 대신 자기 성과를 말로 잘 못 만들어서 손해를 봐요.',
+        jobs: ['브랜드 스토리 기획', '상담 · 코칭', '교육 콘텐츠', '작가 · 에디터'],
+        leap: '도약의 열쇠는 "내 몫을 말하기"예요. 좋은 일을 하고도 말하지 않으면 없는 일이 돼요. 한 달에 한 번, 내가 한 일을 한 문단으로 남겨 보세요.'
       },
       en: {
-        nick: 'The Lighthouse', tag: 'sees other people’s hearts first',
-        outer: 'Quiet, gentle, faintly private. You speak little, yet people pour their worries into you — even strangers tell you everything. You are permanently a warehouse of other people’s stories.',
-        inner: 'You read the gap between what a person says and what their face does. “I am fine,” with eyes that are not: you keep the eyes. And because you hold all of what you read, your own story rarely comes out.',
-        strengths: ['Sensitivity to unspoken feeling', 'Seeing the best possibility in a person', 'Convictions that hold over years', 'Quietly settling a scattered room'],
-        alone: 'You can only love people again after time alone. A crowded day without quiet makes the next day collapse.',
-        trigger: 'Rudeness, conversation that treats people as tools, having your effort waved away.',
-        recover: 'Solitude plus writing. Put the people in your head onto paper or you cannot breathe.',
-        charm: 'The way you understand people. You know what they did not say, so being with you feels like being understood for the first time.',
-        flaw: 'Your standards are high, and you conclude inside without saying you are disappointed. Then one day they are informed the relationship is over.',
+        nick: 'The Reader of Meaning', tag: 'reads the face before the words',
+        outer: 'You seem gentle and well mannered. You are equally warm to everyone and pick exactly the words the other person needs. So people pour their hearts out to you — and know almost nothing about you. That is the moment your kindness looks like a wall.',
+        inner: 'Meaning keeps being read inside. They laughed three times today but the eyes did not; that person’s face when they were cut off in the meeting. All of it is stored. From those observations you draw their next three years. The picture is so clear that you spend today on things that have not happened.',
+        strengths: ['Naming the feeling nobody said out loud', 'Seeing the real cause of what happened between people', 'A depth that does not wear out', 'Becoming unexpectedly solid in front of your conviction'],
+        alone: 'Without time alone you become other people. Reading everyone’s feelings, you lose track of where yours went. Solitude is not a luxury for you, it is maintenance. On a quiet night with nobody around, you come back.',
+        trigger: 'Managing your face among people who keep it light, having your sincerity waved off as “too serious”, and being the only one who noticed what you adjusted to. The door closes quietly then.',
+        recover: 'Recovery is expression — writing, drawing, saying it once to someone. Reading alone only takes you deeper. Moving your body is medicine too; it brings you down out of your head.',
+        charm: 'The charm is the sense of “this person actually sees me”. That is why people become honest in front of you for the first time. And to the one you opened to, you are devoted past imagination.',
+        flaw: 'You endure, then cut once. Hurt goes unsaid until one day the contact quietly ends. They have no idea why. The speed of that door closing is what makes you lonelier.',
         partners: ['ENTP', 'ENFP'],
-        partnerNote: 'The people who lay brightness over your depth — around them the heavy thinking gets light for a moment.',
-        avoid: 'People who treat feeling lightly, and people who only talk about themselves.',
-        openLine: '“When you noticed that, I was less lonely for the first time.”',
-        work: 'You read motives and build long-range vision. You see the need beneath the stated request, which is why your plans survive longer than most.',
-        jobs: ['Counselling & coaching', 'Content planning', 'Brand storytelling', 'Education & curriculum design'],
-        leap: 'The leap is not waiting for the perfect person. Knock once at 80% ready. The world is less frightening than you think.'
+        partnerNote: 'The people who hold your deep thinking lightly and are not uncomfortable in silence — who wait for what you have not said.',
+        avoid: 'A relationship where you read their feelings and they never share theirs, and anyone who turns your sincerity into a joke.',
+        openLine: '“You always ask. Today I will ask. How are you, really?”',
+        work: 'You see people and meaning at once. Because you understand what the work means to whom, one sentence from you can turn a team. Planning, counselling, teaching, writing — and you undersell your own contribution because you cannot package it.',
+        jobs: ['Brand story planning', 'Counselling / coaching', 'Educational content', 'Writer / editor'],
+        leap: 'The key is claiming your share. Good work that goes unmentioned stops existing. Once a month, write one paragraph about what you did.'
       }
     },
 
     INFP: {
-      emoji: '🐚',
-      ko: {
-        nick: '마음의 수집가', tag: '작은 감정을 오래 보관한다',
-        outer: '조용하고 순한 사람. 싫은 말도 웃으면서 넘기는 것처럼 보여요. 그런데 그 웃음 뒤에 어떤 문장이 남았는지는 아무도 몰라요. 당신은 화를 내는 대신 조용히 마음을 닫는 쪽이에요.',
-        inner: '머릿속에 자기만의 세계가 있어요. 좋아하는 장면, 문장, 노래가 그 안에서 계속 재생되고, 그 세계의 기준으로 현실을 판단해요. 그래서 남들이 "왜 저런 걸 좋아하지" 하는 것에 깊이 빠져요.',
-        strengths: ['사람과 사물의 진심을 알아보는 감각', '자기 세계를 끝까지 지키는 순수함', '상처받은 사람에게 정확히 닿는 말', '감정을 글로 옮기는 재능'],
-        alone: '혼자인 시간이 길어도 외롭지 않아요. 오히려 사람들 사이에 있을 때 더 외로울 때가 있어요.',
-        trigger: '가치관을 무시당할 때, 사람이 상품처럼 평가받는 자리, 내 진심이 "그거 뭐가 좋아"로 끝날 때.',
-        recover: '좋아하는 것을 다시 만지세요. 음악, 영상, 책 한 장면. 당신의 회복은 사람이 아니라 감각에서 와요.',
-        charm: '누군가를 좋아할 때 그 사람의 사소한 것까지 다 기억해요. 그 기억이 상대에게는 "세상에 한 사람은 나를 정확히 본다"는 감각을 줘요.',
-        flaw: '약점은 말하지 않고 마음속에서 정리해 버린다는 것. 그리고 그 정리가 끝나면 조용히 사라져요. 상대는 이유를 끝까지 모를 수 있어요.',
-        partners: ['ENTJ', 'ESTJ'],
-        partnerNote: '당신의 세계를 현실에 세워 주는 사람들. 다만 그들이 속도를 재촉하면 당신은 문을 닫아요.',
-        avoid: '가치관을 조롱하는 사람, 감정을 효율로만 계산하는 사람.',
-        openLine: '"너는 네가 생각하는 것보다 훨씬 좋은 사람이야. 진짜로."',
-        work: '진심이 담긴 것을 만들 때 힘이 나요. 남들이 흉내 낼 수 없는 결을 만들어 내지만, 마감과 평가 앞에서는 쉽게 지쳐요. 그래서 좋아하는 일을 오래 하려면 마감을 스스로에게 가볍게 걸어 주세요.',
-        jobs: ['작가 · 웹소설', '일러스트 · 디자인', '심리 상담', '브랜드 카피라이터'],
-        leap: '도약은 감정에 이름을 붙이는 데서 와요. 지금 만드는 것에 "이건 위로를 주는 이야기다"처럼 한 줄 정의를 붙여 보세요. 그 한 줄이 사람을 찾아옵니다.'
-      },
-      en: {
-        nick: 'The Collector of Feelings', tag: 'keeps small feelings for a long time',
-        outer: 'Quiet and gentle. You seem to laugh off what you do not like — nobody knows which sentence stayed behind that laugh. Instead of getting angry, you close the door quietly.',
-        inner: 'You have a world of your own inside. Favourite scenes, lines and songs keep playing there, and you judge reality by that world’s standard. Which is why you fall deeply into things others ask “why do you even like that?” about.',
-        strengths: ['Recognising what is genuine in people and things', 'Guarding your own world intact', 'Words that land exactly on someone who is hurt', 'Putting feeling into writing'],
-        alone: 'Long solitude does not feel lonely. Sometimes being among people does.',
-        trigger: 'Having your values dismissed, places where people are graded like products, your sincerity answered with “what is so good about that?”',
-        recover: 'Touch what you love again — music, a film, one page. Your recovery comes from sensation, not people.',
-        charm: 'When you like someone you remember the smallest things about them. It gives them the sense that one person in the world sees them accurately.',
-        flaw: 'You conclude inside without saying anything, then quietly disappear once the conclusion is set. They may never learn why.',
-        partners: ['ENTJ', 'ESTJ'],
-        partnerNote: 'The people who put your world on real ground — though hurry them and they shut the door.',
-        avoid: 'People who mock your values, and people who calculate feeling as efficiency.',
-        openLine: '“You are a much better person than you think. Really.”',
-        work: 'You have energy when making something sincere. You produce a grain nobody can imitate, but deadlines and evaluation tire you fast — so keep the deadlines you set for yourself light.',
-        jobs: ['Writer / web novelist', 'Illustration & design', 'Counselling', 'Brand copywriter'],
-        leap: 'The leap comes from naming the feeling. Attach one line to what you are making — “this is a story that comforts” — and people will find it.'
-      }
-    },
-
-    ENFJ: {
       emoji: '🌱',
       ko: {
-        nick: '사람을 피우는 정원사', tag: '사람이 자라는 자리를 만든다',
-        outer: '따뜻하고 말이 좋은 사람. 사람들 사이에서 누가 어색한지 먼저 알아채고, 그 사람이 대화에 들어오도록 자연스럽게 길을 열어 줘요. 그래서 모임이 끝나고 나면 당신에게 고맙다고 말하는 사람이 꼭 있어요.',
-        inner: '속에서는 사람마다의 가능성이 보여요. 이 사람은 여기서 힘들어하고, 저 사람은 저걸 해보면 좋겠는데, 같은 생각이 계속 돌아가요. 그런데 정작 자기가 무엇을 원하는지는 물어본 지 오래됐어요.',
-        strengths: ['사람의 장점을 발견해 북돋우는 힘', '어색한 자리를 자연스럽게 만드는 분위기 감각', '말로 사람을 일으키는 표현력', '책임을 끝까지 지는 성실함'],
-        alone: '혼자 있으면 누구를 챙겨야 할지 생각해요. 당신에게 외로움은 사람이 없는 게 아니라, 챙길 사람이 없는 상태예요.',
-        trigger: '노력이 당연하게 여겨질 때, 무례한 말, 내가 만든 분위기를 아무도 기억하지 않을 때.',
-        recover: '나를 위해 쓰는 시간을 일정에 먼저 넣으세요. 그리고 하루 한 번은 "내가 지금 어떤 기분인지"를 소리 내어 말해 보세요.',
-        charm: '당신이 누군가를 응원할 때, 그 사람은 세상에서 제일 잘될 것 같은 기분이 들어요. 그 힘이 사람을 당신에게 오래 붙잡아 둬요.',
-        flaw: '약점은 모두를 만족시키려다 정작 자기 마음을 숨긴다는 것. 그리고 그렇게 쌓인 서운함이 어느 날 갑자기 큰 말로 터져요.',
-        partners: ['INTP', 'ISTP'],
-        partnerNote: '당신의 온기를 조용히 받아 주고, 말없이 자기 자리를 지키는 사람들. 그 무던함이 당신을 쉬게 해요.',
-        avoid: '받기만 하고 고맙다고 말하지 않는 사람, 사람을 비교하며 줄 세우는 사람.',
-        openLine: '"너는 사람들한테 그렇게 잘해 주면서 왜 너한테는 안 그래?"',
-        work: '사람을 모으고 움직이는 일에 능해요. 팀의 온도를 올려 성과로 바꾸는 힘이 있어서, 교육·영업·기획처럼 사람과 결과가 같이 움직이는 자리에서 강해요.',
-        jobs: ['교육 · 강의', 'HR · 조직문화', '브랜드 커뮤니케이션', '이벤트 · 커뮤니티 운영'],
-        leap: '도약은 거절을 연습하는 데서 와요. 다 받아 주는 사람은 오래 못 가요. 한 번의 정중한 거절이 당신의 신뢰를 오히려 높여요.'
+        nick: '이상주의 시인', tag: '조용한데 머릿속은 서사시',
+        outer: '순하고 조용한 사람으로 보여요. 싫은 말에도 웃으면서 넘기고, 자리를 피하는 쪽이죠. 그래서 사람들은 당신이 별생각 없이 산다고 오해해요. 실제로는 그 자리에서 열 가지 생각이 스쳐 갔고, 그중 하나가 당신을 하루 종일 붙잡고 있어요.',
+        inner: '속에는 자기만의 세계가 있어요. 좋아하는 장면, 아직 쓰지 않은 이야기, 언젠가 되고 싶은 사람. 현실 이야기를 하다가도 그 세계로 잠깐 다녀오고, 돌아와서 "네, 그렇네요"라고 말해요. 그 세계가 당신의 에너지원이자, 가끔 현실을 놓치는 이유예요.',
+        strengths: ['사람의 아픈 곳을 소리 없이 알아보는 감수성', '내 기준을 끝까지 지키는 조용한 고집', '익숙한 것에서 새 의미를 만들어 내는 상상력', '미움보다 이해를 먼저 선택하는 마음'],
+        alone: '혼자 있을 때 제일 살아 있어요. 음악을 크게 틀고, 밤에 생각하고, 아무도 안 보는 글을 써요. 그 시간에 당신은 아무에게도 설명하지 않아도 되는 사람이 돼요.',
+        trigger: '가치가 무시당하는 자리, 싸움이 큰 소리로 오가는 곳, "그런 걸로 왜 그래"라는 말. 그 앞에서 당신은 조용히 사라지고 싶어져요.',
+        recover: '회복은 아름다운 것 하나예요. 좋아하는 노래, 산책, 익숙한 영화. 거기에 더해 "지금 내가 어떤 감정인지" 한 줄 적어 보세요. 이름을 붙이면 조금 가벼워져요.',
+        charm: '매력은 사람을 있는 그대로 받아 주는 데 있어요. 당신 앞에서는 약한 모습을 보여도 된다는 느낌이 들어요. 그리고 평소 조용한 사람이 자기 이야기를 꺼낼 때, 그 집중이 사람을 놀라게 해요.',
+        flaw: '약점은 원하는 것을 말하지 않는다는 거예요. "알아주겠지"를 기다리다가 아무것도 얻지 못하고, 속으로 서운해해요. 그리고 상처를 입으면 대화 대신 거리를 두기 때문에, 상대는 이유를 끝까지 몰라요.',
+        partners: ['ENFJ', 'ENTJ'],
+        partnerNote: '당신의 세계를 웃으면서 들어와 주고, 현실의 다음 단계까지 손잡아 주는 사람들.',
+        avoid: '감정을 무시하는 사람, 약속을 가볍게 어기는 사람. 당신은 그걸 오래 기억해요.',
+        openLine: '\"너는 말 안 해도 알 거라고 생각하지? 나는 몰라. 말해 주면 좋겠어.\"',
+        work: '일에서는 의미를 먼저 봐요. 이 일이 왜 필요한지 납득해야 움직이고, 납득하면 남들보다 오래 파요. 글·디자인·기획처럼 자기 색이 들어가는 일에서 강하고, 대신 평가와 마감 앞에서 쉽게 지쳐요.',
+        jobs: ['작가 · 시나리오', '일러스트 · 디자인', '콘텐츠 기획', '심리 · 상담 분야'],
+        leap: '도약의 열쇠는 "밖으로 꺼내기"예요. 혼자만 아는 완성본은 세상에 없는 것과 같아요. 80%에서 한 번 올려 보세요. 당신의 세계는 누군가에게 닿을 때 완성돼요.'
       },
       en: {
-        nick: 'The Gardener of People', tag: 'builds the place where people grow',
-        outer: 'Warm and good with words. You notice who is uncomfortable first and open a path into the conversation so naturally that someone always thanks you as the evening ends.',
-        inner: 'You see each person’s possibility, and the loop keeps running — this one is struggling here, that one should try this. But it has been a long time since anyone asked what you want.',
-        strengths: ['Finding a strength and watering it', 'Making an awkward room feel ordinary', 'Language that lifts people', 'Carrying a responsibility to the end'],
-        alone: 'Alone, you think about who needs looking after. Loneliness for you is not the absence of people but the absence of someone to care for.',
-        trigger: 'Effort taken for granted, rude words, a mood you built that nobody remembers.',
-        recover: 'Put time for yourself in the calendar first, and once a day say out loud how you actually feel.',
-        charm: 'When you cheer for someone they feel like they could take on the world. That force keeps people near you for years.',
-        flaw: 'Trying to satisfy everyone, you hide your own mind — until the stored disappointment arrives all at once, much too loud.',
-        partners: ['INTP', 'ISTP'],
-        partnerNote: 'The people who quietly accept your warmth and hold their own ground without fuss. That steadiness lets you rest.',
-        avoid: 'People who only take and never say thanks, and people who rank others against each other.',
-        openLine: '“You take such good care of everyone — why not yourself?”',
-        work: 'You gather and move people. You can raise a team’s temperature and turn it into results — teaching, sales, planning, anywhere people and outcome move together.',
-        jobs: ['Teaching & lecturing', 'HR & culture', 'Brand communications', 'Events & community'],
-        leap: 'The leap comes from practising refusal. The person who accepts everything does not last. One polite no raises your credibility.'
+        nick: 'The Idealist Poet', tag: 'quiet outside, an epic inside',
+        outer: 'You seem soft and quiet. You smile through things you dislike and step away rather than fight, so people assume nothing much is going on. In fact ten thoughts crossed in that moment, and one of them has been holding you all day.',
+        inner: 'There is a world in there. A scene you love, a story you have not written, a person you mean to become. Mid-conversation about real life you slip into it briefly, come back, and say “right, yes”. That world is your power source — and sometimes the reason you miss what is in front of you.',
+        strengths: ['Noticing where someone hurts without being told', 'A quiet stubbornness about your own standard', 'Making new meaning out of ordinary things', 'Choosing understanding before dislike'],
+        alone: 'Alone is when you are most alive. Music loud, thinking at night, writing what nobody will read. In those hours you are a person who owes nobody an explanation.',
+        trigger: 'Places where your values get stepped on, rooms where arguments are loud, “why does that bother you”. There you quietly want to disappear.',
+        recover: 'Recovery is one beautiful thing — a song, a walk, a film you know by heart. Then write one line about what you are feeling. Naming it makes it lighter.',
+        charm: 'Your charm is taking people exactly as they are. Around you they feel allowed to be weak. And when the quiet one finally talks about themselves, the focus is startling.',
+        flaw: 'You do not say what you want. You wait to be understood, get nothing, and feel hurt privately. And when wounded you put distance instead of talking, so they never learn why.',
+        partners: ['ENFJ', 'ENTJ'],
+        partnerNote: 'The people who walk into your world laughing and hold your hand through the practical next step.',
+        avoid: 'Anyone who dismisses feelings, or breaks promises lightly. You remember that for years.',
+        openLine: '“You think I should just know. I do not. I would rather you told me.”',
+        work: 'You look for the meaning first. You have to be convinced the work matters, and once you are, you go deeper than anyone. Writing, design, planning — work with your colour in it. Evaluation and deadlines drain you fast.',
+        jobs: ['Writer / screenwriter', 'Illustration / design', 'Content planning', 'Psychology / counselling'],
+        leap: 'The key is taking it outside. A finished thing only you have seen does not exist. Put it out at eighty percent. Your world completes itself when it reaches someone.'
+      }
+    },
+    ENFJ: {
+      emoji: '🔥',
+      ko: {
+        nick: '온도 설계자', tag: '방의 기분을 먼저 맞춘다',
+        outer: '들어가면 공기가 풀리는 사람이에요. 누가 어색한지 금방 알아채고, 그 사람에게 말을 넘겨 주고, 웃음이 끊기지 않게 이어요. 그래서 모두가 당신을 좋아하지만, 정작 당신이 힘들다는 건 아무도 눈치채지 못해요.',
+        inner: '속에서는 사람들의 온도를 계속 재고 있어요. 저 사람은 지금 인정받고 싶고, 저 사람은 조금 상처받았고. 그걸 자연스럽게 조율하면서, 정작 자기 감정은 뒤로 미뤄요. 그리고 밤에 혼자 "나는 어떤 사람이었지" 하고 생각해요. 사람을 너무 잘 봐서 자기 자리를 잃는 게 당신의 숙제예요.',
+        strengths: ['사람의 기분을 단번에 읽고 맞춰 주는 감각', '한 사람을 진짜로 성장시키는 응원과 피드백', '말로 분위기를 바꾸는 힘', '관계를 오래 유지하는 성실함'],
+        alone: '혼자 있으면 처음엔 어색해요. 누군가에게 뭘 해 주고 있어야 안심하는 습관이 있거든요. 그 시간에 좋아하는 걸 아무 목적 없이 해 보세요. 당신이 어떤 사람인지 확인하는 시간이 필요해요.',
+        trigger: '내 노력을 당연하게 여기는 사람, 분위기가 계속 무거운 자리, 그리고 내가 좋아하는 사람끼리 다투고 있을 때. 그때 제일 먼저 지쳐요.',
+        recover: '회복은 혼자만의 조용한 시간이에요. 사람을 만나서 푸는 게 아니라, 아무도 안 챙기는 하루를 만들어야 해요. 그리고 누군가에게 "나 지금 좀 힘들어"를 말해 보세요. 이게 당신에게는 제일 어려운 일이에요.',
+        charm: '매력은 사람을 특별하게 만드는 데 있어요. 당신이 "너는 이걸 잘해"라고 말하면, 그 사람은 진짜로 그렇게 돼요. 그 힘이 사람을 오래 붙잡아요.',
+        flaw: '약점은 다 받아 주다가 자기 감정을 잃는 거예요. 서운한데도 "이해해"로 넘기고, 그러다 어느 순간 폭발하거나 갑자기 멀어져요. 상대는 늘 당신이 괜찮은 줄 알아요.',
+        partners: ['INFP', 'INTP'],
+        partnerNote: '당신이 챙기지 않아도 그냥 옆에 있어 주는 사람들. 말없이 있어도 당신을 채워 줘요.',
+        avoid: '당신의 호의를 이용하는 사람, 감정을 계속 회수하는 사람. 당신은 그걸 오래 참아요.',
+        openLine: '\"너는 늘 우리를 챙기는데, 정작 너는 누가 챙겨? 나는 네가 괜찮은지 물어보고 싶었어.\"',
+        work: '일에서는 사람을 움직여요. 누가 무슨 역할을 맡으면 잘할지 감으로 알고, 그 사람이 잘할 수 있게 판을 깔아 줘요. 팀장·교육·영업·기획에서 강하고, 대신 남의 일까지 떠안아서 정작 자기 성과가 흐려져요.',
+        jobs: ['팀 리드 · 인사', '교육 · 강의', '브랜드 커뮤니케이션', '고객 성공 · CX'],
+        leap: '도약의 열쇠는 "거절 한 번"이에요. 다 받으면 아무것도 깊어지지 않아요. 한 주에 한 번, 정중하게 거절해 보세요. 관계는 생각보다 안 깨져요.'
+      },
+      en: {
+        nick: 'The Setter of Temperature', tag: 'adjusts the room before anyone notices',
+        outer: 'The air loosens when you walk in. You spot who is awkward, pass them the conversation, keep the laughter going. Everyone likes you — and nobody notices when you are the one struggling.',
+        inner: 'You are reading temperatures constantly. That person needs recognition right now; that one is bruised. You tune it without effort, then set your own feelings aside. At night you wonder what kind of person you were today. Seeing people this well is how you lose your own place.',
+        strengths: ['Reading the mood in one look', 'Cheering one person into real growth', 'Turning a room with a sentence', 'Keeping relationships alive for years'],
+        alone: 'Being alone feels odd at first. You are used to being needed by someone. Spend that time on something you like with no purpose. You need time to confirm who you are without a role.',
+        trigger: 'People who take your effort as standard, rooms that stay heavy, and two people you love fighting. That is where you tire first.',
+        recover: 'Recovery is quiet time alone. Do not talk it out with people — build one day where nobody needs looking after. Then tell someone “I am not okay right now”. That is the hardest thing for you to do.',
+        charm: 'You make people feel special. When you say “you are good at this”, they become good at it. That is what holds people for years.',
+        flaw: 'You take everything in and lose your own feelings. You say “I understand” when you are hurt, then either explode or vanish. They always assumed you were fine.',
+        partners: ['INFP', 'INTP'],
+        partnerNote: 'The people who simply stay without being looked after — and fill you without a word.',
+        avoid: 'Anyone who uses your generosity, or withdraws affection as a way of keeping score. You endure that too long.',
+        openLine: '“You look after all of us. Who looks after you? I wanted to ask if you were okay.”',
+        work: 'You move people. You sense who should carry what, and you build the ground so they can carry it. Team lead, teaching, sales, planning — and you absorb other people’s work until your own results blur.',
+        jobs: ['Team lead / HR', 'Training and lecturing', 'Brand communication', 'Customer success / CX'],
+        leap: 'The key is one refusal. Taking everything means nothing gets deep. Decline something politely once a week. Relationships survive it more than you think.'
       }
     },
 
     ENFP: {
-      emoji: '✨',
+      emoji: '🎈',
       ko: {
-        nick: '아이디어 불꽃', tag: '시작의 순간에 가장 밝다',
-        outer: '밝고 즉흥적인 사람. 새것 앞에서 눈이 반짝이고, 그 에너지가 주변까지 번져서 다들 조금 신나게 돼요. 그래서 당신이 있는 자리는 대개 지루하지 않아요.',
-        inner: '속에서는 가능성이 계속 열려요. 지금 하는 일에서 다음 일이 보이고, 그 다음도 보여서 한 곳에 머무는 게 어려워요. 그런데 그 많은 가능성 중에 정작 끝낸 것이 적다는 걸 스스로도 알아요.',
-        strengths: ['사람을 끌어들이는 에너지', '익숙한 것을 새롭게 보는 눈', '처음 만난 사람과도 금방 가까워지는 친화력', '기분이 꺾여도 다시 올라오는 회복력'],
-        alone: '혼자 있으면 새로운 걸 찾아요. 가만히 있는 것보다 뭔가를 시작하고 있을 때 훨씬 편안해요.',
-        trigger: '반복되는 업무, "그건 안 돼"로 시작하는 대화, 가능성보다 위험을 먼저 말하는 사람.',
-        recover: '새로운 자극 하나를 아주 작게 넣어 보세요. 새 길로 퇴근하기, 새 노래 한 장 듣기. 큰 변화보다 작은 새로움이 당신을 살려요.',
-        charm: '당신이 누군가에게 관심을 가질 때, 그 사람은 세상에서 제일 흥미로운 사람이 된 기분이 들어요. 그 시선이 사람을 끌어당겨요.',
-        flaw: '약점은 흥미가 식으면 갑자기 사라진다는 것. 그리고 그 사라짐을 상대는 배신으로 기억해요. 시작할 때만큼 끝낼 때도 진심을 보여 주세요.',
+        nick: '가능성 연금술사', tag: '모든 사람에게서 반짝이는 걸 찾는다',
+        outer: '밝고 말이 많은 사람으로 보여요. 처음 만난 사람에게도 진짜 관심을 가지고, 그 사람이 제일 잘하는 걸 금방 캐내요. 그래서 사람들은 당신과 이야기하고 나면 기분이 좋아지는데, 정작 당신이 어땠는지는 잘 안 물어봐요.',
+        inner: '속에서는 감정이 크게 움직여요. 좋은 일에는 세 배로 기쁘고, 서운한 일에는 오래 아파요. 그런데 그걸 밝은 얼굴로 덮어요. 그리고 밤에 혼자 그 장면들을 다시 보면서, 낮에 한 말 하나하나를 검사해요. 사람들은 몰라요, 당신이 그렇게 오래 곱씹는다는 걸.',
+        strengths: ['사람 안에서 아직 안 꺼낸 재능을 발견하는 눈', '분위기를 살리는 자연스러운 에너지', '새로운 것에 대한 두려움 없는 호기심', '사람을 진심으로 응원하는 마음'],
+        alone: '혼자 있으면 머릿속에 여행 계획이 세 개쯤 떠 있어요. 그런데 막상 혼자 있는 시간이 길어지면 이상하게 가라앉아요. 당신은 사람에게서 충전되고, 그 사람들에게 다시 쓰이는 게 당신의 방식이에요.',
+        trigger: '반복되는 루틴, 감정을 인정해 주지 않는 자리, "그건 좀 오바야"라는 말. 그리고 좋아하는 사람이 무표정할 때. 그때 제일 불안해져요.',
+        recover: '회복은 새로움과 사람이에요. 안 가 본 곳, 처음 하는 것, 그리고 당신을 웃게 하는 사람 한 명. 거기에 더해 하루의 끝에 "오늘 좋았던 것 세 개"를 적어 보세요. 머리가 조용해져요.',
+        charm: '매력은 사람을 특별하게 보이게 하는 데 있어요. 당신이 관심을 가지면, 상대는 자기가 더 나은 사람이 된 것처럼 느껴요. 그리고 그 관심이 진짜라서 반짝임이 사라지지 않아요.',
+        flaw: '약점은 벌여 놓고 안 끝내는 것, 그리고 감정 기복을 숨기다가 갑자기 확 꺼내는 거예요. 상대는 "왜 갑자기?"라고 느껴요. 그리고 싫은 말을 못 해서, 마음속에 응어리가 쌓여요.',
         partners: ['INTJ', 'INFJ'],
-        partnerNote: '당신의 불꽃을 꺼뜨리지 않으면서, 타지 않게 받쳐 주는 사람들. 이들이 있으면 당신의 아이디어가 현실이 돼요.',
-        avoid: '가능성을 미리 자르는 사람, 감정을 통제하려는 사람.',
-        openLine: '"너랑 있으면 세상이 좀 더 재밌어 보여."',
-        work: '새로운 걸 시작하는 자리에 강해요. 기획의 첫 단계, 캠페인의 첫 아이디어, 아무도 안 해 본 시도에서 빛나요. 대신 마무리를 도와줄 사람이 옆에 있으면 성과가 두 배가 돼요.',
-        jobs: ['콘텐츠 크리에이터', '마케팅 · 캠페인 기획', '방송 · 예능 기획', '커뮤니티 매니저'],
-        leap: '도약은 하나를 고르는 용기에서 와요. 재밌는 것 다섯 개 중 하나만 90일 붙잡아 보세요. 그 하나가 당신을 다음 단계로 데려가요.'
+        partnerNote: '당신의 폭발력을 견디면서 중심을 잡아 주는 사람들. 당신이 흔들릴 때 조용히 붙잡아 줘요.',
+        avoid: '당신의 감정을 가볍게 넘기는 사람, 모든 걸 계획대로만 하자고 하는 사람.',
+        openLine: '\"너는 늘 재밌게 해 주잖아. 근데 오늘은 네가 재밌는지 궁금해. 나한테는 힘든 얘기도 해도 돼.\"',
+        work: '일에서는 시작하는 힘이 압도적이에요. 사람을 모으고, 판을 만들고, 분위기를 띄워요. 기획·마케팅·콘텐츠·교육에서 빛나고, 대신 마무리와 숫자 관리에서 약해요. 그 둘을 잡아 줄 파트너가 있으면 최고의 조합이 돼요.',
+        jobs: ['콘텐츠 크리에이터', '마케팅 · 브랜딩', '이벤트 기획', '교육 · 코치'],
+        leap: '도약의 열쇠는 "끝까지"예요. 재밌는 것 열 개보다, 하나를 끝낸 기록이 당신을 바꿔요. 캘린더에 마감 하나만 박아 두세요.'
       },
       en: {
-        nick: 'The Spark', tag: 'brightest at the moment of starting',
-        outer: 'Bright and spontaneous. Your eyes light up at anything new and the energy spreads, so everyone gets a little excited. Rooms you are in are rarely boring.',
-        inner: 'Possibilities stay open inside. One thing shows you the next and the next, which makes staying put hard. And you know, better than anyone, how few of those possibilities got finished.',
-        strengths: ['Energy that pulls people in', 'Seeing the familiar as new', 'Closeness with a stranger in minutes', 'Getting back up when your mood drops'],
-        alone: 'Alone, you look for something new. Starting something is far more comfortable than sitting still.',
-        trigger: 'Repeated tasks, conversations that start with “you cannot”, people who name the risk before the possibility.',
-        recover: 'Add one very small new stimulus — a different way home, one new album. Small novelty, more than big change, keeps you alive.',
-        charm: 'When you take an interest in someone they become the most interesting person in the world. That gaze is magnetic.',
-        flaw: 'When interest fades you vanish, and the other person remembers it as betrayal. Show as much sincerity in finishing as in starting.',
+        nick: 'The Alchemist of Maybe', tag: 'finds the shine in everyone',
+        outer: 'You seem bright and talkative. You take real interest in a stranger and pull out what they are best at within minutes. People leave conversations with you feeling better — and rarely ask how you are.',
+        inner: 'Feelings move in big waves. Good things land three times as good, hurts stay longer. You cover it with a bright face, then at night you replay the day and audit every sentence you said. Nobody knows you chew on it that long.',
+        strengths: ['Spotting the talent someone has not used yet', 'An energy that lifts a room for free', 'Curiosity with no fear attached', 'Cheering people on for real'],
+        alone: 'Alone, three travel plans are already running in your head. Stay alone too long, though, and something sinks. You recharge from people and spend yourself on them — that is your wiring.',
+        trigger: 'Repeat routines, rooms where feelings are not allowed, “you are overreacting” — and a blank face on someone you love. That is when the anxiety starts.',
+        recover: 'Recovery is newness plus people: somewhere new, something new, one person who makes you laugh. Then write three good things from today before bed. Your head goes quiet.',
+        charm: 'You make people look special. When you take interest, they feel like a better version of themselves — and because the interest is genuine, the shine does not fade.',
+        flaw: 'You open more than you close, and you hide the swing until it bursts out. They feel it as “where did that come from”. And because you cannot say the unpleasant thing, it curdles inside.',
         partners: ['INTJ', 'INFJ'],
-        partnerNote: 'The people who hold you without putting out your fire. With them your ideas become real.',
-        avoid: 'People who cut off possibility in advance, and people who try to control feelings.',
-        openLine: '“The world looks more fun when you are around.”',
-        work: 'You are strong at beginnings — the first stage of planning, the first idea of a campaign, the untried attempt. A finisher beside you doubles your output.',
-        jobs: ['Content creator', 'Marketing & campaigns', 'Broadcast & entertainment planning', 'Community manager'],
-        leap: 'The leap is the courage to choose one. Hold one of five interesting things for ninety days. That one takes you to the next level.'
+        partnerNote: 'The people who survive your blast radius and hold the centre — quietly steadying you when you wobble.',
+        avoid: 'Anyone who waves your feelings away, or needs everything to follow the plan.',
+        openLine: '“You always make it fun. Today I want to know if you are having fun. You can bring me the hard stuff too.”',
+        work: 'Your power is starting. You gather people, build the board, raise the temperature. Planning, marketing, content, teaching — and finishing and numbers are the weak side. A partner who holds those two makes you formidable.',
+        jobs: ['Content creator', 'Marketing / branding', 'Event planning', 'Teaching / coaching'],
+        leap: 'The key is finishing. One record of a thing completed will change you more than ten fun starts. Put a single deadline on the calendar.'
       }
     },
-
     ISTJ: {
-      emoji: '🗂️',
+      emoji: '🧱',
       ko: {
-        nick: '기록의 수호자', tag: '말한 것은 반드시 지킨다',
-        outer: '조용하고 믿음직한 사람. 약속을 어기는 일이 거의 없고, 맡은 일은 조용히 끝내 놓아요. 그래서 사람들은 당신이 있다는 걸 잊었다가, 당신이 없을 때 그 빈자리를 크게 느껴요.',
-        inner: '속에서는 기준이 조용히 돌아가요. 이건 이렇게 하는 게 맞고, 저건 선을 넘은 것 같고. 그 판단을 굳이 말하지 않아서 무던해 보이지만, 사실 당신은 꽤 자주 실망하고 있어요.',
-        strengths: ['한 번 맡은 일을 끝까지 완수하는 책임감', '세부를 놓치지 않는 꼼꼼함', '감정에 흔들리지 않는 안정감', '과거의 기록에서 답을 찾는 실용적 기억력'],
-        alone: '혼자 있을 때 계획을 다시 정리해요. 당신에게 쉼은 아무것도 안 하는 게 아니라, 순서를 다시 맞추는 일이에요.',
-        trigger: '약속을 가볍게 바꾸는 사람, 마감을 지키지 않는 사람, 준비 없이 시작하는 회의.',
-        recover: '손에 잡히는 일을 하나 끝내세요. 서랍 정리, 밀린 서류 하나. 완결된 작은 일이 당신의 불안을 지워 줘요.',
-        charm: '당신의 매력은 말보다 행동이 먼저 도착한다는 거예요. 상대가 부탁하기 전에 이미 준비해 두고, 그 사실을 자랑하지 않죠. 그 조용함이 사람을 안심시켜요.',
-        flaw: '약점은 변화 앞에서 몸이 굳는다는 것. 갑자기 바뀐 계획을 받아들이는 데 시간이 오래 걸리고, 그 사이 표정이 굳어서 상대는 거절로 받아들여요.',
-        partners: ['ESFP', 'ENFP'],
-        partnerNote: '당신의 규칙에 생기를 더해 주는 사람들. 이들이 있으면 계획이 조금 틀어져도 웃을 수 있어요.',
-        avoid: '말을 자주 바꾸는 사람, 규칙을 자기 편할 때만 꺼내는 사람.',
-        openLine: '"너는 말 안 해도 다 해 주는 사람이야. 그게 얼마나 큰지 알아."',
-        work: '일에서는 정확함으로 신뢰를 쌓아요. 같은 일을 매번 같은 품질로 해내는 능력은 대체하기 어려워요. 시스템이 흔들릴 때 마지막으로 남는 사람이 대개 당신이에요.',
-        jobs: ['회계 · 재무', '공공 · 행정', '프로젝트 관리(PM)', '품질 · 운영 관리'],
-        leap: '도약은 익숙한 방식을 한 번 바꿔 보는 데서 와요. 지금 하는 일 하나를 일부러 다른 방법으로 해 보세요. 당신의 기준은 그대로 두고, 방법만 실험해 보는 거예요.'
+        nick: '원칙 수호자', tag: '말한 건 지키고, 지킨 건 안 바꾼다',
+        outer: '믿음이 가는 사람으로 보여요. 약속 시간은 늘 5분 전이고, 맡은 일은 조용히 끝나 있어요. 말수가 적고 감정 표현이 크지 않아서, 처음엔 무뚝뚝하다는 말을 듣지만, 한 번 신뢰를 얻으면 가장 오래 가는 사람이에요.',
+        inner: '속은 생각보다 정교해요. 지난번에 이 사람이 어떤 식으로 실수했는지, 이 일이 어디서 틀어졌는지 정확히 기억해요. 그 기억이 기준이 돼서, 같은 실수를 반복하는 걸 견디기 어려워해요. 그리고 좋아하는 사람에게는 말 대신 일로 애정을 표현해요. 챙겨 두고, 고쳐 두고, 조용히 해 두는 방식이에요.',
+        strengths: ['한 번 맡은 일을 끝까지 책임지는 힘', '세부를 놓치지 않는 정확함', '위기에서 흔들리지 않는 안정감', '말과 행동이 일치하는 신뢰'],
+        alone: '혼자 있을 때는 정리해요. 서랍, 파일, 일정, 마음속 순서까지. 그 시간이 끝나면 이상하게 마음이 편해져요. 당신에게 질서는 통제가 아니라 안심이에요.',
+        trigger: '말한 걸 안 지키는 사람, 이유 없이 바뀌는 규칙, 준비 없이 들이대는 사람. 그리고 내가 애써 맞춰 둔 걸 당연하게 여길 때. 그때 조용히 마음이 닫혀요.',
+        recover: '회복은 익숙한 것에서 와요. 같은 길, 같은 아침, 같은 컵. 거기에 더해 걱정을 종이에 다 적고 "내가 할 수 있는 것"에 표시하세요. 통제할 수 있는 걸 확인하면 마음이 내려앉아요.',
+        charm: '매력은 흔들리지 않는 사람이라는 데 있어요. 세상이 시끄러워도 당신은 같은 자리에 있어요. 사람들은 그게 얼마나 귀한지 나중에 알아요.',
+        flaw: '약점은 감정을 말로 확인하지 않는다는 거예요. 챙겨 주는 걸로 다 표현했다고 생각하지만, 상대는 말이 필요할 때가 있어요. 그리고 한 번 마음에 안 든 사람은 쉽게 안 바뀌어서, 관계가 오래 굳어요.',
+        partners: ['ESFP', 'ESTP'],
+        partnerNote: '당신의 규칙을 웃으면서 흔들어 주고, 대신 당신이 못 하는 즐거움을 채워 주는 사람들.',
+        avoid: '약속을 반복해서 어기는 사람, 즉흥적으로 판을 바꾸는 사람.',
+        openLine: '\"너는 말로 안 해도 다 해 주잖아. 근데 나는 가끔 그 말이 듣고 싶어.\"',
+        work: '일에서는 정확하고 꾸준해요. 규칙을 지키고, 마감을 넘기지 않고, 실수를 안 만들어요. 회계·관리·운영·엔지니어링처럼 정확성이 중요한 자리에서 대체가 안 되는 사람이에요.',
+        jobs: ['회계 · 재무', '품질 · 공정 관리', '공공행정', '시스템 운영'],
+        leap: '도약의 열쇠는 "한 번의 실험"이에요. 익숙한 방법 옆에 새 방법을 하나만 놓고 3개월만 비교해 보세요. 당신의 강점은 유지하면서 판이 넓어져요.'
       },
       en: {
-        nick: 'The Keeper', tag: 'keeps what was promised',
-        outer: 'Quiet and reliable. You almost never break a commitment, and work you take on gets finished without noise. People forget you are there — and then feel the hole when you are not.',
-        inner: 'A standard runs quietly inside. This is the right way; that crossed a line. You do not say it, so you seem unbothered, but in truth you are disappointed more often than anyone knows.',
-        strengths: ['Finishing what you take on', 'Noticing the detail', 'Steadiness that feeling cannot shake', 'A practical memory for where the answer was last time'],
-        alone: 'Alone, you re-sort the plan. Rest for you is not doing nothing, it is putting the order back.',
-        trigger: 'People who move a promise lightly, people who miss deadlines, meetings that start without preparation.',
-        recover: 'Finish one thing you can hold. A drawer, one overdue form. A completed small task erases your unease.',
-        charm: 'Your charm is that action arrives before words. You prepare before being asked and never mention it. That quietness makes people feel safe.',
-        flaw: 'You stiffen in front of change. A last-minute shift takes you a long time to accept, and your frozen face reads as rejection.',
-        partners: ['ESFP', 'ENFP'],
-        partnerNote: 'The people who put life into your rules — with them, a bent plan can still make you laugh.',
-        avoid: 'People who change their words often, and people who invoke the rules only when it suits them.',
-        openLine: '“You do it all without being asked. Do you know how big that is?”',
-        work: 'You build trust with accuracy. Delivering the same work at the same quality every time is hard to replace, and when a system shakes you are usually the one left standing.',
-        jobs: ['Accounting & finance', 'Public sector & administration', 'Project management', 'Quality & operations'],
-        leap: 'The leap comes from changing one familiar method. Do one thing a different way on purpose — keep your standard, experiment only with the route.'
+        nick: 'The Keeper of the Standard', tag: 'says it, does it, does not renegotiate',
+        outer: 'You seem dependable. Five minutes early, work quietly finished. You speak little and do not emote much, so at first people call you stiff — and then find you are the person who stays longest once trusted.',
+        inner: 'Inside it is more precise than it looks. You remember exactly how that person slipped last time and where this task came apart. That memory becomes the standard, which is why repeated mistakes are hard to sit through. And you show love through work rather than words — sorting, fixing, quietly arranging.',
+        strengths: ['Carrying an assigned job to the end', 'An accuracy that misses no detail', 'Steadiness in a crisis', 'Words and actions that match'],
+        alone: 'Alone, you sort. Drawers, files, schedules, the order inside your head. Afterwards something settles. For you order is not control, it is reassurance.',
+        trigger: 'People who break their word, rules that change for no reason, anyone who barges in unprepared — and having your arrangements taken for granted. That is when the door quietly closes.',
+        recover: 'Recovery comes from the familiar: the same route, the same morning, the same cup. Then write every worry down and mark the ones you can act on. Seeing what is controllable settles you.',
+        charm: 'Your charm is being unshakable. The world gets loud and you are still where you were. People realise later how rare that is.',
+        flaw: 'You do not confirm feelings in words. You think taking care of things said it, and sometimes they needed it said. And once someone falls out of favour they rarely come back, so relationships set like cement.',
+        partners: ['ESFP', 'ESTP'],
+        partnerNote: 'The people who shake your rules while laughing, and fill in the fun you cannot reach.',
+        avoid: 'Anyone who breaks promises repeatedly, or rebuilds the plan on impulse.',
+        openLine: '“You never say it, you just do it. Sometimes I want the words too.”',
+        work: 'You are accurate and persistent. Rules kept, deadlines unbroken, errors avoided. Accounting, administration, operations, engineering — anywhere precision matters, you are not replaceable.',
+        jobs: ['Accounting / finance', 'Quality and process control', 'Public administration', 'Systems operations'],
+        leap: 'The key is one experiment. Put a new method beside the familiar one and compare for three months. You keep your strength and widen the field.'
       }
     },
 
     ISFJ: {
-      emoji: '🧶',
+      emoji: '🧺',
       ko: {
-        nick: '조용한 안전망', tag: '소리 없이 다 챙겨 둔다',
-        outer: '다정하고 조용한 사람. 필요한 것을 말하기 전에 이미 준비해 두고, 그걸 티 내지 않아요. 그래서 사람들은 당신이 해 준 일을 나중에야 알아차리죠.',
-        inner: '속에서는 사람들의 사정이 계속 돌아가요. 저 사람은 요즘 힘들 테니 조심해야지, 이 사람은 이걸 좋아하니까. 그런데 정작 내가 싫은 것은 말하지 않아서, 마음속 명세서가 조용히 길어져요.',
-        strengths: ['상대가 말하기 전에 알아채는 세심함', '한 번 인연을 맺으면 오래 가는 의리', '반복되는 일상에서 신뢰를 만드는 성실함', '분위기를 부드럽게 만드는 안정감'],
-        alone: '혼자 있을 때 사람들을 걱정해요. 당신이 진짜로 쉬려면 누구도 걱정하지 않는 시간이 필요해요.',
-        trigger: '고마움을 말하지 않는 사람, 당연하게 여기는 태도, 내 자리를 함부로 넘보는 사람.',
-        recover: '나를 위한 작은 일 하나를 하세요. 좋아하는 간식, 좋아하는 담요. 남을 챙기는 손길을 잠깐 자기 쪽으로 돌리는 거예요.',
-        charm: '당신이 누군가를 챙길 때, 그 사람은 자기 이야기가 세상에 하나 있다는 걸 느껴요. 그 세심함이 오래 남아요.',
-        flaw: '약점은 싫다는 말을 못 한다는 것. 참고 참다가 어느 날 갑자기 관계를 끊어서, 상대는 영문을 몰라요.',
-        partners: ['ENTP', 'ESTP'],
-        partnerNote: '당신이 안 해 본 것을 해 보게 만드는 사람들. 이들과 있으면 조용한 하루가 조금 시끄러워지고, 그게 좋아요.',
-        avoid: '고마움을 모르는 사람, 당신의 희생을 당연하게 계산하는 사람.',
-        openLine: '"네가 챙겨 준 거 나 다 알고 있어. 말을 안 했을 뿐이야."',
-        work: '일에서는 사람과 일정을 조용히 정리해요. 눈에 띄지 않지만 당신이 빠지면 모두가 불편해지는 자리예요. 운영, 지원, 돌봄처럼 지속성이 중요한 곳에서 강해요.',
-        jobs: ['간호 · 돌봄', '행정 · 사무 지원', '고객 지원', '교육 행정'],
-        leap: '도약은 내 이름으로 한 번 말하는 데서 와요. 회의에서 "제가 한 일은 이겁니다"를 한 번만 말해 보세요. 그게 당신을 지켜 줘요.'
+        nick: '조용한 돌봄', tag: '기억해 두고 미리 챙긴다',
+        outer: '다정하고 조용한 사람으로 보여요. 큰소리로 나서지 않지만, 누가 뭘 좋아하는지 다 기억하고 있어요. 김밥에 오이 빼 달라는 말을 1년 전에 듣고 지금도 그렇게 챙기죠. 그래서 사람들은 당신 옆에서 편안해요.',
+        inner: '속에서는 사람 목록이 돌아가요. 엄마 허리, 친구 생일, 동료가 요즘 힘들다는 말. 그 목록이 계속 업데이트되고, 당신은 그걸 다 챙기려 해요. 그러다 정작 자기 이름은 목록에서 빠져 있어요. 서운함이 쌓여도 "이 정도는 괜찮아"로 넘기고, 나중에 혼자 그 장면을 떠올려요.',
+        strengths: ['남이 말하지 않은 필요를 먼저 알아채는 감각', '한결같이 곁을 지키는 성실함', '세부를 오래 기억하는 기억력', '갈등을 키우지 않고 조용히 푸는 힘'],
+        alone: '혼자 있을 때는 조용히 회복해요. 좋아하는 드라마, 정리된 방, 따뜻한 물. 그런데 오래 혼자 있으면 "내가 쓸모가 있나" 하는 생각이 들어요. 그건 당신이 사랑받는 방식이 사람을 챙기는 것이라서 그래요.',
+        trigger: '내가 챙긴 걸 못 본 척할 때, 분위기가 험해질 때, 그리고 누가 나에게 화를 낼 때. 그때 말은 못 하고 집에 와서 오래 생각해요.',
+        recover: '회복은 익숙한 돌봄이에요. 좋아하는 사람에게 작은 걸 해 주고, 그 사람이 좋아하는 걸 받아 보세요. 그리고 하루 한 번, "내가 원하는 것"을 한 가지 정해 보세요. 그게 당신에게는 훈련이에요.',
+        charm: '매력은 잊히지 않는 사람이라는 데 있어요. 헤어지고 나서도 당신이 챙겨 준 것들이 하나씩 떠올라요. 그 기억이 사람을 다시 돌아오게 해요.',
+        flaw: '약점은 서운함을 말하지 않는다는 거예요. 참고 또 참다가, 어느 날 갑자기 다 정리해 버려요. 상대는 그때 처음 알죠. 그리고 거절을 못 해서, 결국 자기 자리가 없어져요.',
+        partners: ['ESTP', 'ENTP'],
+        partnerNote: '당신이 챙기지 않아도 알아서 움직이는 사람들. 당신을 웃게 하려고 굳이 애쓰는 사람.',
+        avoid: '당신의 돌봄을 당연하게 여기는 사람, 감정을 큰 소리로 몰아붙이는 사람.',
+        openLine: '\"너는 다 기억하고 다 챙기잖아. 근데 네가 원하는 건 한 번도 못 들은 것 같아. 뭐가 좋아?\"',
+        work: '일에서는 사람을 조용히 받쳐요. 일정을 놓치지 않고, 팀의 빈 곳을 채우고, 손님이 불편한 걸 먼저 알아채요. 의료·교육·서비스·총무에서 강하고, 대신 자기 성과를 안 챙겨서 남의 공이 되는 일이 많아요.',
+        jobs: ['간호 · 돌봄', '교육 행정', '고객 서비스', '총무 · 인사 지원'],
+        leap: '도약의 열쇠는 "내가 한 일을 남기기"예요. 조용히 잘하는 걸 아무도 못 봐요. 한 주에 한 번, 내가 해결한 일을 기록으로 남기세요.'
       },
       en: {
-        nick: 'The Safety Net', tag: 'quietly has it all covered',
-        outer: 'Warm and quiet. What is needed is ready before it is asked for, and you never make a show of it — so people only notice later what you did.',
-        inner: 'Other people’s circumstances keep running inside: this one is having a hard time, be gentle; that one likes this. What you dislike never gets said, and the invoice grows quietly.',
-        strengths: ['Noticing before they speak', 'Loyalty that lasts once attached', 'Trust built from repeated ordinary days', 'A steadiness that softens a room'],
-        alone: 'Alone, you worry about people. Real rest needs time when there is nobody to worry about.',
-        trigger: 'People who never say thank you, being taken for granted, someone stepping on your place carelessly.',
-        recover: 'Do one small thing for yourself — a favourite snack, a favourite blanket. Turn the hand that looks after others toward yourself for a moment.',
-        charm: 'When you look after someone, they feel their story has a place in the world. That care stays with them.',
-        flaw: 'You cannot say “I do not want to.” You endure and endure, then cut the relationship off — and they have no idea why.',
-        partners: ['ENTP', 'ESTP'],
-        partnerNote: 'The people who get you to try what you never did. A quiet day gets louder around them, and you like it.',
-        avoid: 'People who do not know gratitude, and people who count your sacrifice as owed.',
-        openLine: '“I know everything you did for me. I just never said it.”',
-        work: 'You quietly settle people and schedules. Your seat is invisible until you leave it and everyone is uncomfortable. Operations, support and care suit you.',
-        jobs: ['Nursing & care', 'Administration & office support', 'Customer support', 'Education administration'],
-        leap: 'The leap is saying it once in your own name. Say “this is what I did” in one meeting. That sentence protects you.'
+        nick: 'The Quiet Keeper', tag: 'remembers, and gets there first',
+        outer: 'You seem kind and quiet. You never take the floor, but you know what each person likes — you heard “no cucumber” a year ago and still make it that way. People relax around you.',
+        inner: 'A list of people runs inside. Mum’s back, a friend’s birthday, the colleague who is having a hard stretch. The list updates constantly, and you try to cover all of it. Your own name is the one missing from it. Hurt piles up and you file it as “this much is fine”, then revisit the scene alone later.',
+        strengths: ['Noticing a need before it is spoken', 'Staying constant for years', 'Remembering details that matter', 'Solving conflict without inflating it'],
+        alone: 'Alone, you recover quietly — a favourite show, a tidy room, warm water. Alone too long, though, and “am I of any use” creeps in. That is because being looked after is not how you learned to be loved.',
+        trigger: 'When what you did goes unseen, when the room turns ugly, when someone is angry at you. You say nothing, go home, and think about it for a long time.',
+        recover: 'Recovery is familiar care. Do something small for someone you love and let them do something for you. And once a day, name one thing you want. For you that is practice.',
+        charm: 'Your charm is being unforgettable. Long after, the things you quietly arranged come back to people one by one — and they come back to you.',
+        flaw: 'You never say the hurt. You endure and endure, then one day tidy the whole relationship away. They learn it at that point. And you cannot refuse, so eventually there is no room left for you.',
+        partners: ['ESTP', 'ENTP'],
+        partnerNote: 'The people who move without being looked after — and who work at making you laugh.',
+        avoid: 'Anyone who treats your care as standard, or pushes feelings at volume.',
+        openLine: '“You remember everything for everyone. I do not think I have ever heard what you want. What do you like?”',
+        work: 'You hold people up quietly. Nothing slips, the gaps get filled, and you spot a customer’s discomfort first. Care, education, service, administration — and you lose credit because you never claim it.',
+        jobs: ['Nursing / care', 'School administration', 'Customer service', 'Office and HR support'],
+        leap: 'The key is leaving a trace. Quiet excellence is invisible. Once a week, record one thing you solved.'
       }
     },
-
     ESTJ: {
-      emoji: '🚦',
+      emoji: '📋',
       ko: {
-        nick: '실행의 관제탑', tag: '결정을 행동으로 바꾼다',
-        outer: '분명하고 믿음직한 사람. 말이 정확하고, 일이 어긋나면 바로 "그래서 누가 언제까지 할 거야?"를 물어요. 덕분에 팀이 굴러가지만, 가끔은 "너무 딱딱하다"는 말을 들어요.',
-        inner: '속에서는 책임에 대한 감각이 늘 작동해요. 내가 이 자리에 있는 이상 이건 내가 책임져야 한다는 생각이 늘 깔려 있어요. 그래서 남들이 대충 넘길 때 혼자 화가 나요.',
-        strengths: ['일을 구조와 일정으로 바꾸는 실행력', '책임을 회피하지 않는 태도', '현실적인 판단과 정확한 말', '기준을 세워 조직을 정리하는 힘'],
-        alone: '혼자 있어도 머릿속에 할 일이 정렬돼 있어요. 쉬는 것도 계획이 있어야 편해요.',
-        trigger: '말만 하고 안 하는 사람, 책임을 흐리는 태도, 기준 없이 감정으로 결정하는 자리.',
-        recover: '몸을 쓰거나 손으로 정리하는 일이 회복에 좋아요. 그리고 일주일에 한 번은 아무 목표 없는 저녁을 일부러 비워 두세요.',
-        charm: '당신의 매력은 흔들리지 않는 태도예요. 상대가 무너질 때 옆에서 "괜찮아, 하나씩 하자"고 말해 주는 사람. 그 말이 실제로 맞아떨어지는 게 당신의 힘이에요.',
-        flaw: '약점은 감정을 논의의 대상으로 안 본다는 것. 상대가 서운하다고 말하면 "그건 감정이고, 사실은 이거잖아"로 넘겨서, 결국 아무도 말하지 않게 돼요.',
-        partners: ['INFP', 'ISFP'],
-        partnerNote: '당신이 놓치는 결을 조용히 보여 주는 사람들. 이들이 있으면 당신의 기준이 조금 부드러워져요.',
-        avoid: '약속을 흐리는 사람, 감정으로 규칙을 바꾸려는 사람.',
-        openLine: '"너랑 있으면 일이 정리되는 게 아니라 마음이 정리돼."',
-        work: '일에서는 목표를 계획으로, 계획을 행동으로 바꿔요. 회의가 흩어지면 결론을 만들고 담당을 정하죠. 그래서 당신이 있는 조직은 속도가 붙어요.',
-        jobs: ['운영 총괄', '영업 관리', '공공 · 행정 관리', '물류 · 생산 관리'],
-        leap: '도약은 “내가 맞다”를 한 번 놓아 보는 데서 와요. 반대 의견을 끝까지 듣고 그 사람 방식으로 한 번 해 보세요. 당신의 신뢰가 그 한 번으로 두 배가 돼요.'
+        nick: '현장 지휘자', tag: '말보다 결과로 정리한다',
+        outer: '믿음직하고 시원시원한 사람으로 보여요. 일이 엉키면 제일 먼저 "그래서 지금 뭐부터 할까요"를 물어요. 말이 직선적이어서 가끔 세게 들리지만, 뒤로 빼는 법이 없어서 사람들은 결국 당신에게 기대요.',
+        inner: '속에서는 기준이 계속 돌아가요. 이건 이래야 하고, 저건 저래야 하고. 그 기준이 높아서 남에게도 적용되고, 특히 가까운 사람에게 더 엄격해요. 사실 그 기준의 밑에는 "내가 책임지면 되니까" 하는 마음이 있어요. 그걸 말로 하지 않아서 오해를 사요.',
+        strengths: ['흩어진 상황에서 우선순위를 바로 세우는 힘', '말한 것을 끝까지 책임지는 실행력', '현실적인 판단과 빠른 결정', '조직을 굴러가게 만드는 관리 능력'],
+        alone: '혼자 있을 때도 머릿속에 할 일 목록이 있어요. 진짜로 쉬려면 목록을 종이에 다 옮겨 놓고 내일로 미뤄야 해요. 그게 되면 의외로 잘 쉬어요. 당신은 "정리된 상태"에서 편안해지는 사람이에요.',
+        trigger: '핑계, 늦는 사람, 결정을 안 내리는 회의. 그리고 내가 세워 둔 계획을 아무 말 없이 바꿀 때. 그때 목소리가 커져요.',
+        recover: '회복은 몸을 쓰고 결과를 보는 거예요. 청소, 운동, 정리 — 눈에 보이게 끝나는 일이 약이에요. 그리고 하루에 한 번, 아무도 평가하지 않는 시간을 만드세요.',
+        charm: '매력은 앞에서 책임지는 모습이에요. 다들 모르는 척할 때 당신이 "제가 할게요"라고 말해요. 그 한마디가 사람을 안심시켜요.',
+        flaw: '약점은 옳은 말을 아프게 하는 거예요. 내용은 맞는데 말투가 세서, 상대는 논리보다 상처를 기억해요. 그리고 한 번 정한 걸 잘 안 바꿔서, 사람이 변해도 당신의 판단은 그대로예요.',
+        partners: ['ISFP', 'INFP'],
+        partnerNote: '당신에게 "그건 좀 쉬어 가자"라고 말해 주는 사람들. 당신이 못 하는 여백을 채워 줘요.',
+        avoid: '말만 하고 안 하는 사람, 규칙을 자기가 편할 때만 적용하는 사람.',
+        openLine: '\"너는 늘 다 정리해 주잖아. 오늘은 아무것도 안 정해도 돼. 내가 할게.\"',
+        work: '일에서는 실행과 관리가 강해요. 목표를 쪼개고, 사람을 배치하고, 진행을 확인해요. 운영·영업·생산·관리에서 확실한 성과를 내고, 대신 새로운 방식에 대한 저항이 있어서 변화가 필요한 자리에서는 답답해질 수 있어요.',
+        jobs: ['운영 관리자', '영업 관리', '생산 · 물류 관리', '행정 · 사무 총괄'],
+        leap: '도약의 열쇠는 "듣는 시간 10분"이에요. 결정 전에 한 사람에게 물어보세요. 당신의 실행력에 정보가 붙으면 아무도 못 따라와요.'
       },
       en: {
-        nick: 'The Control Tower', tag: 'turns decisions into action',
-        outer: 'Clear and dependable. You speak precisely, and when work slips you ask “so who is doing what by when?” It keeps teams moving — and now and then earns you “a bit stiff.”',
-        inner: 'A sense of responsibility is always running. If I am in this seat, this is mine to carry. That is why you are the one who gets angry when others wave something through.',
-        strengths: ['Turning work into structure and schedule', 'Never dodging responsibility', 'Practical judgement and precise speech', 'Setting standards that organise a team'],
-        alone: 'Even alone, the to-do list stays sorted. You rest better with a plan for resting.',
-        trigger: 'People who talk and do not act, responsibility that gets blurred, decisions made by feeling with no standard.',
-        recover: 'Use your body or tidy something by hand. And once a week, deliberately leave an evening with no goal.',
-        charm: 'Your charm is how you do not shake. When someone is falling apart you are the one saying “it is fine, one thing at a time” — and it actually holds, which is your power.',
-        flaw: 'You do not treat feeling as something to discuss. “That is emotion, the fact is this” ends the conversation — and eventually nobody tells you anything.',
-        partners: ['INFP', 'ISFP'],
-        partnerNote: 'The people who quietly show you the grain you skip. With them your standard softens.',
-        avoid: 'People who blur commitments, and people who bend rules with feeling.',
-        openLine: '“With you, it is not the work that settles — it is me.”',
-        work: 'You turn goals into plans and plans into action. When a meeting scatters you make the conclusion and assign the owner, so the organisation you are in picks up speed.',
-        jobs: ['Operations leadership', 'Sales management', 'Public administration', 'Logistics & production'],
-        leap: 'The leap comes from letting go of “I am right” once. Hear the objection to the end and do it their way once. Your credibility doubles.'
+        nick: 'The Field Commander', tag: 'settles it with results, not speeches',
+        outer: 'You seem solid and straight. When things tangle, you ask first: “so what do we do first?” Your words are direct and sometimes land hard, but you never step back, so people end up relying on you.',
+        inner: 'Standards keep running. This should be this way, that should be that way. The bar is high, it applies to others, and it gets strictest with the people closest to you. Underneath it is “I will carry the responsibility anyway” — and because that never gets said, it gets misread.',
+        strengths: ['Setting priority out of a mess', 'Carrying what you said to the end', 'Practical judgement and fast decisions', 'Making an organisation actually run'],
+        alone: 'Even alone, the list is running. To really rest you have to move it onto paper and push it to tomorrow. Then you rest surprisingly well — you relax in a tidied state.',
+        trigger: 'Excuses, lateness, meetings that will not decide — and a plan of yours changed without a word. That is when your voice rises.',
+        recover: 'Recovery is using your body and seeing a result. Cleaning, training, sorting: something visibly finished is medicine. And once a day, make a stretch of time nobody is grading.',
+        charm: 'Your charm is taking the front. When everyone pretends not to know, you say “I will do it.” That one sentence calms people down.',
+        flaw: 'You say the right thing in a way that hurts. The content is correct and the delivery is hard, so they remember the sting, not the point. And once you decide, you rarely reopen it — people change and your judgement of them does not.',
+        partners: ['ISFP', 'INFP'],
+        partnerNote: 'The people who tell you “we can ease off here”, filling in the space you cannot leave empty.',
+        avoid: 'Anyone who talks and does not deliver, or applies rules only when convenient.',
+        openLine: '“You always sort everything out. Today you do not have to decide anything. I will.”',
+        work: 'Execution and management are your ground: split the goal, place the people, check the progress. Operations, sales, production, administration — real results. Change-heavy places frustrate you, because new methods have to earn their way in.',
+        jobs: ['Operations manager', 'Sales management', 'Production / logistics', 'Administration lead'],
+        leap: 'The key is ten minutes of listening. Ask one person before deciding. Your execution with information attached is hard to match.'
       }
     },
 
     ESFJ: {
-      emoji: '🫖',
+      emoji: '🎀',
       ko: {
-        nick: '분위기의 온도조절기', tag: '모두가 편한 자리를 만든다',
-        outer: '밝고 챙기는 사람. 누가 음료가 비었는지, 누가 말을 못 하고 있는지 먼저 봐요. 그래서 모임에서 당신은 조용한 진행자예요. 티 내지 않지만 그 자리는 당신이 만든 거예요.',
-        inner: '속에서는 관계의 온도가 늘 보여요. 저 사람은 오늘 기분이 좋고, 이 사람은 뭔가 서운해 보이고. 그런데 그 감각이 너무 예민해서, 남의 기분을 내 책임처럼 느낄 때가 많아요.',
-        strengths: ['사람을 편하게 만드는 분위기 감각', '관계를 오래 유지하는 성실함', '현실적인 도움을 바로 주는 실행력', '분위기를 읽고 먼저 나서는 용기'],
-        alone: '혼자 있으면 누구에게 연락해야 할지 생각나요. 당신의 외로움은 관계가 끊길까 봐 오는 경우가 많아요.',
-        trigger: '무시하는 말투, 내가 만든 자리를 아무도 기억하지 않을 때, 사람들 사이에서 소외되는 모습을 볼 때.',
-        recover: '좋아하는 사람과 아주 평범한 대화를 나누세요. 당신은 관계에서 충전되는 사람이에요. 다만 그 대화에서 남을 챙기지 않아도 되는 시간이어야 해요.',
-        charm: '당신과 함께 있으면 사람은 "여기 있어도 되는구나" 하는 감각을 받아요. 그 소속감이 사람을 끌어당겨요.',
-        flaw: '약점은 모두에게 좋은 사람이 되려다 자기 편이 없어지는 것. 그리고 남의 평가에 생각보다 많이 흔들려요.',
-        partners: ['INTP', 'ISTP'],
-        partnerNote: '당신의 온기를 받아 주면서, 남의 시선에서 당신을 잠깐 빼 주는 사람들.',
-        avoid: '사람을 편 가르는 사람, 고마움을 말하지 않는 사람.',
-        openLine: '"네가 만들어 준 자리에서 나는 늘 편했어. 그거 알아?"',
-        work: '일에서는 사람과 일정을 함께 챙기는 자리에 강해요. 팀의 분위기를 좋게 유지하면서 실제 결과까지 만드는 사람은 드물어요.',
-        jobs: ['고객 성공 · CS', '이벤트 · 커뮤니티 기획', 'HR · 총무', '유치 · 교육'],
-        leap: '도약은 "모두가 좋아할 필요는 없다"를 받아들이는 데서 와요. 한 사람이 싫어해도 계속 가는 연습이 당신을 단단하게 해요.'
+        nick: '분위기 관리자', tag: '모두가 편한 자리를 만든다',
+        outer: '사람을 챙기는 게 자연스러운 사람이에요. 누가 어디 앉을지, 뭐가 부족한지 먼저 보이고, 웃으면서 자리를 정리해요. 그래서 모임에서 당신이 빠지면 뭔가 허전해요. 다들 그걸 당신이 없으면 알게 되죠.',
+        inner: '속에서는 관계의 온도를 계속 확인해요. 저 사람이 나를 어떻게 생각하는지, 내가 실수한 건 아닌지. 그 신경이 사람을 세심하게 만들지만, 동시에 피곤하게 해요. 그래서 밤에 혼자 "오늘 내가 좀 오버했나" 하고 되감을 때가 많아요.',
+        strengths: ['사람 사이를 이어 붙이는 접착력', '분위기와 디테일을 동시에 보는 눈', '기억력 좋은 배려', '조직의 규칙을 사람답게 만드는 힘'],
+        alone: '혼자 있으면 좀 허전해요. 누군가를 챙기고 있을 때 자기 자리가 있는 것 같거든요. 그래서 혼자만의 시간을 일부러 만들어야 해요. 그 시간에 당신이 좋아하는 걸 아무에게도 설명하지 말고 해 보세요.',
+        trigger: '무리에 끼지 못하는 느낌, 내 노력을 인정하지 않는 사람, 그리고 분위기가 싸늘해질 때. 그때 제일 크게 흔들려요.',
+        recover: '회복은 사람이에요. 다만 아무에게나가 아니라, 당신을 편하게 해 주는 한 사람. 그리고 "나 지금 서운해"를 말해 보세요. 이게 당신에게는 제일 어려운 일이에요.',
+        charm: '매력은 사람을 소중하게 만드는 데 있어요. 당신이 챙기면, 상대는 자기가 중요한 사람이라는 걸 느껴요. 그 감각이 오래 남아요.',
+        flaw: '약점은 인정받고 싶은 마음을 돌려 말한다는 거예요. "괜찮아"라고 하면서 표정은 안 괜찮아요. 그리고 남 얘기를 많이 하다가, 그게 소문이 되는 걸 나중에 알아요.',
+        partners: ['ISFP', 'ISTP'],
+        partnerNote: '당신의 챙김을 조용히 받아 주고, 대신 당신을 평가하지 않는 사람들.',
+        avoid: '당신을 무리에 끼워 주지 않는 사람, 감정을 무시하는 사람.',
+        openLine: '\"네가 다 챙기니까 우리가 편한 거야. 근데 너도 편해도 돼. 오늘은 내가 챙길게.\"',
+        work: '일에서는 사람과 조화를 관리해요. 팀의 온도를 맞추고, 손님의 불편을 먼저 알아채고, 일정을 빈틈없이 챙겨요. 서비스·인사·교육·영업에서 강하고, 대신 갈등을 미루다가 문제가 커지는 일이 있어요.',
+        jobs: ['인사 · 교육', '서비스 관리', '이벤트 · 커뮤니티 운영', '비서 · 사무'],
+        leap: '도약의 열쇠는 "싫은 말 한 번"이에요. 불편한 걸 그 자리에서 말하면 관계는 오히려 좋아져요. 미루면 나중에 더 크게 터져요.'
       },
       en: {
-        nick: 'The Thermostat', tag: 'makes the room comfortable for everyone',
-        outer: 'Bright and attentive. You notice whose glass is empty and who has not spoken, which makes you the quiet host of every gathering. You never say so, but the room is yours.',
-        inner: 'You always see the temperature between people — this one is in a good mood, that one looks a little hurt. The sense is so fine that you often feel other people’s moods as your responsibility.',
-        strengths: ['A feel for making people comfortable', 'Keeping relationships alive over years', 'Concrete help, given immediately', 'The nerve to read a room and step in'],
-        alone: 'Alone, you remember who you should message. Your loneliness often comes from fearing a connection is fading.',
-        trigger: 'A dismissive tone, a room you built that nobody remembers, watching someone left out.',
-        recover: 'Have an ordinary conversation with someone you like. You recharge through connection — as long as nobody needs looking after in it.',
-        charm: 'Around you people feel “I am allowed to be here.” That sense of belonging is what draws them in.',
-        flaw: 'Trying to be good to everyone, you end up with no side of your own — and other people’s opinion of you moves you more than you admit.',
-        partners: ['INTP', 'ISTP'],
-        partnerNote: 'The people who accept your warmth and take you out of other people’s eyes for a while.',
-        avoid: 'People who sort others into camps, and people who never say thank you.',
-        openLine: '“I was always comfortable in the space you made. Did you know that?”',
-        work: 'You are strong where people and schedules are handled together. Keeping a team’s mood good while still producing results is rare.',
-        jobs: ['Customer success', 'Events & community planning', 'HR & general affairs', 'Early years education'],
-        leap: 'The leap is accepting that not everyone has to like you. Continuing while one person disapproves is what makes you solid.'
+        nick: 'The Keeper of the Room', tag: 'builds the place where everyone is comfortable',
+        outer: 'Looking after people is automatic for you. Who sits where, what is missing — you see it first and fix it with a smile. A gathering without you feels slightly empty, and people only notice once you are gone.',
+        inner: 'You keep checking the temperature of relationships. What that person thinks of me, whether I slipped. It makes you considerate and tired at once. Most nights you replay the day wondering whether you were too much.',
+        strengths: ['Gluing people to each other', 'Seeing mood and detail at the same time', 'A memory for what people need', 'Making an organisation’s rules human'],
+        alone: 'Alone feels a bit hollow. Having someone to look after is how you locate yourself. So build the time alone on purpose, and do something you like without explaining it to anyone.',
+        trigger: 'Feeling left out of the group, effort that goes unrecognised, and a room going cold. That shakes you hardest.',
+        recover: 'Recovery is people — not any people, the one who makes you comfortable. Then say “I am hurt”. That is the hardest sentence in your vocabulary.',
+        charm: 'You make people feel precious. When you take care of someone, they feel like someone important. That feeling stays for years.',
+        flaw: 'You ask for recognition sideways. “It is fine” with a face that says otherwise. And you talk about people freely, and find out later that it travelled.',
+        partners: ['ISFP', 'ISTP'],
+        partnerNote: 'The people who accept your care quietly and never grade you for it.',
+        avoid: 'Anyone who leaves you outside the group, or dismisses feelings.',
+        openLine: '“We are comfortable because you look after all of it. You are allowed to be comfortable too. I will do it today.”',
+        work: 'You manage people and harmony — the team’s temperature, the customer’s discomfort, the schedule with no gaps. Service, HR, education, sales. Conflict gets postponed, though, and then grows.',
+        jobs: ['HR / training', 'Service management', 'Events / community', 'Executive assistance'],
+        leap: 'The key is saying the unpleasant thing once. Said on the spot, relationships get better. Postponed, it explodes later.'
       }
     },
-
     ISTP: {
       emoji: '🔧',
       ko: {
-        nick: '손끝의 해결사', tag: '말보다 손이 빠르다',
-        outer: '말수 적고 쿨한 사람. 긴 설명보다 그냥 해결해 버려요. 그래서 사람들은 당신에게 문제만 던지고 결과를 받아 가요. 당신은 그게 편하고, 사실 조금 서운하기도 해요.',
-        inner: '속에서는 원리가 계속 돌아가요. 저건 왜 저렇게 되는 거지, 이걸 바꾸면 어떻게 되지. 말로 설명하기보다 직접 만져 봐야 직성이 풀려서, 가끔 위험한 시도도 해요.',
-        strengths: ['문제를 손으로 해결하는 실전 능력', '위기에서 감정 없이 판단하는 침착함', '도구와 몸을 다루는 감각', '필요한 것만 남기는 간결함'],
-        alone: '혼자 무언가를 만지작거릴 때 제일 편해요. 그 시간이 당신에게는 대화 열 시간보다 좋아요.',
-        trigger: '길게 설명만 하는 회의, 감정으로 상황을 흔드는 사람, 손대지 못하게 하는 규칙.',
-        recover: '손으로 하는 일을 하세요. 자전거 정비, 게임, 요리. 결과가 눈에 보이는 일이 당신을 정리해 줘요.',
-        charm: '당신의 매력은 말없이 해결해 버리는 능력이에요. 상대가 곤란할 때 설명 없이 고쳐 주고, 그 다음 아무 말도 안 하죠. 그 무심함이 오히려 멋있어요.',
-        flaw: '약점은 감정을 말로 안 한다는 것. 상대는 당신이 괜찮은지 알 수 없어서, 결국 혼자 추측하다 지쳐요.',
-        partners: ['ENFJ', 'ESFJ'],
-        partnerNote: '당신이 말하지 않은 마음을 읽어 주는 사람들. 이들은 당신의 무심함을 차갑게 받아들이지 않아요.',
-        avoid: '감정을 계속 캐묻는 사람, 과정을 통제하려는 사람.',
-        openLine: '"너는 말은 안 하는데, 필요한 건 다 해 주더라."',
-        work: '일에서는 문제가 생겼을 때 가장 빨리 손을 대요. 이론보다 현장에서 강하고, 남들이 멈춰 있을 때 혼자 움직여요. 기술·제작·현장직에서 특히 빛나요.',
-        jobs: ['엔지니어 · 정비', '개발자', '영상 · 음향 기술', '스포츠 · 현장 운영'],
-        leap: '도약은 과정을 한 번 설명해 보는 데서 와요. 결과만 주는 사람에서, 결과와 이유를 함께 주는 사람이 되면 대우가 달라져요.'
+        nick: '도구를 든 손', tag: '말없이 뜯어 보고 고친다',
+        outer: '무뚝뚝하고 조용한 사람으로 보여요. 회의에서 의견을 잘 안 내지만, 문제가 터지면 갑자기 제일 정확한 사람이 돼요. 말보다 손이 먼저 나가고, 고쳐 놓고도 "그냥요"라고 말해요.',
+        inner: '속에서는 구조가 보여요. 이게 왜 안 되는지, 어디가 걸렸는지가 그림처럼 그려져요. 그런데 그걸 설명하는 데 흥미가 없어요. 설명보다 다음에 만질 게 궁금하거든요. 그래서 당신의 능력은 알려지지 않고, 당신도 굳이 알리려 하지 않아요.',
+        strengths: ['문제의 원인을 손으로 찾아내는 감각', '위기에서 감정 없이 정확해지는 힘', '도구와 몸을 자유롭게 쓰는 실기', '필요 없는 것을 과감히 버리는 판단'],
+        alone: '혼자 있을 때 뭔가를 만지작거려요. 조립하고, 고치고, 뜯어 봐요. 그 시간에 머리가 완전히 비어요. 당신에게 손을 쓰는 일은 취미가 아니라 명상이에요.',
+        trigger: '규칙만 있고 이유가 없는 자리, 감정을 캐묻는 대화, 계속 지켜보는 상사. 그 앞에서 당신은 조용히 빠져나와요.',
+        recover: '회복은 몸과 손이에요. 뭔가를 분해하고 다시 조립하고, 운전하고, 운동하세요. 생각으로 푸는 게 아니라 손으로 풀어야 해요.',
+        charm: '매력은 말없이 해내는 능력이에요. 필요할 때 정확히 나타나서, 아무 말 없이 문제를 끝내요. 그 모습이 사람에게는 든든함으로 남아요.',
+        flaw: '약점은 감정을 말로 안 꺼낸다는 거예요. 좋아해도, 서운해도, 고마워도 말이 없어요. 상대는 계속 확인해야 하고, 그러다 지쳐요. 그리고 한 번 마음이 닫히면 조용히 사라져요.',
+        partners: ['ESFJ', 'ENFJ'],
+        partnerNote: '당신이 말하지 않아도 기다려 주고, 당신의 손이 만든 걸 알아봐 주는 사람들.',
+        avoid: '감정을 즉시 요구하는 사람, 과정을 통제하려는 사람.',
+        openLine: '\"너는 말 안 해도 다 해 놓잖아. 근데 나는 가끔 네 목소리로 듣고 싶어.\"',
+        work: '일에서는 실전이 강해요. 매뉴얼보다 손으로 익히고, 고장 난 걸 빨리 고쳐요. 기술·엔지니어링·장비 운영·스포츠처럼 몸과 도구를 쓰는 분야에서 강하고, 보고서와 회의에서는 힘이 빠져요.',
+        jobs: ['기술 엔지니어', '장비 · 설비 운영', '파일럿 · 운전', '스포츠 · 피지컬 코치'],
+        leap: '도약의 열쇠는 "한 번 설명하기"예요. 고친 과정을 세 줄로 남겨 보세요. 당신의 실력이 처음으로 남의 자산이 돼요.'
       },
       en: {
-        nick: 'The Fixer', tag: 'hands move before words',
-        outer: 'Few words, cool surface. You fix it instead of explaining it, so people hand you the problem and collect the result. It suits you — and stings a little.',
-        inner: 'Mechanisms keep turning inside. Why does that behave like that, what happens if I change this. You need to touch it rather than describe it, which occasionally means trying something risky.',
-        strengths: ['Solving with your hands', 'Calm judgement in a crisis', 'A feel for tools and bodies', 'Keeping only what is needed'],
-        alone: 'Tinkering with something alone is the most comfortable place. That hour beats ten hours of talking.',
-        trigger: 'Meetings made of long explanations, people who shake a situation with feeling, rules that say do not touch.',
-        recover: 'Do something with your hands — a bike, a game, cooking. Work with a visible result tidies you.',
-        charm: 'You fix things without saying anything. When someone is stuck you repair it, then say nothing at all. That indifference is somehow attractive.',
-        flaw: 'You never put feelings into words, so a partner cannot tell if you are okay and eventually tires of guessing.',
-        partners: ['ENFJ', 'ESFJ'],
-        partnerNote: 'The people who read what you did not say — they do not take your coolness as coldness.',
-        avoid: 'People who keep digging for feelings, and people who want to control the process.',
-        openLine: '“You never say much, but you always do what is needed.”',
-        work: 'When something breaks you are the first to put a hand on it. Stronger in the field than in theory, you move while others are still stopped. Technical, making and on-site work suit you.',
-        jobs: ['Engineer / mechanic', 'Developer', 'Video & audio technician', 'Sports & on-site operations'],
-        leap: 'The leap is explaining the process once. Move from giving only the result to giving the result and the reason, and how you are treated changes.'
+        nick: 'The Hands-On Fixer', tag: 'opens it up and fixes it without a word',
+        outer: 'You seem quiet and blunt. You rarely speak in meetings — then something breaks and you are suddenly the most accurate person in the room. Your hands move before your mouth, and when it is fixed you say “no reason”.',
+        inner: 'You see the structure. Why it does not work, where it is caught, drawn like a diagram. Explaining it holds no interest; the next thing to touch is more interesting. So your ability stays unknown, and you do not bother announcing it.',
+        strengths: ['Finding the cause by hand', 'Going precise instead of emotional in a crisis', 'Easy command of tools and body', 'Throwing out what is not needed'],
+        alone: 'Alone, you fiddle with something. Assemble it, fix it, take it apart. Your head goes completely quiet. Working with your hands is not a hobby for you, it is meditation.',
+        trigger: 'Rules with no reason, conversations that dig for feelings, a supervisor who keeps watching. You quietly leave that room.',
+        recover: 'Recovery is hands and body. Disassemble and rebuild, drive, train. Do not solve it in your head — solve it with your hands.',
+        charm: 'Your charm is doing it without talk. You appear exactly when needed and finish the problem without a word. People remember that as solid ground.',
+        flaw: 'Feelings never make it into words. Liking, hurting, gratitude — all silent. They have to keep checking, and they tire. And once you close, you disappear quietly.',
+        partners: ['ESFJ', 'ENFJ'],
+        partnerNote: 'The people who wait without pressing you, and notice what your hands made.',
+        avoid: 'Anyone who demands feelings immediately, or tries to control the process.',
+        openLine: '“You fixed the sink, my laptop and the whole weekend. I just wanted to hear your voice for a minute.”',
+        work: 'Practice beats manuals. You learn by hand and fix fast. Engineering, equipment, operations, sport — anywhere body and tool matter. Reports and meetings drain you.',
+        jobs: ['Technical engineer', 'Equipment / plant operations', 'Pilot / driver', 'Sport and physical coaching'],
+        leap: 'The key is explaining once. Leave three lines about how you fixed it. Your skill becomes someone else’s asset for the first time.'
       }
     },
 
     ISFP: {
-      emoji: '🎐',
+      emoji: '🎨',
       ko: {
-        nick: '감각의 산책자', tag: '조용히 아름다운 걸 고른다',
-        outer: '부드럽고 조용한 사람. 싫은 것도 웃으면서 넘기고, 좋은 것도 크게 말하지 않아요. 그런데 당신이 고른 물건, 입은 옷, 고른 노래에는 늘 일관된 취향이 있어요.',
-        inner: '속에서는 감각이 먼저 반응해요. 이 색이 맞다, 이건 아니다. 그 판단이 정확한데 말로 설명하기 어려워서, 대개 "그냥"이라고 말하고 넘기죠. 그 "그냥"이 사실 당신의 전문성이에요.',
-        strengths: ['색 · 소리 · 분위기를 정확히 고르는 감각', '사람을 있는 그대로 받아들이는 관용', '지금 이 순간을 즐기는 능력', '화려하지 않지만 오래 남는 결과물'],
-        alone: '혼자 있는 시간이 창작의 재료가 돼요. 좋아하는 것을 보고 듣는 것만으로도 충분히 바빠요.',
-        trigger: '취향을 평가받을 때, 빨리 결정하라고 재촉할 때, 감정을 논리로 설명하라고 할 때.',
-        recover: '좋아하는 감각에 오래 머무르세요. 좋아하는 앨범을 처음부터 끝까지 듣기, 좋아하는 길 걷기.',
-        charm: '당신이 누군가를 좋아할 때, 그 사람만을 위한 것을 조용히 만들어요. 티 내지 않지만 그 사람은 알아요. 그 조용한 헌신이 오래 남아요.',
-        flaw: '약점은 갈등을 피하려고 속마음을 미루는 것. 그리고 그렇게 미룬 것이 쌓이면 갑자기 자리를 떠나요.',
-        partners: ['ENFJ', 'ESTJ'],
-        partnerNote: '당신을 끌어당겨 주는 사람들. 다만 너무 세게 당기면 당신은 흘러가 버려요.',
-        avoid: '취향을 무시하는 사람, 자기 기준을 강요하는 사람.',
-        openLine: '"너는 말 안 해도 네가 뭘 좋아하는지 알겠어. 그게 좋아."',
-        work: '일에서는 결과의 질감으로 승부해요. 화려한 말보다 손에 잡히는 감각이 좋은 결과물을 만들어요. 디자인, 영상, 음악, 요리, 공예처럼 감각이 성과가 되는 자리에서 강해요.',
-        jobs: ['그래픽 · 영상 디자인', '음악 · 사운드', '요리 · 푸드 스타일리스트', '반려 · 자연 관련 직업'],
-        leap: '도약은 자기 취향에 이름을 붙이는 데서 와요. "그냥"이라고 넘기지 말고, 이 스타일이 무엇인지 한 문장으로 적어 보세요. 그 문장이 당신의 작업을 소개해 줘요.'
+        nick: '감각 예술가', tag: '조용히 아름다운 걸 고른다',
+        outer: '순하고 감각 좋은 사람으로 보여요. 말은 적은데 옷이나 물건, 공간에서 취향이 묻어나요. 싸움을 피하고 웃으면서 넘기기 때문에, 사람들은 당신이 별 의견이 없다고 생각해요. 사실은 의견이 아주 많고, 그냥 말하지 않을 뿐이에요.',
+        inner: '속에서는 지금 이 순간의 감각이 크게 들어와요. 빛, 소리, 온도, 누군가의 목소리 톤. 그게 기분을 만들고, 기분이 하루를 만들어요. 그래서 "그냥 그런 날"이 되는 날이 많아요. 그리고 마음에 안 드는 건 조용히 멀어지는 방식으로 정리해요.',
+        strengths: ['분위기와 아름다움을 정확히 집어내는 눈', '사람을 판단 없이 받아 주는 태도', '지금 이 순간에 온전히 있는 힘', '조용히 자기 세계를 지키는 단단함'],
+        alone: '혼자 있을 때 제일 자기답게 살아요. 좋아하는 음악, 만들기, 산책, 아무도 안 보는 창작. 그 시간에 당신은 아무에게도 맞추지 않아도 돼요.',
+        trigger: '큰 소리로 다투는 자리, 취향을 무시당할 때, 자기 페이스를 강요받을 때. 그때 말없이 사라져요.',
+        recover: '회복은 감각이에요. 좋아하는 음악을 크게, 따뜻한 물, 좋은 냄새, 손으로 만드는 것. 그리고 좋아하는 사람과 말 없이 있어도 돼요.',
+        charm: '매력은 말하지 않아도 분위기로 전해지는 온도예요. 당신이 좋아하는 사람을 볼 때 눈빛이 달라져요. 그걸 알아챈 사람은 그 눈빛을 오래 기억해요.',
+        flaw: '약점은 원하는 것을 말하지 않는다는 거예요. 참고 넘기다가, 어느 날 이유도 설명하지 않고 관계를 정리해요. 상대는 끝까지 이유를 몰라요. 그리고 갈등을 피하려다 보니 중요한 이야기를 못 해요.',
+        partners: ['ESTJ', 'ESFJ'],
+        partnerNote: '당신의 속도를 존중하고, 당신이 말하지 않은 취향까지 알아봐 주는 사람들.',
+        avoid: '감정을 몰아붙이는 사람, 취향과 감각을 무시하는 사람.',
+        openLine: '\"너는 말 안 해도 좋아하는 게 다 티 나. 나는 그거 알아채는 게 좋아.\"',
+        work: '일에서는 감각과 손이 강해요. 디자인, 요리, 음악, 손으로 만드는 일에서 남들이 못 내는 결과를 내요. 대신 정해진 형식과 회의가 많은 자리에서는 빨리 지쳐요.',
+        jobs: ['디자이너 · 일러스트', '뮤지션 · 사운드', '셰프 · 푸드 스타일리스트', '공예 · 메이커'],
+        leap: '도약의 열쇠는 "보여 주기"예요. 혼자 만든 걸 한 번 올려 보세요. 당신의 감각은 누군가에게 닿을 때 처음으로 완성돼요.'
       },
       en: {
-        nick: 'The Drifter of Sensations', tag: 'quietly picks the beautiful thing',
-        outer: 'Soft and quiet. You laugh off what you dislike and do not announce what you love — yet the objects you choose, the clothes you wear, the songs you pick all share one consistent taste.',
-        inner: 'Sensation answers first. This colour is right, this one is not. The judgement is exact but hard to put into words, so you say “just because.” That “just because” is your expertise.',
-        strengths: ['Choosing colour, sound and atmosphere precisely', 'Accepting people as they are', 'Being able to enjoy this moment', 'Work that is not loud but lasts'],
-        alone: 'Time alone is your raw material. Seeing and hearing what you love keeps you busy enough.',
-        trigger: 'Having your taste graded, being rushed to decide, being asked to explain a feeling with logic.',
-        recover: 'Stay inside a sensation you love — an album start to finish, a walk along a favourite route.',
-        charm: 'When you love someone you quietly make something only for them. You never mention it; they know. That quiet devotion stays.',
-        flaw: 'To avoid conflict you postpone your own truth — and once enough has piled up, you simply leave.',
-        partners: ['ENFJ', 'ESTJ'],
-        partnerNote: 'The people who pull you forward — though pull too hard and you drift away.',
-        avoid: 'People who dismiss your taste, and people who impose their standard.',
-        openLine: '“You never say it, but I can tell what you love. I like that.”',
-        work: 'You compete on the texture of the result. A good feel in the hand beats a clever sentence. Design, video, music, cooking, craft — where sensation becomes the product.',
-        jobs: ['Graphic & video design', 'Music & sound', 'Food styling & cooking', 'Animals & nature'],
-        leap: 'The leap comes from naming your taste. Instead of “just because,” write one sentence about what this style is. That sentence introduces your work for you.'
+        nick: 'The Artist of the Senses', tag: 'picks the beautiful thing quietly',
+        outer: 'You seem gentle with good taste. You say little, yet your clothes, your objects, your space show a point of view. You avoid fights and smile things away, so people assume you have no opinion. You have many; you simply do not say them.',
+        inner: 'This moment comes in loud. Light, sound, temperature, the tone in someone’s voice. They make a mood, and the mood makes the day. That is why you have so many “it was just one of those days”. And what you dislike gets removed by quietly walking away from it.',
+        strengths: ['Seeing exactly what makes a mood or a composition work', 'Accepting people without grading them', 'Being fully here, now', 'A quiet firmness about your own world'],
+        alone: 'Alone is when you are most yourself — music, making, walking, creating what nobody sees. In those hours nothing has to be adjusted to anyone.',
+        trigger: 'Rooms where people shout, having your taste dismissed, being pushed onto someone else’s pace. You disappear without a word.',
+        recover: 'Recovery is sensory: music loud, warm water, a good smell, something made by hand. And someone you like, sitting with you in silence.',
+        charm: 'Your warmth arrives without words. Your eyes change when you look at someone you like, and anyone who noticed remembers that look.',
+        flaw: 'You do not say what you want. You swallow it, then one day end a relationship with no explanation. They never learn why. And avoiding conflict means the important sentences stay unsaid.',
+        partners: ['ESTJ', 'ESFJ'],
+        partnerNote: 'The people who respect your pace and read the taste you never announced.',
+        avoid: 'Anyone who pushes feelings, or dismisses taste and texture.',
+        openLine: '“You never say it but it is obvious what you love. I like that I can tell.”',
+        work: 'Sense and hand are your instruments — design, cooking, music, making. You produce results others cannot. Fixed formats and meeting-heavy roles tire you fast.',
+        jobs: ['Designer / illustrator', 'Musician / sound', 'Chef / food stylist', 'Craft and making'],
+        leap: 'The key is showing it. Put one thing you made out into the world. Your taste completes itself when it reaches someone.'
       }
     },
 
     ESTP: {
-      emoji: '🎯',
+      emoji: '🏍️',
       ko: {
-        nick: '현장의 승부사', tag: '판이 벌어지면 강해진다',
-        outer: '빠르고 대담한 사람. 계획서를 오래 보기보다 일단 부딪혀 보고, 그 자리에서 답을 찾아요. 그래서 사람들은 당신을 믿으면서도 조금 걱정해요.',
-        inner: '속에서는 지금 이 순간이 제일 중요해요. 3년 뒤 계획보다 오늘의 판이 재밌어야 하고, 재미가 없으면 몸이 먼저 반응해요. 그 즉각성이 당신의 생존 능력이에요.',
-        strengths: ['상황을 빠르게 읽고 움직이는 순발력', '위험을 두려워하지 않는 담대함', '사람을 설득하고 끌어들이는 현장 감각', '실패해도 금방 털고 일어나는 회복력'],
-        alone: '혼자 있으면 심심해요. 당신은 사람과 상황 속에서 충전되는 사람이라, 고요함이 오히려 피로예요.',
-        trigger: '결론 없이 길어지는 회의, 준비만 하고 시작하지 않는 사람, 몸을 묶는 규칙.',
-        recover: '몸을 움직이세요. 운동, 드라이브, 새로운 장소. 당신의 스트레스는 대개 몸에 쌓여 있어요.',
-        charm: '당신의 매력은 재미있고 대담하다는 것. 같이 있으면 심심할 틈이 없고, 위기에서도 웃을 수 있게 해 줘요. 그게 사람을 끌어당겨요.',
-        flaw: '약점은 결과를 먼저 보고 과정을 건너뛴다는 것. 그리고 그 과정에서 다친 사람의 표정을 늦게 봐요.',
-        partners: ['ISFJ', 'INFJ'],
-        partnerNote: '당신의 속도를 조금 늦춰 주는 사람들. 이들이 있으면 당신은 더 멀리 갈 수 있어요.',
-        avoid: '결정을 계속 미루는 사람, 재미를 죄악처럼 말하는 사람.',
-        openLine: '"너랑 있으면 뭐든 벌어질 것 같아서 좋아."',
-        work: '일에서는 현장에서 강해요. 영업, 협상, 위기 대응처럼 그 자리에서 판단해야 하는 일에서 빛나요. 계획이 완벽하지 않아도 밀고 나가는 힘이 결과를 만들어요.',
-        jobs: ['영업 · 세일즈', '스포츠 · 트레이닝', '이벤트 · 현장 진행', '창업 · 사업 개발'],
-        leap: '도약은 “한 번 더 확인하기”를 붙이는 데서 와요. 결정 전에 한 사람에게 물어보세요. 그 한 번이 큰 손실을 막고, 당신의 추진력은 그대로 남아요.'
+        nick: '현장 해결사', tag: '고민보다 일단 움직인다',
+        outer: '에너지가 크고 재밌는 사람으로 보여요. 말이 빠르고 몸이 먼저 움직이고, 새 판이 벌어지면 제일 먼저 뛰어들어요. 회의보다 현장에서 강하고, 사람들은 당신과 있으면 뭔가 일어날 것 같다고 느껴요.',
+        inner: '속은 단순하고 정확해요. 지금 뭐가 문제고, 뭘 하면 되는지가 금방 보여요. 대신 3년 뒤는 잘 안 보여요. 그게 약점이자 강점이에요. 계획이 없어도 살아남는 사람은 당신뿐이니까요. 다만 밤에 혼자 있을 때, 가끔 문득 허전해요.',
+        strengths: ['상황을 즉시 읽고 바로 움직이는 순발력', '사람을 긴장시키지 않는 친화력', '위기에서도 즐길 줄 아는 담력', '현실적인 협상 감각'],
+        alone: '혼자 있으면 금방 심심해져요. 그래서 운동, 게임, 드라이브처럼 몸을 쓰는 걸 찾아요. 그 시간이 진짜 회복이에요. 가만히 있는 건 당신에게 회복이 아니라 벌이에요.',
+        trigger: '결정이 계속 미뤄지는 회의, 이론만 길게 하는 사람, "왜 그렇게까지 해"라는 말. 그 앞에서 답답해서 나가고 싶어져요.',
+        recover: '회복은 몸이에요. 땀을 흘리고, 속도를 내고, 경쟁해 보세요. 그리고 그날 잘한 것 하나를 남에게 말해 보세요. 당신은 인정받을 때 에너지가 차요.',
+        charm: '매력은 같이 있으면 심장이 빨라지는 느낌이에요. 당신이 웃으면 분위기가 풀리고, 당신이 결정하면 다들 따라가요. 그 추진력이 사람을 끌어요.',
+        flaw: '약점은 재미없는 일을 안 한다는 거예요. 마무리와 관리가 약하고, 말이 앞서서 상처를 남겨요. 특히 약속을 가볍게 잡으면, 신뢰가 한 번에 무너져요.',
+        partners: ['ISFJ', 'ISTJ'],
+        partnerNote: '당신의 속도를 감당하면서 뒤에서 정리해 주는 사람들. 당신이 못 하는 꾸준함을 채워 줘요.',
+        avoid: '계획만 세우고 아무것도 안 하는 사람, 감정을 오래 끄는 사람.',
+        openLine: '\"너랑 있으면 재밌잖아. 근데 나는 내일도 너랑 있고 싶어. 그건 좀 다른 얘기야.\"',
+        work: '일에서는 현장이 강해요. 영업, 협상, 위기 대응, 스포츠 — 사람과 상황을 즉석에서 다루는 자리에서 압도적이에요. 대신 장기 프로젝트와 문서 작업에서는 흥미를 잃어요.',
+        jobs: ['영업 · 세일즈', '이벤트 · 현장 운영', '스포츠 · 트레이너', '창업 초기 단계'],
+        leap: '도약의 열쇠는 "한 번 끝까지"예요. 재미로 시작한 일 하나를 마무리하면, 당신의 평판이 완전히 달라져요.'
       },
       en: {
-        nick: 'The Field Player', tag: 'stronger once the game is live',
-        outer: 'Fast and bold. Rather than study a plan you go and hit it, finding the answer on the spot. People trust you and worry about you at the same time.',
-        inner: 'This moment matters most. A three-year plan is less interesting than today’s game, and when it stops being fun your body reacts first. That immediacy is your survival skill.',
-        strengths: ['Reading a situation and moving', 'Boldness in front of risk', 'Persuading and pulling people in person', 'Shaking off failure fast'],
-        alone: 'Alone, you get bored. You charge from people and situations, so quiet is actually tiring.',
-        trigger: 'Meetings that never conclude, people who prepare and never start, rules that tie your hands.',
-        recover: 'Move your body — exercise, a drive, somewhere new. Your stress lives in your body.',
-        charm: 'You are fun and fearless. There is no boring gap when you are around, and you make a crisis laughable. That is magnetic.',
-        flaw: 'You watch the outcome and skip the process — and notice the face of the person hurt in it too late.',
-        partners: ['ISFJ', 'INFJ'],
-        partnerNote: 'The people who slow you down slightly — with them you get further.',
-        avoid: 'People who postpone every decision, and people who talk about fun as a sin.',
-        openLine: '“Something always happens when you are around. I like that.”',
-        work: 'You are strong on the ground — sales, negotiation, crisis response, where a call has to be made on the spot. Boldness covers for an imperfect plan.',
-        jobs: ['Sales', 'Sports & training', 'Events & live production', 'Founding & business development'],
-        leap: 'The leap is adding one more check. Ask one person before you decide. That once prevents a big loss and leaves your drive intact.'
+        nick: 'The Fixer on the Ground', tag: 'moves before he finishes thinking',
+        outer: 'You come across as big energy and fun. Fast talk, body first, and when a new game opens you are already in it. Stronger on site than in meetings — people feel something will happen around you.',
+        inner: 'Inside it is simple and accurate. What is wrong now, what to do next — visible immediately. Three years out, less so. That is the weakness and the strength: nobody survives without a plan like you do. Just sometimes, alone at night, it goes slightly hollow.',
+        strengths: ['Reading a situation and moving in the same breath', 'Charm that does not put people on edge', 'The nerve to enjoy a crisis', 'A realistic nose for negotiation'],
+        alone: 'Alone, you get bored fast — so you find something for the body: exercise, a game, driving. That is real recovery. Sitting still is not rest for you, it is punishment.',
+        trigger: 'Meetings that keep postponing the decision, people who theorise at length, “why would you go that far”. You want to walk out.',
+        recover: 'Recovery is physical. Sweat, speed, compete. Then tell someone one thing you did well today — recognition is your fuel gauge.',
+        charm: 'Your charm is the pulse going up when you are around. You laugh and the room opens; you decide and people follow. That drive pulls.',
+        flaw: 'You do not do the boring part. Finishing and admin are weak, and your words run ahead and leave marks. Promise lightly and trust breaks all at once.',
+        partners: ['ISFJ', 'ISTJ'],
+        partnerNote: 'The people who can take your speed and tidy up behind you, filling in the persistence you lack.',
+        avoid: 'Anyone who plans and never moves, or drags feelings out for weeks.',
+        openLine: '“It is fun with you. But I want you tomorrow too. That is a different sentence.”',
+        work: 'The field is yours: sales, negotiation, crisis response, sport — anything where people and situations are handled live. Long projects and documents lose you.',
+        jobs: ['Sales', 'Events / live operations', 'Sport / training', 'Early-stage founding'],
+        leap: 'The key is finishing once. Complete one thing you started for fun and your reputation changes completely.'
       }
     },
 
     ESFP: {
-      emoji: '🎤',
+      emoji: '🌟',
       ko: {
-        nick: '무대의 불씨', tag: '있는 곳이 곧 무대다',
-        outer: '밝고 사람을 좋아하는 사람. 어색한 자리도 금방 데워지고, 당신이 웃으면 주변도 같이 웃어요. 그래서 사람들은 당신을 "분위기 좋은 사람"으로 기억해요.',
-        inner: '속에서는 지금의 즐거움이 소중해요. 미래를 걱정하는 시간보다 지금 이 사람들과 이 순간에 집중하는 편이에요. 그런데 그 밝음 뒤에 혼자 정리해야 할 마음이 쌓여 있어요.',
-        strengths: ['사람을 편하게 만드는 밝음', '지금 이 순간을 즐기는 능력', '눈치 빠른 상황 감각', '감정을 숨기지 않는 솔직함'],
-        alone: '혼자 있으면 갑자기 가라앉을 때가 있어요. 사람들 앞에서의 밝음과 혼자일 때의 마음이 꽤 달라요.',
-        trigger: '분위기를 무겁게 만드는 사람, 계속 평가하는 자리, 즐거움을 사치라고 말하는 사람.',
-        recover: '좋아하는 사람과 가벼운 약속 하나. 당신은 즐거움으로 회복되는 사람이에요. 거기서 남을 웃기지 않아도 되는 자리면 더 좋아요.',
-        charm: '당신과 있으면 사람은 자기 자신을 조금 더 좋아하게 돼요. 그게 당신이 주는 가장 큰 선물이에요.',
-        flaw: '약점은 힘든 얘기를 나중으로 미룬다는 것. 그리고 미룬 감정은 사라지지 않고 어느 날 한꺼번에 와요.',
-        partners: ['ISTJ', 'INTJ'],
-        partnerNote: '당신의 불꽃을 받쳐 주는 사람들. 이들이 있으면 즐거움이 오래가요.',
-        avoid: '분위기를 통제하려는 사람, 웃음을 가볍게 보는 사람.',
-        openLine: '"너는 네가 생각하는 것보다 사람을 살리는 재주가 있어."',
-        work: '일에서는 사람을 움직이는 자리에서 강해요. 무대, 영업, 서비스, 콘텐츠처럼 표정과 목소리가 성과가 되는 일이 잘 맞아요.',
-        jobs: ['방송 · 공연', '서비스 · 접객', '콘텐츠 크리에이터', '이벤트 진행 · MC'],
-        leap: '도약은 즐거운 일에 구조를 붙이는 데서 와요. 지금 잘되는 일 하나에 반복할 수 있는 형식을 만들어 보세요. 그 형식이 당신을 오래 가게 해요.'
+        nick: '무대 체질', tag: '지금 이 자리를 축제로 만든다',
+        outer: '밝고 존재감 있는 사람으로 보여요. 들어오면 시선이 가고, 말 한마디에 분위기가 바뀌어요. 사진 찍을 때 제일 자연스럽고, 사람들 사이에서 에너지가 오히려 올라가요.',
+        inner: '속은 생각보다 섬세해요. 다들 웃고 있는데 누가 조금 빠져 있으면 그게 눈에 들어와요. 그래서 웃기면서도 그 사람을 챙겨요. 다만 자기가 슬픈 건 잘 안 보여 줘요. 밝은 게 당신의 역할이라고 생각하거든요.',
+        strengths: ['분위기를 단번에 바꾸는 존재감', '사람을 편하게 만드는 자연스러운 친화력', '지금 이 순간을 즐기는 재능', '감정 표현이 솔직해서 오해가 적음'],
+        alone: '혼자 있으면 금방 처져요. 그래서 좋아하는 콘텐츠를 틀거나, 누군가에게 연락해요. 당신에게 회복은 다른 사람의 에너지예요. 그게 나쁜 게 아니라, 그걸 알아야 관리할 수 있어요.',
+        trigger: '무시당하는 느낌, 분위기가 갑자기 차가워질 때, 내 기분을 "그런 걸로 왜 그래"라고 넘길 때. 그때 크게 상처받아요.',
+        recover: '회복은 사람과 몸이에요. 좋아하는 사람과 웃고, 춤추고, 맛있는 걸 먹어요. 그리고 하루 한 번, 혼자 조용한 20분을 만들어 보세요. 그게 당신을 오래 가게 해요.',
+        charm: '매력은 같이 있으면 기분이 좋아진다는 거예요. 당신이 웃으면 옆 사람도 웃어요. 그게 기술이 아니라 본성이라서, 사람들이 자꾸 돌아와요.',
+        flaw: '약점은 힘든 얘기를 피한다는 거예요. 분위기가 무거워지면 농담으로 넘기고, 그러다 중요한 문제를 못 다뤄요. 그리고 충동적으로 결정해서 나중에 후회할 때가 있어요.',
+        partners: ['ISTJ', 'ISFJ'],
+        partnerNote: '당신의 밝음을 좋아하면서, 무거운 얘기도 받아 주는 사람들. 당신의 속도를 조용히 정리해 줘요.',
+        avoid: '기분을 통제하려는 사람, 계속 평가하는 사람.',
+        openLine: '\"너는 늘 웃기잖아. 근데 오늘은 안 웃어도 돼. 내가 여기 있을게.\"',
+        work: '일에서는 사람 앞에 서는 자리가 강해요. 방송, 공연, 서비스, 영업, 콘텐츠 — 사람의 반응을 즉석에서 받으며 일하는 곳에서 빛나요. 대신 혼자 하는 반복 작업에서는 금방 지쳐요.',
+        jobs: ['방송 · 크리에이터', '공연 · 엔터테인먼트', '서비스 · 접객', '이벤트 진행'],
+        leap: '도약의 열쇠는 "꾸준함 하나"예요. 재능은 이미 있어요. 같은 시간에 같은 걸 올리는 습관 하나가 당신을 다르게 만들어요.'
       },
       en: {
-        nick: 'The Live Wire', tag: 'wherever you are becomes the stage',
-        outer: 'Bright and fond of people. Awkward rooms warm up fast, and when you laugh everyone does. People remember you as “the one with the good energy.”',
-        inner: 'What matters is right now. You would rather be here with these people than worry about next year — though behind the brightness, feelings you have to sort out alone are stacking up.',
-        strengths: ['Brightness that puts people at ease', 'Enjoying the present moment', 'Fast social radar', 'Honesty that does not hide feeling'],
-        alone: 'Alone, you can sink suddenly. The bright version in front of people and the one alone are quite different.',
-        trigger: 'People who make a room heavy, places that keep grading you, anyone who calls pleasure a luxury.',
-        recover: 'One light plan with someone you like. You recover through enjoyment — especially where you do not have to entertain anyone.',
-        charm: 'Around you people like themselves a little more. That is the biggest gift you give.',
-        flaw: 'You postpone the hard conversation. Postponed feelings do not disappear; they arrive all at once.',
-        partners: ['ISTJ', 'INTJ'],
-        partnerNote: 'The people who hold your fire safely — with them the fun lasts.',
-        avoid: 'People who want to control the mood, and people who treat laughter as trivial.',
-        openLine: '“You have more of a gift for bringing people alive than you realise.”',
-        work: 'You are strong where people move. Stage, sales, service, content — work where your face and voice are the product.',
-        jobs: ['Broadcast & performance', 'Hospitality & service', 'Content creator', 'Event hosting & MC'],
-        leap: 'The leap comes from putting structure on what you enjoy. Give the thing that works a repeatable format, and it will carry you for years.'
+        nick: 'The Stage Presence', tag: 'turns this room into the party',
+        outer: 'You seem bright and unmistakable. Eyes move when you enter and one sentence changes the mood. You are the most natural person in any photo, and among people your energy goes up rather than down.',
+        inner: 'Inside you are finer than you look. Everyone laughing and one person slightly out of it — you see that, and you look after them while making the joke. Your own sadness stays hidden; being bright is the role you think you have.',
+        strengths: ['A presence that changes the room instantly', 'Natural ease with people', 'Being fully inside the moment', 'Honest expression, so little gets misread'],
+        alone: 'Alone, you deflate quickly. So you put something on or message someone. Recovery for you is other people’s energy — that is not a flaw, but knowing it lets you manage it.',
+        trigger: 'Feeling dismissed, a room turning cold, having your mood waved off as “why does that bother you”. That hurts a lot.',
+        recover: 'Recovery is people and body: laugh, dance, eat something good with someone you like. And once a day, take twenty quiet minutes alone. That is what makes you last.',
+        charm: 'Being near you feels good. You laugh and the person next to you laughs. It is not technique, it is constitution — which is why people keep coming back.',
+        flaw: 'You dodge the hard conversation. When it gets heavy you turn it into a joke, and the real issue never gets handled. And impulse decisions leave you with regrets.',
+        partners: ['ISTJ', 'ISFJ'],
+        partnerNote: 'The people who love your brightness and can also take the heavy talk — quietly tidying the edges of your speed.',
+        avoid: 'Anyone who manages your mood, or keeps grading you.',
+        openLine: '“You always make us laugh. You do not have to today. I will be here.”',
+        work: 'You are strongest in front of people: broadcasting, performance, service, sales, content — anywhere reactions come live. Repetitive solo work empties you fast.',
+        jobs: ['Broadcasting / creator', 'Performance / entertainment', 'Service and hospitality', 'Event hosting'],
+        leap: 'The key is one steady habit. The talent is already there. Posting the same thing at the same time is what changes you.'
       }
     }
   },
-
-  /* ---------- 24문항 (축마다 4문항, 선택지는 왼쪽 극 → 오른쪽 극) ---------- */
+  /* ---------- 36문항 (축마다 6문항 · 선택지별 가중치 w) ---------- */
   questions: [
+
+    /* S/N 정방향 */
     {
-      axis: 'EI',
-      ko: { q: '금요일 저녁, 약속이 갑자기 취소됐다. 가장 먼저 드는 생각은?',
-        o: ['잘됐다 싶어 누구라도 불러서 나간다', '집에 있긴 한데 누가 부르면 나갈 것 같다', '일단 쉬다가 연락이 오면 생각한다', '완전히 혼자인 저녁이 반갑다'] },
-      en: { q: 'Your Friday plan is cancelled at the last minute. Your first thought?',
-        o: ['Perfect — I will call someone and go out', 'I am home, but I would go if someone asked', 'I will rest, and decide if a message comes', 'A whole evening alone sounds great'] }
-    },
-    {
-      axis: 'SN',
-      ko: { q: '처음 가는 동네에 도착했다. 제일 먼저 하는 일은?',
-        o: ['큰길과 간판부터 눈에 담는다', '지도로 대략의 구조를 파악한다', '골목의 분위기와 사람들을 본다', '이 동네에 무슨 사연이 있을지 상상한다'] },
-      en: { q: 'You arrive in a neighbourhood you have never seen. First move?',
-        o: ['Take in the main road and the signs', 'Get the rough layout from a map', 'Watch the mood and the people in the side streets', 'Imagine what stories this place has'] }
-    },
-    {
-      axis: 'TF',
-      ko: { q: '내 의견이 반대에 부딪혔을 때?',
-        o: ['근거를 더 정확히 준비해 다시 말한다', '상대 논리의 허점을 짚는다', '어디서 엇갈렸는지 확인한다', '관계가 상하지 않게 표현을 고른다'] },
-      en: { q: 'When your opinion meets opposition?',
-        o: ['I prepare better evidence and say it again', 'I point out the hole in their logic', 'I check where exactly we diverged', 'I choose words that will not bruise the relationship'] }
-    },
-    {
-      axis: 'JP',
-      ko: { q: '여행을 떠나기 전?',
-        o: ['동선과 예약을 미리 다 짜 둔다', '큰 틀만 정하고 세부는 열어 둔다', '숙소만 정하고 나머지는 간다', '당일 아침에 마음 내키는 대로 정한다'] },
-      en: { q: 'Before a trip?',
-        o: ['The route and bookings are already set', 'A rough shape, details left open', 'Book the bed, figure the rest out there', 'Decide on the morning of, as the mood takes me'] }
-    },
-    {
-      axis: 'AO',
-      ko: { q: '단체방에 잘못 보낸 메시지를 발견했다. 1분 뒤?',
-        o: ['지우고 "잘못 보냈어요" 한 줄 남기고 넘어간다', '지우고 조용히 잊는다', '민망하지만 웃으면서 넘긴다', '그 장면을 몇 시간씩 되감는다'] },
-      en: { q: 'You spot a message you sent to the wrong group chat. A minute later?',
-        o: ['Delete it, leave one line saying “wrong chat”, move on', 'Delete it and quietly forget it', 'It is embarrassing but I laugh it off', 'I replay that moment for hours'] }
-    },
-    {
-      axis: 'HC',
-      ko: { q: '힘들어하는 사람에게 조언할 때?',
-        o: ['먼저 마음을 어루만지고 이야기한다', '내 경험을 편하게 꺼낸다', '차분히 상황을 정리해 준다', '핵심만 정확히 짚어 준다'] },
-      en: { q: 'When someone struggling asks your advice?',
-        o: ['I soothe the feeling before the problem', 'I share my own experience, casually', 'I calmly lay out the situation', 'I state the essential point, precisely'] }
+      axis: 'SN', w: [-3, -1, 1, 3],
+      ko: { q: '새로 산 기기를 꺼내 설명서를 펼쳤다. 나는?',
+        o: ['처음부터 끝까지 순서대로 읽는다', '필요한 부분을 찾아 그대로 따라 한다', '훑어보고 원리가 궁금한 부분부터 펼친다', '설명서보다 \"이걸로 뭘 할 수 있지\"가 먼저다'] },
+      en: { q: 'You unbox a new device and open the manual. You…',
+        o: ['Read it front to back, in order', 'Find the part I need and follow it exactly', 'Skim, then jump to the part about how it works', 'Wonder what I could do with it before reading anything'] }
     },
 
+    /* E/I 정방향 */
     {
-      axis: 'EI',
-      ko: { q: '모르는 사람이 많은 자리에 도착했을 때 나는?',
-        o: ['먼저 인사를 건네고 대화를 연다', '누가 말을 걸면 자연스럽게 이어진다', '아는 사람 옆에 조용히 자리를 잡는다', '구석에서 분위기를 보며 때를 기다린다'] },
-      en: { q: 'You arrive somewhere full of strangers. You…',
-        o: ['Say hello first and open the conversation', 'Carry it naturally once someone speaks to me', 'Quietly take a seat next to someone I know', 'Watch from the side and wait for the right moment'] }
-    },
-    {
-      axis: 'SN',
-      ko: { q: '새 전자기기를 샀을 때?',
-        o: ['설명서를 순서대로 읽고 설정한다', '필요한 기능만 찾아 쓴다', '일단 켜서 이것저것 눌러 본다', '이걸로 뭘 할 수 있을지 상상부터 한다'] },
-      en: { q: 'You buy a new device. You…',
-        o: ['Read the manual in order and set it up', 'Find only the features I need', 'Turn it on and press everything', 'Start by imagining what I could do with it'] }
-    },
-    {
-      axis: 'TF',
-      ko: { q: '중요한 결정을 앞두고?',
-        o: ['장단점을 표로 정리해 비교한다', '효율과 손익을 계산한다', '그 선택이 사람들에게 어떻게 닿을지 생각한다', '마음이 어디로 가는지 먼저 본다'] },
-      en: { q: 'Before a big decision?',
-        o: ['I compare pros and cons in a table', 'I calculate cost, benefit and efficiency', 'I think about how the choice will land on people', 'I look first at where my heart is going'] }
-    },
-    {
-      axis: 'JP',
-      ko: { q: '마감이 일주일 남았을 때?',
-        o: ['이미 절반 이상 끝내 둔다', '하루 분량씩 나눠서 한다', '사흘 전부터 몰아서 한다', '마지막 날 밤이 제일 잘 나온다'] },
-      en: { q: 'With a week to the deadline?',
-        o: ['Half of it is already done', 'I do a slice each day', 'I push hard from three days out', 'The last night is when I do my best work'] }
-    },
-    {
-      axis: 'AO',
-      ko: { q: '칭찬을 들었을 때?',
-        o: ['고맙다고 받는다', '그럴 수도 있지 하고 넘긴다', '조금 쑥스럽지만 기분 좋다', '빈말인지 아닌지 한참 생각한다'] },
-      en: { q: 'When someone praises you?',
-        o: ['I say thank you and take it', 'It might be true — I let it pass', 'A bit shy, but it feels good', 'I spend a while working out whether they meant it'] }
-    },
-    {
-      axis: 'HC',
-      ko: { q: '길에서 모르는 사람이 도움을 청하면?',
-        o: ['그 사람 사정이 궁금해질 만큼 챙긴다', '기꺼이 시간을 내서 돕는다', '빠르게 해결해 주고 인사한다', '정확히 설명하고 자리를 뜬다'] },
-      en: { q: 'A stranger on the street asks for help. You…',
-        o: ['Look after them enough to wonder how their day went', 'Gladly give my time', 'Fix it quickly and say goodbye', 'Explain precisely and move on'] }
+      axis: 'EI', w: [-3, -1, 1, 3],
+      ko: { q: '약속 세 개를 연달아 마치고 집에 들어왔다. 현관에서 드는 생각은?',
+        o: ['아직 하나 더 만나도 될 것 같다', '피곤하지만 누가 부르면 또 나갈 것 같다', '좋았지만 이제 조용해야 숨이 쉬어진다', '문 닫는 순간이 제일 좋다, 연락은 내일 보면 된다'] },
+      en: { q: 'Three meetups back to back, and you are finally home. In the doorway you think…',
+        o: ['I could still do one more', 'Wiped out, but I would go out again if someone asked', 'It was good, but I need quiet before I can breathe', 'Closing the door is the best part; messages can wait until tomorrow'] }
     },
 
+    /* T/F 정방향 */
     {
-      axis: 'EI',
-      ko: { q: '사람을 많이 만난 날, 집에 돌아와서?',
-        o: ['에너지가 남아서 더 얘기하고 싶다', '좋았던 대화를 한두 번 다시 떠올린다', '씻고 눕고 싶지만 답장은 한다', '말을 하나도 하기 싫어 폰을 뒤집어 둔다'] },
-      en: { q: 'Home after a day full of people?',
-        o: ['I still have energy and want to talk more', 'I replay one or two good exchanges', 'I want to shower and lie down, but I answer messages', 'I do not want to speak at all — phone face down'] }
+      axis: 'TF', w: [-3, -1, 1, 3],
+      ko: { q: '두 선택지 사이에서 마음이 흔들린다. 마지막에 나를 정리해 주는 건?',
+        o: ['기준이 일관되는지, 앞뒤가 맞는지', '숫자로 비교했을 때 손해가 적은 쪽', '내가 중요하게 여기는 가치에 맞는 쪽', '사람들이 덜 상처받는 쪽'] },
+      en: { q: 'You are torn between two options. What finally settles it?',
+        o: ['Whether it holds up logically, with no contradictions', 'The one that loses less when I run the numbers', 'The one that fits what I value', 'The one where fewer people get hurt'] }
     },
+
+    /* J/P 정방향 */
     {
-      axis: 'SN',
+      axis: 'JP', w: [-3, -1, 1, 3],
+      ko: { q: '여행 전날 밤, 나를 편하게 하는 상태는?',
+        o: ['동선과 예약과 시간이 전부 정해져 있다', '숙소와 첫날 일정은 확실히 정해져 있다', '가고 싶은 곳 몇 개만 정해져 있다', '아무것도 안 정해져 있다, 도착해서 정한다'] },
+      en: { q: 'The night before a trip, what feels comfortable?',
+        o: ['Route, bookings and times all locked in', 'The bed and the first day settled for certain', 'A few places I want to see, nothing more', 'Nothing set at all — I will decide when I land'] }
+    },
+
+    /* H/C 정방향 */
+    {
+      axis: 'HC', w: [-3, -1, 1, 3],
+      ko: { q: '표정이 안 좋은 사람이 옆자리에 앉았다. 나는?',
+        o: ['먼저 말을 걸어 무슨 일인지 묻는다', '조심스럽게 안부를 건넨다', '말없이 필요한 것만 챙겨 준다', '내 일에 집중한다, 사적인 건 모르는 게 낫다'] },
+      en: { q: 'Someone with a dark expression sits down next to you. You…',
+        o: ['Speak first and ask what happened', 'Carefully ask if they are okay', 'Quietly take care of what they need without a word', 'Get on with my own work — private things are better left alone'] }
+    },
+
+    /* A/O 정방향 */
+    {
+      axis: 'AO', w: [-3, -1, 1, 3],
+      ko: { q: '실수한 걸 뒤늦게 알았다. 그날 밤 침대에서?',
+        o: ['내일 고치면 된다, 금방 잊고 잔다', '한두 번 떠올리고 넘긴다', '자꾸 그 장면이 되감긴다', '잠이 안 온다, 그 순간만 계속 재생된다'] },
+      en: { q: 'You realise a mistake late. In bed that night?',
+        o: ['Fix it tomorrow — I forget it and sleep', 'I replay it once or twice, then let it go', 'The scene keeps rewinding on its own', 'I cannot sleep; that moment plays on a loop'] }
+    },
+
+    /* J/P 역방향 */
+    {
+      axis: 'JP', w: [3, 1, -1, -3],
+      ko: { q: '아직 정하지 못한 일이 머리에 남아 있으면?',
+        o: ['오히려 편하다, 더 좋은 답이 나올 수 있다', '신경 쓰이지만 마지막까지 열어 둔다', '빨리 정해져야 다음 일이 편하다', '결론이 안 나면 잠도 잘 안 온다'] },
+      en: { q: 'Something is still undecided and sitting in your head. That feels…',
+        o: ['Fine, actually — a better answer may still turn up', 'A little nagging, but I keep it open to the end', 'Uncomfortable; I need it settled to move on', 'Unbearable — I do not sleep well without a conclusion'] }
+    },
+
+    /* A/O 역방향 */
+    {
+      axis: 'AO', w: [3, 1, -1, -3],
+      ko: { q: '중요한 일을 하루 앞두고, 머릿속은?',
+        o: ['최악의 경우를 여러 번 그려 본다', '걱정이 앞서서 준비를 더 하게 된다', '준비한 만큼 믿고 넘긴다', '할 만큼 했으니 잘될 거라고 생각한다'] },
+      en: { q: 'The night before something important, your head…',
+        o: ['Runs the worst case several times', 'Worries enough that I over-prepare', 'Trusts the preparation and moves on', 'Assumes it will go fine — I did what I could'] }
+    },
+
+    /* E/I 역방향 */
+    {
+      axis: 'EI', w: [3, 1, -1, -3],
+      ko: { q: '갑자기 좋은 아이디어가 떠올랐다. 그 다음은?',
+        o: ['혼자 더 굴려 보고, 정리되면 꺼낸다', '메모해 두고, 말할 사람이 있으면 나중에 말한다', '가까운 사람에게 말해 보며 다듬는다', '일단 누구든 붙잡고 말한다, 말하다 완성된다'] },
+      en: { q: 'A good idea lands out of nowhere. Next?',
+        o: ['I turn it over alone until it is ready to show', 'I note it down and mention it later if someone is around', 'I talk it through with someone close and shape it', 'I grab whoever is nearest — it finishes itself out loud'] }
+    },
+
+    /* H/C 역방향 */
+    {
+      axis: 'HC', w: [3, 1, -1, -3],
+      ko: { q: '좋아하는 사람에게 애정을 표현하는 방식은?',
+        o: ['말로는 잘 안 한다, 대신 필요한 건 다 해 준다', '말보다 행동, 가끔 짧게 표현한다', '중요한 순간엔 꼭 말로 표현한다', '자주 말하고 자주 만진다, 숨기지 않는다'] },
+      en: { q: 'How do you show affection?',
+        o: ['Rarely in words — I just do everything that is needed', 'Mostly in actions, with the occasional short line', 'In words, at the moments that matter', 'Often, out loud and with touch — I do not hide it'] }
+    },
+
+    /* S/N 역방향 */
+    {
+      axis: 'SN', w: [3, 1, -1, -3],
+      ko: { q: '누가 어제 있었던 일을 이야기한다. 내가 붙잡는 건?',
+        o: ['왜 그런 일이 생겼는지, 그 뒤에 뭐가 있는지', '이야기 속에서 반복되는 패턴', '누가, 언제, 정확히 무슨 일이었는지', '말한 그대로의 사실과 순서'] },
+      en: { q: 'Someone tells you about yesterday. What do you hold on to?',
+        o: ['Why it happened, what sits behind it', 'The pattern repeating inside the story', 'Who, when, and exactly what happened', 'The facts and the order, exactly as told'] }
+    },
+
+    /* T/F 역방향 */
+    {
+      axis: 'TF', w: [3, 1, -1, -3],
+      ko: { q: '친한 사람이 명백히 틀린 말을 확신하고 있다. 나를 가장 불편하게 하는 건?',
+        o: ['그 말 때문에 그 사람이 상처받을 것', '그 사람이 지금 어떤 마음인지', '틀린 게 그냥 넘어가는 것', '근거 없이 사실이 아니게 되는 것'] },
+      en: { q: 'Someone close is certain of something clearly wrong. What bothers you most?',
+        o: ['That the belief will end up hurting them', 'What they must be feeling right now', 'That something false just passes unchallenged', 'That a fact is being replaced by nothing'] }
+    },
+
+    /* A/O 정방향 */
+    {
+      axis: 'AO', w: [-3, -1, 1, 3],
+      ko: { q: '누가 내 일에 대해 비판했다. 그 말은?',
+        o: ['맞으면 받고 아니면 흘린다', '기분은 상하지만 금방 정리된다', '며칠 동안 머리에 남는다', '왜 그런 말을 했는지 한참 곱씹는다'] },
+      en: { q: 'Someone criticises your work. That remark…',
+        o: ['Gets taken if fair, dropped if not', 'Stings, but clears up quickly', 'Stays with me for days', 'Has me chewing over why they said it'] }
+    },
+
+    /* T/F 정방향 */
+    {
+      axis: 'TF', w: [-3, -1, 1, 3],
+      ko: { q: '규칙을 어긴 사람을 봤다. 나는 무엇으로 판단하나?',
+        o: ['규칙이 왜 있는지, 어겼으면 결과가 따라야 하는지', '같은 일에 다른 사람도 같은 기준이었는지', '그 사람이 왜 그랬는지 사정', '그 사람이 지금 얼마나 힘든지'] },
+      en: { q: 'You see someone break a rule. What do you judge by?',
+        o: ['Why the rule exists, and whether breaking it has consequences', 'Whether everyone else got the same standard', 'The reasons they had', 'How hard their life is right now'] }
+    },
+
+    /* S/N 정방향 */
+    {
+      axis: 'SN', w: [-3, -1, 1, 3],
+      ko: { q: '처음 쓰는 앱을 열었다. 나는?',
+        o: ['화면의 버튼이 뭘 하는지 하나씩 눌러 본다', '비슷한 앱을 써 본 기억에 기대어 쓴다', '전체 구조가 어떻게 생겼는지부터 감을 잡는다', '이게 어떤 원리로 돌아가는지부터 궁금하다'] },
+      en: { q: 'You open an app you have never used. You…',
+        o: ['Press each button to see what it does', 'Rely on my memory of similar apps', 'Get a feel for how the whole thing is laid out', 'Want to know what principle makes it work'] }
+    },
+
+    /* E/I 정방향 */
+    {
+      axis: 'EI', w: [-3, -1, 1, 3],
+      ko: { q: '주말 이틀이 통째로 비었다. 머릿속 첫 장면은?',
+        o: ['누구를 만날지부터 정한다', '약속 하나는 잡고 나머지는 쉰다', '집에서 밀린 일을 하고, 한 번쯤은 나간다', '아무도 안 만나는 이틀로 만든다'] },
+      en: { q: 'A whole weekend is free. Your first picture of it?',
+        o: ['Who I am meeting, starting now', 'One plan, then rest', 'Catching up at home, maybe one outing', 'Two days with nobody at all'] }
+    },
+
+    /* J/P 정방향 */
+    {
+      axis: 'JP', w: [-3, -1, 1, 3],
+      ko: { q: '일이 거의 끝나간다. 내가 더 신경 쓰이는 건?',
+        o: ['제대로 매듭지어 끝냈는가', '할 일 목록이 다 지워졌는가', '더 나은 방법이 있었는데 놓쳤나', '끝내기보다 다음 것을 벌여 두고 싶다'] },
+      en: { q: 'A project is nearly done. What occupies you more?',
+        o: ['Whether it was closed properly', 'Whether the to-do list is empty', 'Whether a better way existed and I missed it', 'Opening the next thing rather than closing this one'] }
+    },
+
+    /* H/C 정방향 */
+    {
+      axis: 'HC', w: [-3, -1, 1, 3],
+      ko: { q: '내 속마음은 사람들에게?',
+        o: ['대부분 말한다, 말해야 가까워진다', '가까운 사람에게는 거의 다 말한다', '골라서 말한다, 다 말할 필요는 없다', '혼자 정리한다, 말해도 달라지지 않는다'] },
+      en: { q: 'Your private feelings, to other people?',
+        o: ['Mostly spoken aloud — that is how closeness happens', 'Almost everything, to the few I am close to', 'Selected parts; not everything needs saying', 'Sorted alone — saying it changes nothing'] }
+    },
+
+    /* E/I 역방향 */
+    {
+      axis: 'EI', w: [3, 1, -1, -3],
+      ko: { q: '모르는 사람이 많은 모임에 도착했다. 속으로 드는 생각은?',
+        o: ['조용한 자리를 찾아 앉아 분위기부터 본다', '아는 얼굴을 찾아 그 옆에서 시작한다', '어색해도 일단 인사하고 자리를 잡는다', '모르는 사람에게 먼저 말 거는 게 오히려 재밌다'] },
+      en: { q: 'You arrive at a room full of strangers. Inside, you think…',
+        o: ['Find a quiet seat and read the room first', 'Look for a familiar face and start there', 'Push through the awkwardness and say hello', 'Talking to strangers first is the fun part'] }
+    },
+
+    /* H/C 역방향 */
+    {
+      axis: 'HC', w: [3, 1, -1, -3],
+      ko: { q: '서운하다는 말을 들었다. 그때 나는?',
+        o: ['속으로 정리하고 겉으로는 담담하게 넘긴다', '사과는 하지만 마음은 한 발 물러난다', '바로 풀어 보려고 내 마음도 말한다', '그 자리에서 다 털어놓고 오히려 가까워진다'] },
+      en: { q: 'Someone tells you they felt hurt by you. You…',
+        o: ['File it inside and stay calm outside', 'Apologise, while taking a step back', 'Try to clear it now and say how I feel too', 'Pour it all out on the spot and end up closer'] }
+    },
+
+    /* A/O 역방향 */
+    {
+      axis: 'AO', w: [3, 1, -1, -3],
+      ko: { q: '기분이 가라앉는 날, 나는?',
+        o: ['왜 그런지 끝까지 파고든다', '하루는 그냥 가라앉아 있는다', '다른 걸 하다 보면 잊는다', '별일 없이 지나간다, 오래 안 간다'] },
+      en: { q: 'On a low day, you…',
+        o: ['Dig into why until you find the bottom of it', 'Just sit in it for a day', 'Forget it by doing something else', 'Pass through it — it never lasts long'] }
+    },
+
+    /* T/F 역방향 */
+    {
+      axis: 'TF', w: [3, 1, -1, -3],
+      ko: { q: '내 의견에 반대하는 사람에게 마지막으로 확인하는 건?',
+        o: ['이 이야기가 우리 사이를 어떻게 만들지', '상대가 어떤 마음으로 말하는지', '상대 논리가 어디서 어긋났는지', '사실과 근거 중 무엇이 틀렸는지'] },
+      en: { q: 'Faced with someone who disagrees, what do you check last?',
+        o: ['What this does to us', 'What they are feeling as they say it', 'Where their reasoning came apart', 'Which fact or piece of evidence is wrong'] }
+    },
+
+    /* S/N 역방향 */
+    {
+      axis: 'SN', w: [3, 1, -1, -3],
       ko: { q: '대화 중 내가 자주 하는 쪽은?',
-        o: ['구체적인 사실과 경험을 말한다', '비슷한 사례를 들어 설명한다', '떠오른 생각을 이어 붙인다', '비유와 가능성으로 이야기한다'] },
-      en: { q: 'In conversation I usually…',
-        o: ['Talk in concrete facts and experience', 'Explain through similar cases', 'Chain whatever thought just arrived', 'Talk in metaphor and possibility'] }
-    },
-    {
-      axis: 'TF',
-      ko: { q: '누군가 실수했을 때 나의 첫 반응은?',
-        o: ['원인과 규칙을 먼저 확인한다', '다시 안 생기게 하는 방법을 말한다', '얼마나 당황했을지 먼저 살핀다', '괜찮다고 말해 주고 싶다'] },
-      en: { q: 'Someone makes a mistake. Your first reaction?',
-        o: ['Check the cause and the rule', 'Say how to stop it happening again', 'Check how flustered they must be', 'I want to tell them it is okay'] }
-    },
-    {
-      axis: 'JP',
-      ko: { q: '계획이 갑자기 바뀌면?',
-        o: ['일정이 무너진 게 불편하다', '바뀐 것부터 다시 정리한다', '당황스럽지만 곧 적응한다', '오히려 새로워서 재밌다'] },
-      en: { q: 'When a plan changes suddenly?',
-        o: ['The broken schedule bothers me', 'I re-sort from what changed', 'I am thrown, then adjust quickly', 'It is new, so it is fun'] }
-    },
-    {
-      axis: 'AO',
-      ko: { q: '중요한 자리 전날 밤?',
-        o: ['충분히 준비했다, 푹 잔다', '최종 점검만 하고 잔다', '자다 깨서 한 번 더 확인한다', '최악의 경우를 여러 번 상상한다'] },
-      en: { q: 'The night before something important?',
-        o: ['I have prepared enough — I sleep well', 'One final check, then sleep', 'I wake up and check again', 'I run the worst case several times'] }
-    },
-    {
-      axis: 'HC',
-      ko: { q: '내가 상처받았을 때?',
-        o: ['티가 나고 오래 간다', '티는 나지만 말은 안 한다', '겉으로는 괜찮고 혼자 정리한다', '별일 아닌 것처럼 금방 넘어간다'] },
-      en: { q: 'When you are hurt?',
-        o: ['It shows, and it lasts', 'It shows, but I do not say it', 'I look fine and sort it out alone', 'I move on as if nothing happened'] }
+        o: ['떠오른 생각을 비유와 가능성으로 넓힌다', '사실에서 출발해 의미와 해석을 얹는다', '비슷한 사례를 들어 설명한다', '정확한 숫자와 날짜와 이름으로 말한다'] },
+      en: { q: 'Mid-conversation, you usually…',
+        o: ['Widen whatever thought arrived, in metaphor and possibility', 'Start from a fact and add meaning to it', 'Explain through similar cases', 'Give the exact number, date and name'] }
     },
 
+    /* J/P 역방향 */
     {
-      axis: 'EI',
-      ko: { q: '복잡한 생각을 정리할 때 가장 잘 되는 방법은?',
-        o: ['누군가에게 말하면서 정리한다', '말로 하다가 글로 옮기면 정리된다', '혼자 중얼거리며 정리한다', '조용한 곳에서 글로만 써야 정리된다'] },
-      en: { q: 'What sorts a complicated thought best?',
-        o: ['Saying it out loud to someone', 'Talking first, then writing it down', 'Muttering it to myself', 'Writing alone, in a quiet place'] }
+      axis: 'JP', w: [3, 1, -1, -3],
+      ko: { q: '계획이 갑자기 바뀌었다. 솔직한 첫 반응은?',
+        o: ['새로 생긴 여지가 재밌다', '당황스럽지만 금방 다른 길을 찾는다', '다시 짜야 하니 번거롭다', '정해진 게 깨진 게 불편하다'] },
+      en: { q: 'A plan changes suddenly. Your honest first reaction?',
+        o: ['The new room to move is exciting', 'Thrown, then I find another way fast', 'Annoying — now it has to be rebuilt', 'Uncomfortable that what was fixed is broken'] }
     },
+
+    /* H/C 정방향 */
     {
-      axis: 'SN',
-      ko: { q: '영화를 보고 나서 오래 남는 것은?',
-        o: ['장면과 연출, 현실성', '배우의 연기와 대사', '인물의 감정선', '결말 너머의 의미와 해석'] },
-      en: { q: 'What stays with you after a film?',
-        o: ['The shots, the craft, whether it was believable', 'The acting and the dialogue', 'The emotional line of the characters', 'What it meant beyond the ending'] }
+      axis: 'HC', w: [-3, -1, 1, 3],
+      ko: { q: '처음 만난 사람과 30분 이야기했다. 끝나고 나서?',
+        o: ['사적인 이야기까지 나눴고 꽤 편해졌다', '적당히 편해졌고 다음에 또 볼 것 같다', '예의 바르게 대화했고 선을 지켰다', '필요한 이야기만 했다, 사적인 건 묻지 않았다'] },
+      en: { q: 'Thirty minutes of talking with someone new. Afterwards?',
+        o: ['We got into personal things and it feels easy', 'Pleasantly comfortable; we will probably talk again', 'Polite and appropriately bounded', 'We covered what was needed; I did not ask personal things'] }
     },
+
+    /* E/I 정방향 */
     {
-      axis: 'TF',
-      ko: { q: '내가 옳다고 확신할 때?',
-        o: ['틀렸다면 바로 말한다', '정확한 근거로 설득한다', '상대가 받아들일 수 있는 방식으로 전한다', '말하지 않고 기다리는 편이다'] },
-      en: { q: 'When you are certain you are right?',
-        o: ['I say so, plainly', 'I persuade with exact evidence', 'I deliver it in a way they can accept', 'I tend to say nothing and wait'] }
+      axis: 'EI', w: [-3, -1, 1, 3],
+      ko: { q: '생각이 복잡할 때 정리가 되는 순간은?',
+        o: ['누군가에게 설명하다 보면 정리된다', '말로 한 번 꺼낸 뒤 글로 적으면 정리된다', '혼자 걸으면서 중얼거리다 정리된다', '조용히 앉아 글로 써야 머리에 남는다'] },
+      en: { q: 'When does a tangled thought finally sort itself?',
+        o: ['While explaining it to someone', 'Once I have said it, then written it down', 'Muttering to myself on a walk', 'Only when I sit alone and write it'] }
     },
+
+    /* J/P 정방향 */
     {
-      axis: 'JP',
-      ko: { q: '파일과 물건 정리 상태는?',
-        o: ['이름 규칙대로 정리되어 있다', '대분류 폴더까지만 정리한다', '어질러져 있지만 위치는 안다', '필요할 때 찾으면 된다'] },
-      en: { q: 'Your files and belongings?',
-        o: ['Named and sorted by a rule', 'Sorted into top-level folders at least', 'Messy, but I know where everything is', 'I find it when I need it'] }
+      axis: 'JP', w: [-3, -1, 1, 3],
+      ko: { q: '선택지가 여러 개다. 나는?',
+        o: ['빨리 하나로 좁혀 확정한다', '장단점을 정리해 오늘 안에 정한다', '일단 열어 두고 정보를 더 모은다', '정하지 않고 두는 게 좋다, 나중에 고르면 된다'] },
+      en: { q: 'There are several options. You…',
+        o: ['Narrow to one and lock it', 'Compare and decide today', 'Keep them open and gather more', 'Prefer not to choose yet — I will pick later'] }
     },
+
+    /* S/N 정방향 */
     {
-      axis: 'AO',
-      ko: { q: '결정을 내린 뒤?',
-        o: ['바로 다음 일로 넘어간다', '한 번 점검하고 잊는다', '다른 선택지가 떠오르면 흔들린다', '한참 동안 그 결정을 되짚는다'] },
-      en: { q: 'After you decide?',
-        o: ['I move straight to the next thing', 'One review, then it is gone', 'A different option surfaces and I wobble', 'I go back over the decision for a long while'] }
+      axis: 'SN', w: [-3, -1, 1, 3],
+      ko: { q: '몇 년이 지나도 남아 있는 기억은?',
+        o: ['그날 입은 옷, 먹은 것, 정확한 대사', '그 장소의 냄새와 소리, 감각', '그 일이 내게 어떤 의미였는지', '그 일이 상징하는 것, 그 뒤로 이어진 생각'] },
+      en: { q: 'What survives years later?',
+        o: ['What we wore, what we ate, the exact words', 'The smell, the sound, the feel of the place', 'What the day meant to me', 'What it stood for, and the thoughts it set off'] }
     },
+
+    /* A/O 정방향 */
     {
-      axis: 'HC',
-      ko: { q: '부탁을 거절해야 할 때?',
-        o: ['미안해서 몇 번이고 사정을 설명한다', '대안을 같이 찾아 준다', '짧게 미안하다고 말한다', '분명하게 선을 긋는다'] },
-      en: { q: 'When you have to refuse a request?',
-        o: ['I explain my situation again and again out of guilt', 'I help find an alternative', 'I say sorry, briefly', 'I draw the line clearly'] }
+      axis: 'AO', w: [-3, -1, 1, 3],
+      ko: { q: '보낸 메시지에 답이 없다. 나는?',
+        o: ['바쁜가 보다 하고 넘긴다', '조금 신경 쓰이지만 기다린다', '내가 뭘 잘못했나 한 번쯤 생각한다', '보낸 말을 다시 읽으며 이유를 찾는다'] },
+      en: { q: 'Your message gets no reply. You…',
+        o: ['Assume they are busy and move on', 'Notice it, but wait', 'Wonder once whether I did something', 'Re-read what I sent, hunting for the reason'] }
+    },
+
+    /* T/F 정방향 */
+    {
+      axis: 'TF', w: [-3, -1, 1, 3],
+      ko: { q: '\'좋은 결정\'이란?',
+        o: ['같은 상황이면 누가 결정해도 같은 결론이 나오는 것', '결과가 더 낫고 손실이 적은 것', '그 결정과 오래 살아도 괜찮은 것', '사람이 덜 다치고 관계가 덜 상하는 것'] },
+      en: { q: 'A “good decision” is one that…',
+        o: ['Anyone in the same situation would reach', 'Produces a better result with less loss', 'I can live with for a long time', 'Hurts fewer people and strains fewer relationships'] }
+    },
+
+    /* S/N 역방향 */
+    {
+      axis: 'SN', w: [3, 1, -1, -3],
+      ko: { q: '처음 가는 동네에 도착했다. 제일 먼저 하는 건?',
+        o: ['여기 사람들은 어떻게 살까 상상한다', '왜 이 자리에 이 건물이 있는지 궁금해한다', '눈에 보이는 간판과 길부터 확인한다', '정확한 위치와 필요한 시설부터 찾는다'] },
+      en: { q: 'You arrive in a neighbourhood you have never seen. First move?',
+        o: ['Imagine how people live here', 'Wonder why this building stands in this spot', 'Check the visible streets and signs', 'Find the exact location and the facilities I need'] }
+    },
+
+    /* T/F 역방향 */
+    {
+      axis: 'TF', w: [3, 1, -1, -3],
+      ko: { q: '감정이 상한 사람과 사실 확인이 동시에 필요하다. 나는?',
+        o: ['일단 그 사람 마음을 먼저 붙잡는다', '기분을 확인한 뒤 조심스럽게 사실을 꺼낸다', '감정은 잠시 두고 사실 관계부터 정리한다', '감정과 사실은 별개다, 사실부터 바로잡는다'] },
+      en: { q: 'Someone is upset and the facts need checking at the same time. You…',
+        o: ['Steady their feelings first, no matter what', 'Check how they feel, then raise the facts gently', 'Set the feeling aside and settle what happened', 'Feelings and facts are separate — facts first'] }
+    },
+
+    /* H/C 역방향 */
+    {
+      axis: 'HC', w: [3, 1, -1, -3],
+      ko: { q: '누가 내 어깨에 기대어 운다. 나는?',
+        o: ['많이 부담스럽다, 어떻게 해야 할지 모르겠다', '부담스럽지만 참고 들어준다', '괜찮다, 그 정도는 들어줄 수 있다', '더 가까이 앉는다, 그 시간이 싫지 않다'] },
+      en: { q: 'Someone cries on your shoulder. You…',
+        o: ['Find it a lot to carry and do not know what to do', 'Bear it, though it weighs on me', 'Am fine — I can hold that much', 'Sit closer; that moment is not unpleasant'] }
+    },
+
+    /* J/P 역방향 */
+    {
+      axis: 'JP', w: [3, 1, -1, -3],
+      ko: { q: '다음 주말 계획을 물었다. 나는?',
+        o: ['아직 모른다, 그날 기분 따라 정한다', '한두 개만 정해 두고 나머지는 비워 둔다', '대략 정해 둬야 마음이 편하다', '이미 다 정해져 있다, 비어 있는 게 싫다'] },
+      en: { q: 'Someone asks about next weekend. You…',
+        o: ['Have no idea — I decide on the day', 'Fix one or two things, leave the rest open', 'Need a rough shape or I feel unsettled', 'Already have it planned; empty space bothers me'] }
+    },
+
+    /* E/I 역방향 */
+    {
+      axis: 'EI', w: [3, 1, -1, -3],
+      ko: { q: '일주일 동안 사람을 거의 못 만났다. 그때 드는 느낌은?',
+        o: ['오히려 충전됐다, 이 시간이 아깝지 않다', '괜찮지만 슬슬 누군가의 목소리가 그립다', '심심하고 무기력해진다, 누구든 만나야 한다', '답답해서 못 견딘다, 사람 속으로 가야 산다'] },
+      en: { q: 'A week with almost no one around. How does it feel?',
+        o: ['Recharging — I would not trade that time', 'Fine, though I start missing a voice', 'Restless and flat; I need to see someone', 'Unbearable — I have to be among people to feel alive'] }
+    },
+
+    /* A/O 역방향 */
+    {
+      axis: 'AO', w: [3, 1, -1, -3],
+      ko: { q: '내 감정의 파도는?',
+        o: ['작은 일에도 크게 흔들리고 오래 간다', '잘 흔들리지만 겉으로는 덜 보인다', '흔들려도 금방 올라온다', '웬만해선 흔들리지 않는다, 대체로 평온하다'] },
+      en: { q: 'Your emotional weather?',
+        o: ['Small things shake me hard and last', 'I am easily moved but show less of it', 'I tilt, then come back fast', 'Rarely moves — mostly calm'] }
     }
+
   ]
 };
