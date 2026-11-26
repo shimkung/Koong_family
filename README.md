@@ -31,7 +31,9 @@
 │   └─ js/site.js                  메뉴 · 카드 렌더 · 필터
 ├─ games/
 │   ├─ pickle-gakoongi-rhythm.html    쿵이 게임 소개 · 조작법 · 공략 (긴 글)
-│   └─ pickle-gakoongi-rhythm-app.html 게임 실행 파일 (단일 HTML, 주소 유지)
+│   ├─ pickle-gakoongi-rhythm-app.html 게임 실행 파일 (단일 HTML, 주소 유지)
+│   ├─ koong-3d-runway.html           쿵이 3D 무대 소개 · 조작법 (긴 글)
+│   └─ koong-3d-runway-app.html       3D 무대 실행 파일 (단일 HTML, 주소 유지)
 ├─ tests/
 │   └─ ai-persona-test.html        심리테스트 (10문항 / 6유형, KR·EN)
 └─ articles/
@@ -99,8 +101,15 @@ git push
 
 ## 3. 게임 최신본으로 교체하기
 
-게임 실행 파일은 **`games/pickle-gakoongi-rhythm-app.html`** 하나입니다.
-(2026-11-26 기준 최신 버전 반영: 판정 패드 1:1 정렬 · 물방울 터치감 · 쇼케이스 영상 3D 무빙 · 카메라 리액션)
+게임 실행 파일은 두 개입니다.
+
+| 파일 | 내용 |
+|---|---|
+| `games/pickle-gakoongi-rhythm-app.html` | 쿵이 게임 — 런웨이 리듬(4레인 리듬게임, 약 7MB) |
+| `games/koong-3d-runway-app.html` | 쿵이 3D 무대(손으로 돌리는 3D 런웨이 쇼케이스, 약 2.2MB) |
+
+(2026-11-26 기준 최신 버전 반영: 판정 패드 1:1 정렬 · 물방울 터치감 · 쇼케이스 영상 3D 무빙 · 카메라 리액션,
+리듬게임은 **시점이 항상 고정**되어 `시점 고정` 버튼이 없습니다.)
 새 버전이 나오면 아래 둘 중 하나로 교체하면 됩니다.
 
 **방법 A — 파일만 갈아끼우기 (기존 주소 유지)**
@@ -116,7 +125,7 @@ git add . && git commit -m "게임 v2 적용" && git push
 2. `games/pickle-gakoongi-rhythm.html` 안의 `바로 플레이하기` 링크를 v2로 수정
 3. (선택) 이전 버전은 `archive/` 폴더로 옮겨 보관
 
-> 게임 파일은 약 7MB(내장 기본 트랙·영상 포함)입니다.
+> 리듬게임 파일은 약 7MB(내장 기본 트랙·영상 포함), 3D 무대 실행 파일은 약 2.2MB(내장 쇼케이스 영상 포함)입니다.
 > GitHub는 파일당 100MB까지 허용하므로 문제없지만, 너무 커지면 로딩이 느려집니다.
 
 ---

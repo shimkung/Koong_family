@@ -308,7 +308,6 @@
   <div class="grp" id="grpTools">
     <button class="pill" id="btnMusic"><span class="dot"></span><span class="ko" data-i18n="addMusic">음악 넣기</span></button>
     <button class="pill" id="btnVideo"><span class="dot"></span><span class="ko" data-i18n="addVideo">영상 넣기</span></button>
-    <button class="pill" id="btnCam"><span class="dot"></span><span class="ko" id="camLabel">시점 고정</span></button>
   </div>
 </div>
 
@@ -398,7 +397,7 @@ const I18N = {
     sub: '쿵이 게임 · Runway Rhythm',
     hint: 'D F J K · 1 2 3 4 · 터치로 연주',
     score: '점수', combo: '콤보', accuracy: '정확도',
-    addMusic: '음악 넣기', addVideo: '영상 넣기', camFixed: '시점 고정', camFree: '시점 자유',
+    addMusic: '음악 넣기', addVideo: '영상 넣기',
     vtTitle: '영상 넣을 쇼케이스', vLeft: '왼쪽 쇼케이스', vRight: '오른쪽 쇼케이스', vBoth: '양쪽 모두', cancel: '취소',
     again: '다시 하기', close: '닫기',
     resultTitle: 'Runway Rhythm · 결과', totalScore: '총점',
@@ -408,7 +407,6 @@ const I18N = {
     analyzeFail: '분석 실패', analyzeFailSub: '다른 음악으로 시도해 주세요',
     analyzingMusic: '음악 분석 중', chartDone: '채보 완료',
     notesDone: '노트 {n}개 · {s}초', notesOnly: '노트 {n}개', noteCount: '노트',
-    freeCam: '자유 시점', freeCamSub: '드래그로 회전 · 휠/핀치 확대',
     defaultTrack: '쿵이 게임 · 기본 트랙', backstage: 'Backstage Pass',
     fatal1: '이 기기에서는 3D 무대를 열 수 없습니다.',
     fatal2: 'WebGL 지원 브라우저(Chrome·Safari 최신)에서 다시 열어 주세요.'
@@ -419,7 +417,7 @@ const I18N = {
     sub: 'Koong Game · Runway Rhythm',
     hint: 'D F J K · 1 2 3 4 · or tap the pads',
     score: 'Score', combo: 'Combo', accuracy: 'Accuracy',
-    addMusic: 'Add music', addVideo: 'Add video', camFixed: 'Fixed cam', camFree: 'Free cam',
+    addMusic: 'Add music', addVideo: 'Add video',
     vtTitle: 'Video showcase', vLeft: 'Left showcase', vRight: 'Right showcase', vBoth: 'Both', cancel: 'Cancel',
     again: 'Play again', close: 'Close',
     resultTitle: 'Runway Rhythm · Result', totalScore: 'Total score',
@@ -429,7 +427,6 @@ const I18N = {
     analyzeFail: 'Analysis failed', analyzeFailSub: 'Try a different track',
     analyzingMusic: 'Analysing music', chartDone: 'Chart ready',
     notesDone: '{n} notes · {s}s', notesOnly: '{n} notes', noteCount: 'notes',
-    freeCam: 'Free camera', freeCamSub: 'Drag to orbit · wheel or pinch to zoom',
     defaultTrack: 'Koong Game · Default Track', backstage: 'Backstage Pass',
     fatal1: 'This device cannot open the 3D stage.',
     fatal2: 'Please reopen in a WebGL-capable browser (current Chrome or Safari).'
@@ -513,86 +510,7 @@ scene.fog = new THREE.FogExp2(fogColor.getHex(), 0.0105);
 const camera = new THREE.PerspectiveCamera(40, VS0.w / VS0.h, 0.1, 260);
 const BASE_FOV = 40;
 
-/* --- 가벼운 자체 오빗 컨트롤 (자유 시점용) --- */
-class Orbit {
-  constructor(cam, dom) {
-    this.camera = cam; this.dom = dom;
-    this.target = new THREE.Vector3(0, 1.9, -3.5);
-    this.enabled = false;
-    this.autoRotate = false; this.autoRotateSpeed = 0.42;
-    this.minDistance = 7; this.maxDistance = 52;
-    this.minPolar = 0.22; this.maxPolar = Math.PI * 0.494;
-    this.rotateSpeed = 0.0055; this.zoomSpeed = 0.0012;
-    this._sph = new THREE.Spherical(24, 1.35, 0.3);
-    this._dT = 0; this._dP = 0; this._dz = 1;
-    this._pointers = new Map();
-    this._pinch = 0;
-    this._down = false;
-    this._bind();
-  }
-  _bind() {
-    const el = this.dom;
-    el.addEventListener('pointerdown', (e) => {
-      if (!this.enabled) return;
-      this._pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      this._down = true;
-      if (this._pointers.size === 2) { this._pinch = this._pdist(); }
-    }, { passive: true });
-    el.addEventListener('pointermove', (e) => {
-      if (!this.enabled) return;
-      const p = this._pointers.get(e.pointerId);
-      if (!p) return;
-      const dx = e.clientX - p.x, dy = e.clientY - p.y;
-      p.x = e.clientX; p.y = e.clientY;
-      if (this._pointers.size === 1) {
-        this._dT -= dx * this.rotateSpeed;
-        this._dP -= dy * this.rotateSpeed;
-      } else if (this._pointers.size === 2) {
-        const d = this._pdist();
-        if (this._pinch > 0 && d > 0) this._dz *= Math.pow(this._pinch / d, 1.1);
-        this._pinch = d;
-      }
-    }, { passive: true });
-    const up = (e) => {
-      this._pointers.delete(e.pointerId);
-      if (this._pointers.size < 2) this._pinch = 0;
-      if (this._pointers.size === 0) this._down = false;
-    };
-    el.addEventListener('pointerup', up, { passive: true });
-    el.addEventListener('pointercancel', up, { passive: true });
-    el.addEventListener('pointerleave', up, { passive: true });
-    el.addEventListener('wheel', (e) => {
-      if (!this.enabled) return;
-      e.preventDefault();
-      this._dz *= 1 + Math.sign(e.deltaY) * Math.min(0.16, Math.abs(e.deltaY) * this.zoomSpeed * 1.3);
-    }, { passive: false });
-  }
-  _pdist() {
-    const a = [...this._pointers.values()];
-    if (a.length < 2) return 0;
-    return Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
-  }
-  syncFromCamera() {
-    const off = this.camera.position.clone().sub(this.target);
-    const s = new THREE.Spherical().setFromVector3(off);
-    this._sph.radius = s.radius; this._sph.phi = s.phi; this._sph.theta = s.theta;
-    this._dT = this._dP = 0; this._dz = 1;
-  }
-  update(dt) {
-    if (!this.enabled) return;
-    const s = this._sph;
-    s.theta += this._dT;
-    s.phi = THREE.MathUtils.clamp(s.phi + this._dP, this.minPolar, this.maxPolar);
-    this._dT *= Math.pow(0.02, dt); this._dP *= Math.pow(0.02, dt);
-    if (this.autoRotate) s.theta -= this.autoRotateSpeed * dt * 0.22;
-    s.radius = THREE.MathUtils.clamp(s.radius * this._dz, this.minDistance, this.maxDistance);
-    this._dz = 1 + (this._dz - 1) * Math.pow(0.02, dt);
-    const off = new THREE.Vector3().setFromSpherical(s);
-    this.camera.position.copy(this.target).add(off);
-    this.camera.lookAt(this.target);
-  }
-}
-const orbit = new Orbit(camera, renderer.domElement);
+/* 시점은 리듬게임 전용 뷰로 고정한다. 자유 시점(오빗) 컨트롤은 쓰지 않는다. */
 
 /* --- 리듬 뷰 / 프리 뷰 카메라 --- */
 const CAM = {
@@ -604,8 +522,6 @@ const CAM = {
 const camPos = new THREE.Vector3();
 const camLook = new THREE.Vector3();
 let camFov = 40;
-let camView = 'rhythm';          // rhythm | free
-let camBlend = 0;                // 0 = rhythm, 1 = free 위치에 붙음
 
 /* 모바일 브라우저 주소창/툴바 때문에 레이아웃 뷰포트가 실제 보이는 영역보다
    커지는 경우, 하단 바(#bar)를 실제 보이는 영역의 아래쪽으로 끌어올린다. */
@@ -2288,8 +2204,6 @@ function updateNotes(dt) {
    ============================================================ */
 const raycaster = new THREE.Raycaster();
 const ptr = new THREE.Vector2(0, 0);
-const floorPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -0.34);
-const hitPoint = new THREE.Vector3();
 const followPoint = new THREE.Vector3(0, 0.34, 4.5);
 const followGoal = new THREE.Vector3(0, 0.34, 4.5);
 let pointerSeen = false;
@@ -2333,40 +2247,22 @@ function laneAtScreen(cx, cy) {
   return bd <= 0.58 ? best : -1;
 }
 
+/* 드래그는 시점 회전이 아니라 터치 패럴랙스에만 쓴다 (시점은 항상 고정). */
 canvas.addEventListener('pointermove', (e) => {
-  if (camView === 'rhythm') {
-    if (par.active) updateParallax(e.clientX, e.clientY);
-    return;
-  }
-  if (!orbit.enabled) return;
-  setPtr(e.clientX, e.clientY);
-  raycaster.setFromCamera(ptr, camera);
-  pointerEnergy = Math.min(1, pointerEnergy + 0.35);
-  if (raycaster.ray.intersectPlane(floorPlane, hitPoint)) {
-    followGoal.set(
-      THREE.MathUtils.clamp(hitPoint.x, -6.5, 6.5),
-      0.34,
-      THREE.MathUtils.clamp(hitPoint.z, -15, 14)
-    );
-    pointerSeen = true;
-  }
+  if (par.active) updateParallax(e.clientX, e.clientY);
 }, { passive: true });
 
 let downPos = { x: 0, y: 0, t: 0, moved: 0 };
 canvas.addEventListener('pointerdown', (e) => {
   downPos = { x: e.clientX, y: e.clientY, t: performance.now(), moved: 0 };
-  if (camView === 'rhythm') {
-    par.active = true;
-    updateParallax(e.clientX, e.clientY);
-  }
+  par.active = true;
+  updateParallax(e.clientX, e.clientY);
 }, { passive: true });
 
 function endPress(cx, cy) {
-  if (camView === 'rhythm') {
-    par.active = false;
-    par.tx = 0;
-    par.ty = 0;
-  }
+  par.active = false;
+  par.tx = 0;
+  par.ty = 0;
   const dx = cx - downPos.x, dy = cy - downPos.y;
   if (Math.hypot(dx, dy) < 12 && performance.now() - downPos.t < 620) {
     const lane = laneAtScreen(cx, cy);
@@ -2708,11 +2604,6 @@ function setLabel(t) {
 function refreshGameLabel() {
   const el = $('playLabel');
   if (el) el.textContent = T(typeof labelKey === 'string' ? labelKey : 'start');
-  const cam = $('camLabel');
-  if (cam) {
-    try { cam.textContent = T(camView === 'free' ? 'camFree' : 'camFixed'); }
-    catch (e) { cam.textContent = T('camFixed'); }
-  }
 }
 
 function finishGame() {
@@ -2845,27 +2736,6 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
-const btnCam = $('btnCam');
-function setCamView(v) {
-  camView = v;
-  const free = v === 'free';
-  orbit.enabled = free;
-  if (free) {
-    orbit.target.set(0, 2.0, -3.4);
-    orbit._sph.set(24, 1.32, 0.30);
-    orbit.syncFromCamera();
-    camBlend = 1;
-    $('camLabel').textContent = T('camFree');
-    btnCam.classList.add('on');
-    toast(T('freeCam'), T('freeCamSub'));
-  } else {
-    camBlend = 0;
-    $('camLabel').textContent = T('camFixed');
-    btnCam.classList.remove('on');
-    toast('Rhythm View');
-  }
-}
-btnCam.addEventListener('click', () => setCamView(camView === 'rhythm' ? 'free' : 'rhythm'));
 
 /* ============================================================
    20. LOOP
@@ -2942,8 +2812,8 @@ function animate() {
 
   const energy = Math.min(1.6, beatEnv * 0.8 + drive * 0.6 + pulse * 0.45 + comb * 0.25);
 
-  // 카메라
-  if (camView === 'rhythm') {
+  // 카메라 — 리듬게임 전용 시점 고정
+  {
     const portrait = isPortraitView();
     const cfg = portrait ? CAM.rhythm.portrait : CAM.rhythm.landscape;
     camPos.copy(cfg.pos);
@@ -2970,12 +2840,6 @@ function animate() {
     camera.rotateZ(laneTilt * 0.55 + par.x * 0.010);
     camera.rotateY(laneTilt * 0.34 + par.x * 0.012);
     camera.rotateX(par.y * 0.012);
-  } else {
-    orbit.update(dt);
-    par.x += (0 - par.x) * (1 - Math.exp(-dt * 3));
-    par.y += (0 - par.y) * (1 - Math.exp(-dt * 3));
-    laneTilt += (0 - laneTilt) * (1 - Math.exp(-dt * 6));
-    camFov += (46 - camFov) * Math.min(1, dt * 4);
   }
   camera.fov = camFov - pulse * 1.2;
   camera.updateProjectionMatrix();
@@ -3171,11 +3035,11 @@ function onViewportChange() {
   padRectCache = null; padRectTick = 0;
   camBaseReady = false;
   fitPadView();
-  if (camView === 'rhythm') rhythmFrame();
+  rhythmFrame();
 }
 
 window.__app = {
-  THREE, scene, camera, renderer, setTheme, orbit,
+  THREE, scene, camera, renderer, setTheme,
   getState: () => ({
     theme: themeKey,
     mode: G.mode,
@@ -3196,7 +3060,6 @@ window.__app = {
     errors: window.__errors.slice(),
     calls: renderer.info.render.calls,
     tris: renderer.info.render.triangles,
-    camView,
     ready: !!window.__ready,
     videos: panelState.map((st, i) => ({
       i, readyState: st.video.readyState, paused: st.video.paused,
@@ -3251,7 +3114,7 @@ window.__app = {
   })),
   camReact: () => ({
     laneTilt: +laneTilt.toFixed(4), parX: +par.x.toFixed(3), parY: +par.y.toFixed(3),
-    camX: +camera.position.x.toFixed(3), camY: +camera.position.y.toFixed(3), camView
+    camX: +camera.position.x.toFixed(3), camY: +camera.position.y.toFixed(3)
   }),
   setParallax: (x, y) => { par.tx = x; par.ty = y; par.active = false; },
   setPanelPhase: (v) => { panelPhase = v; },

@@ -9,7 +9,7 @@
   /* ---------- 0) 공용 유틸 ---------- */
   var LANG_KEY = 'koong_lang';
   var CATS = [
-    { key: 'game', ko: '쿵게임', en: 'Koong Game' },
+    { key: 'game', ko: '쿵미니게임', en: 'Koong Mini Games' },
     { key: 'test', ko: '쿵심리테스트', en: 'Koong Test' },
     { key: 'drama', ko: '드라마/영화', en: 'Drama & Film' },
     { key: 'book', ko: '책', en: 'Books' },

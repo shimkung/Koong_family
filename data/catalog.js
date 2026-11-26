@@ -34,6 +34,28 @@ window.KOONG_CATALOG = [
     new: true
   },
   {
+    id: 'koong-3d-runway',
+    cat: 'game',
+    emoji: '✨',
+    title: {
+      ko: '쿵이 3D 무대 — KOONG 3D RUNWAY',
+      en: 'Koong 3D Runway'
+    },
+    desc: {
+      ko: '손가락으로 돌리는 3D 런웨이 쇼케이스. 네 가지 조명 테마와 양옆 런웨이 영상, 내 음악까지 바꿔 볼 수 있습니다.',
+      en: 'An interactive 3D runway you turn by hand — four lighting moods, moving showcase screens, and your own music.'
+    },
+    href: 'games/koong-3d-runway.html',
+    tag: { ko: '3D 쇼케이스', en: '3D Showcase' },
+    meta: [
+      { ko: '조명 테마 4', en: '4 lighting moods' },
+      { ko: '자유 회전', en: 'Free orbit' },
+      { ko: '모바일·PC', en: 'Mobile & PC' }
+    ],
+    date: '2026-11-26',
+    new: true
+  },
+  {
     id: 'pickle-gakoongi-rhythm',
     cat: 'game',
     emoji: '🎮',

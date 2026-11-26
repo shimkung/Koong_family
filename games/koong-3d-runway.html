@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쿵이 3D 무대 — KOONG 3D RUNWAY | 손으로 돌리는 3D 런웨이 쇼케이스 — 쿵미니게임</title>
+<meta name="description" content="터치·드래그로 3D 런웨이 무대를 자유롭게 돌려 보는 인터랙티브 쇼케이스 '쿵이 3D 무대'. 네 가지 조명 테마와 양옆 런웨이 영상, 내 음악과 영상까지 바꿔 볼 수 있습니다. 설치 없이 브라우저에서 바로.">
+<meta name="keywords" content="3D 런웨이, 인터랙티브 3D, 웹 3D 쇼케이스, three.js, 무료 3D, 쿵이 3D 무대, 쿵미니게임, 브라우저 3D">
+<meta name="theme-color" content="#09090B">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://shimkung.github.io/Koong_family/games/koong-3d-runway.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="쿵이가족 KOONG FAMILY">
+<meta property="og:title" content="쿵이 3D 무대 — KOONG 3D RUNWAY">
+<meta property="og:description" content="드래그로 무대를 돌리고, 조명 테마와 영상·음악을 바꿔 보는 인터랙티브 3D 런웨이. 설치 없이 브라우저에서.">
+<meta property="og:url" content="https://shimkung.github.io/Koong_family/games/koong-3d-runway.html">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://shimkung.github.io/Koong_family/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="쿵이가족 KOONG FAMILY — 게임·심리테스트·읽을거리">
+<meta name="twitter:image" content="https://shimkung.github.io/Koong_family/assets/img/og-cover.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090B'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-size='34' font-weight='900' fill='%23E2FF00' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+<!-- ADSENSE: 승인 후 아래 주석을 해제하고 ca-pub-XXXXXXXXXXXXXXXX 를 실제 게시자 ID로 교체하세요 -->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261127d">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "쿵이 3D 무대 — KOONG 3D RUNWAY",
+  "alternateName": "Koong 3D Runway",
+  "url": "https://shimkung.github.io/Koong_family/games/koong-3d-runway.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Web",
+  "inLanguage": ["ko-KR", "en"],
+  "browserRequirements": "WebGL을 지원하는 최신 브라우저 (Chrome, Safari, Edge)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+  "publisher": { "@type": "Organization", "name": "쿵이가족" },
+  "description": "드래그로 카메라를 돌리고 조명 테마·쇼케이스 영상·음악을 바꿔 보는 인터랙티브 3D 런웨이 쇼케이스. 설치와 회원가입 없이 무료로 열 수 있다."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://shimkung.github.io/Koong_family/" },
+    { "@type": "ListItem", "position": 2, "name": "쿵미니게임", "item": "https://shimkung.github.io/Koong_family/?cat=game" },
+    { "@type": "ListItem", "position": 3, "name": "쿵이 3D 무대", "item": "https://shimkung.github.io/Koong_family/games/koong-3d-runway.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "설치 없이 바로 볼 수 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "네. Chrome·Safari·Edge 최신 버전에서 링크를 열면 바로 무대가 나타납니다. 앱 설치나 회원가입, 결제가 필요하지 않습니다. 3D 엔진을 처음 불러올 때만 인터넷 연결이 필요합니다." } },
+    { "@type": "Question", "name": "휴대폰에서도 조작할 수 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "화면을 한 손가락으로 드래그하면 무대가 회전하고, 두 손가락으로 벌리면 확대됩니다. 아래쪽 버튼은 손가락으로 누르도록 만들어져 있습니다." } },
+    { "@type": "Question", "name": "조명 테마는 무엇이 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "NOIR(차가운 은빛), PEARL(따뜻한 진주빛), CRIMSON(붉은 조명), ICE(푸른 얼음빛) 네 가지입니다. 테마를 바꾸면 무대 조명·안개·반짝임 색이 함께 바뀝니다." } },
+    { "@type": "Question", "name": "제 음악과 영상을 넣을 수 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "가능합니다. '음악 넣기'로 오디오 파일을 고르면 그 음악의 박자에 맞춰 조명이 반응하고, '영상 넣기'로 양옆 쇼케이스 영상을 바꿀 수 있습니다. 파일은 기기 안에서만 재생되고 서버로 전송되지 않습니다." } },
+    { "@type": "Question", "name": "소리가 나지 않아요.",
+      "acceptedAnswer": { "@type": "Answer", "text": "브라우저 정책상 소리는 버튼을 한 번 눌러야 켜집니다. 아래쪽 '사운드 켜기' 버튼을 눌러 주세요. 기기가 무음 모드이거나 볼륨이 0인지도 확인해 주세요." } },
+    { "@type": "Question", "name": "화면이 검게만 나와요.",
+      "acceptedAnswer": { "@type": "Answer", "text": "3D 가속(WebGL)을 지원하지 않는 브라우저이거나 하드웨어 가속이 꺼져 있을 수 있습니다. Chrome·Safari 최신 버전으로 다시 열어 주세요." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="../index.html" aria-label="쿵이가족 홈" data-ko-aria="쿵이가족 홈" data-en-aria="Koong Family home">
+      <span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko" data-ko="패밀리" data-en="FAMILY">패밀리</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기" data-ko-aria="메뉴 열기" data-en-aria="Open menu" aria-controls="siteNav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="siteNav" aria-label="주요 메뉴" data-ko-aria="주요 메뉴" data-en-aria="Main menu">
+      <a href="../index.html" data-ko="홈" data-en="Home">홈</a>
+      <a href="../index.html?cat=game" aria-current="page" data-ko="쿵미니게임" data-en="Koong Mini Games">쿵미니게임</a>
+      <a href="../index.html?cat=test" data-ko="쿵심리테스트" data-en="Koong Test">쿵심리테스트</a>
+      <div class="nav-item">
+        <a class="nav-item__link" href="../index.html#catalog" data-ko="읽을거리" data-en="Read">읽을거리</a>
+        <button class="nav-item__toggle" type="button" aria-expanded="false" aria-label="읽을거리 하위 메뉴" data-ko-aria="읽을거리 하위 메뉴" data-en-aria="Read submenu">
+          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5 6 8.5l4-4"/></svg>
+        </button>
+        <div class="subnav">
+          <a href="../index.html?cat=drama" data-ko="드라마 · 영화" data-en="Drama &amp; Film">드라마 · 영화</a>
+          <a href="../index.html?cat=book" data-ko="책 리뷰" data-en="Book Reviews">책 리뷰</a>
+          <a href="../index.html?cat=ai" data-ko="AI 가이드" data-en="AI Guides">AI 가이드</a>
+        </div>
+      </div>
+      <a href="../about.html" data-ko="소개" data-en="About">소개</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="ko" aria-pressed="true">KR</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="lang-ko">
+  <div class="page-head">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="위치">
+        <a href="../index.html">홈</a><span>/</span><a href="../index.html?cat=game">쿵미니게임</a><span>/</span><strong>쿵이 3D 무대</strong>
+      </nav>
+      <span class="eyebrow">Game · 3D Stage</span>
+      <h1>쿵이 3D 무대</h1>
+      <p class="lede">
+        무대는 멈춰 있지 않습니다. 화면을 <strong>손가락으로 돌리면 런웨이가 내 눈앞에서 함께 돕니다.</strong>
+        조명은 네 가지 무드로 바뀌고, 양옆 쇼케이스에는 영상이 흐르고, 내 음악을 넣으면 그 박자에 맞춰 빛이 따라갑니다.
+        설치도 회원가입도 없이 브라우저에서 바로 열리는 인터랙티브 3D 쇼케이스입니다.
+      </p>
+      <div class="page-meta">
+        <span class="chip chip--dim">3D 무대</span>
+        <span class="chip chip--dim">조명 테마 4</span>
+        <span class="chip chip--dim">내 음악 · 영상</span>
+        <span class="chip chip--dim">모바일·PC</span>
+        <span class="chip chip--dim">무료</span>
+      </div>
+      <div class="btn-row" style="margin-top:26px">
+        <a class="btn btn--neon" href="koong-3d-runway-app.html">▶ 무대 열기</a>
+        <a class="btn btn--ghost" href="#howto">조작법 먼저 보기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 광고 슬롯: 3D 무대 소개 상단 -->
+  <div class="wrap">
+    <div class="ad-slot" id="ad-runway-top" data-ad-ready="false" data-ad-slot="runway-top">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="prose">
+
+        <div class="tldr">
+          <span class="tldr__label">핵심 요약 · TL;DR</span>
+          <ul>
+            <li><strong>무엇:</strong> 런웨이 무대를 손으로 돌려 보는 인터랙티브 3D 쇼케이스. 리듬게임 ‘런웨이 리듬’과 같은 무대를 감상용으로 따로 꺼내 놓은 버전입니다.</li>
+            <li><strong>조작:</strong> 드래그로 회전, 두 손가락(또는 마우스 휠)로 확대, 무대를 터치하면 물결과 불꽃이 터집니다.</li>
+            <li><strong>꾸미기:</strong> NOIR · PEARL · CRIMSON · ICE 네 가지 조명 테마, 양옆 쇼케이스 영상, 내 음악.</li>
+            <li><strong>설치·결제:</strong> 없음. 최신 Chrome·Safari·Edge에서 링크만 열면 됩니다.</li>
+          </ul>
+        </div>
+
+        <h2 id="overview">한눈에 보는 무대</h2>
+        <p>
+          <strong>쿵이 3D 무대</strong>는 가운데 런웨이, 그 끝의 원형 플랫폼, 그리고 머리 위로 떠 있는 조명 트러스로 이루어져 있습니다.
+          무대를 감싼 황금빛 라인과 링은 조명 테마에 따라 색이 바뀌고, 안개와 반짝임이 공간의 깊이를 만듭니다.
+          카메라는 <strong>내가 움직이는 만큼만</strong> 따라옵니다. 자동으로 도는 ‘자동 순회’를 켜면 관객석에서 천천히 둘러보듯 무대가 흐릅니다.
+        </p>
+        <div class="stat-row">
+          <div class="stat"><strong>4</strong><span>조명 테마</span></div>
+          <div class="stat"><strong>2</strong><span>쇼케이스 영상</span></div>
+          <div class="stat"><strong>360°</strong><span>자유 회전</span></div>
+          <div class="stat"><strong>0</strong><span>설치·결제</span></div>
+        </div>
+
+        <h2 id="howto">조작법 — 모바일과 PC</h2>
+        <p>
+          따로 외울 규칙은 없습니다. 무대를 잡고 돌리면 되고, 마음에 드는 각도에서 멈추면 그 화면이 그대로 남습니다.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">모바일과 PC 조작 방법 비교</caption>
+            <thead>
+              <tr><th scope="col">동작</th><th scope="col">모바일 (터치)</th><th scope="col">PC (마우스)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>무대 회전</td><td>한 손가락으로 드래그</td><td>마우스로 드래그</td></tr>
+              <tr><td>확대 / 축소</td><td>두 손가락으로 벌리기·오므리기</td><td>마우스 휠</td></tr>
+              <tr><td>무대 터치</td><td>바닥·조형물을 톡 누르기</td><td>바닥·조형물 클릭</td></tr>
+              <tr><td>조명 테마</td><td colspan="2">아래 바에서 NOIR · PEARL · CRIMSON · ICE 중 선택</td></tr>
+              <tr><td>사운드</td><td colspan="2"><b>사운드 켜기</b> — 켜면 기본 비트가 흐르고, 내 음악을 넣으면 그 곡으로 바뀝니다</td></tr>
+              <tr><td>음악 넣기</td><td colspan="2"><b>음악 넣기</b> → 기기에서 오디오 파일 선택 (박자에 맞춰 조명이 반응)</td></tr>
+              <tr><td>쇼케이스 영상 교체</td><td colspan="2"><b>영상 넣기</b> → 왼쪽 / 오른쪽 / 양쪽 중 선택 → 영상 파일 선택</td></tr>
+              <tr><td>자동 순회</td><td colspan="2"><b>자동 순회</b> — 카메라가 무대를 천천히 돌며 보여 줍니다</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <strong>처음이라면 이렇게 해 보세요.</strong>
+          ① 무대를 한 바퀴 돌려 보고 ② 조명 테마를 바꿔 분위기를 비교한 뒤 ③ <b>자동 순회</b>를 켜 두고 감상합니다.
+          영상과 음악은 그다음에 바꿔도 늦지 않습니다.
+        </div>
+
+        <h2 id="themes">네 가지 조명 테마</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">테마</th><th scope="col">분위기</th><th scope="col">어울리는 장면</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>NOIR</b></td><td>차가운 은빛, 가장 기본이 되는 밤의 무대</td><td>처음 열었을 때, 단정한 쇼케이스</td></tr>
+              <tr><td><b>PEARL</b></td><td>따뜻한 진주빛, 조명이 부드럽게 번짐</td><td>밝은 영상, 잔잔한 음악</td></tr>
+              <tr><td><b>CRIMSON</b></td><td>붉은 조명이 무대 가장자리를 물들임</td><td>강한 비트, 드라마틱한 순간</td></tr>
+              <tr><td><b>ICE</b></td><td>푸른 얼음빛, 안개가 서린 듯한 느낌</td><td>차가운 색감의 영상, 새벽 무드</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          테마를 바꾸면 조명 색만 바뀌는 게 아니라 <strong>안개 색, 반짝임, 바닥 반사까지 함께</strong> 따라갑니다.
+          그래서 같은 무대라도 네 번 다른 장면처럼 보입니다.
+        </p>
+
+        <h2 id="my-media">내 음악과 영상 넣기</h2>
+        <ol>
+          <li>아래 바의 <b>음악 넣기</b>를 누르고 기기에서 오디오 파일(mp3·wav·m4a 등)을 고릅니다.</li>
+          <li>음악이 흐르면 저음이 튀는 순간마다 무대 조명이 살짝 밝아지며 박자를 탑니다.</li>
+          <li><b>영상 넣기</b> → 왼쪽 / 오른쪽 / 양쪽을 고른 뒤 동영상 파일을 선택하면 쇼케이스가 바뀝니다.</li>
+        </ol>
+        <div class="note">
+          <strong>파일은 기기 밖으로 나가지 않습니다.</strong> 고른 음악과 영상은 브라우저 안에서만 재생되고 서버로 업로드되지 않습니다.
+          무대를 한 번 열어 두면 그 뒤로는 인터넷 없이도 계속 돌아갑니다.
+        </div>
+
+        <h2 id="with-rhythm">리듬게임과 무엇이 다른가요</h2>
+        <p>
+          같은 무대를 쓰지만 목적이 다릅니다. <a href="pickle-gakoongi-rhythm.html">쿵이 게임 — 런웨이 리듬</a>은 <strong>연주하는 게임</strong>이고,
+          이 <strong>쿵이 3D 무대</strong>는 <strong>감상하고 꾸미는 쇼케이스</strong>입니다.
+          리듬게임은 시점이 연주에 맞춰 고정되어 있고, 3D 무대는 반대로 시점을 마음대로 돌릴 수 있습니다.
+          음악을 넣어 무드를 먼저 확인하고 싶다면 3D 무대에서, 직접 쳐 보고 싶다면 리듬게임으로 가면 됩니다.
+        </p>
+
+        <h2 id="behind">어떻게 만들었나</h2>
+        <p>
+          게임 엔진 없이 <strong>브라우저 기술만으로</strong> 만들었습니다. 3D 무대는 three.js(WebGL)로 그리고,
+          소리는 Web Audio API로 분석해 조명에 연결합니다. 금속과 유리의 반사는 주변 환경을 미리 구워 둔 맵으로 처리하고,
+          반짝임·물결·불꽃은 매 프레임 실시간으로 계산합니다. 그래서 휴대폰에서는 해상도와 그림자 크기를 자동으로 낮춥니다.
+        </p>
+        <p>
+          가장 오래 붙잡았던 부분은 <strong>‘돌리는 맛’</strong>이었습니다. 카메라가 너무 민감하면 어지럽고, 너무 둔하면 멈춘 그림처럼 느껴집니다.
+          회전에 관성을 주고, 위아래 각도를 제한하고, 무대를 만질 때마다 반응이 돌아오도록 다듬었습니다.
+        </p>
+
+        <h2 id="faq">자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>설치 없이 바로 볼 수 있나요?</summary>
+            <div class="faq__a"><p>네. 최신 Chrome·Safari·Edge에서 링크를 열면 바로 무대가 나타납니다. 앱 설치, 회원가입, 결제가 필요 없습니다. 3D 엔진을 처음 불러올 때만 인터넷 연결이 필요합니다.</p></div>
+          </details>
+          <details>
+            <summary>휴대폰에서도 조작할 수 있나요?</summary>
+            <div class="faq__a"><p>한 손가락으로 드래그하면 무대가 회전하고, 두 손가락으로 벌리면 확대됩니다. 아래쪽 버튼은 손가락으로 누르기 좋게 배치했습니다.</p></div>
+          </details>
+          <details>
+            <summary>조명 테마는 무엇이 있나요?</summary>
+            <div class="faq__a"><p>NOIR(차가운 은빛), PEARL(따뜻한 진주빛), CRIMSON(붉은 조명), ICE(푸른 얼음빛) 네 가지입니다. 테마를 바꾸면 조명·안개·반짝임 색이 함께 바뀝니다.</p></div>
+          </details>
+          <details>
+            <summary>제 음악과 영상을 넣을 수 있나요?</summary>
+            <div class="faq__a"><p>가능합니다. ‘음악 넣기’로 오디오 파일을 고르면 박자에 맞춰 조명이 반응하고, ‘영상 넣기’로 양옆 쇼케이스 영상을 바꿀 수 있습니다. 파일은 기기 안에서만 재생됩니다.</p></div>
+          </details>
+          <details>
+            <summary>소리가 나지 않아요.</summary>
+            <div class="faq__a"><p>브라우저 정책상 소리는 버튼을 한 번 눌러야 켜집니다. 아래쪽 <b>사운드 켜기</b>를 눌러 주세요. 기기가 무음 모드이거나 볼륨이 0인지도 확인해 주세요.</p></div>
+          </details>
+          <details>
+            <summary>화면이 검게만 나와요.</summary>
+            <div class="faq__a"><p>3D 가속(WebGL)을 지원하지 않는 브라우저이거나 하드웨어 가속이 꺼져 있을 수 있습니다. Chrome·Safari 최신 버전으로 다시 열어 주세요.</p></div>
+          </details>
+        </div>
+
+        <div class="btn-row" style="margin:2.6em 0 0">
+          <a class="btn btn--neon" href="koong-3d-runway-app.html">▶ 지금 무대 열기</a>
+          <a class="btn btn--ghost" href="pickle-gakoongi-rhythm.html">리듬게임도 해 보기</a>
+        </div>
+
+        <div class="author-box">
+          <div class="author-box__avatar" aria-hidden="true">쿵</div>
+          <div>
+            <strong>쿵이가족</strong>
+            <p>직접 만들고 직접 열어 보며 남긴 기록을 올립니다. 의견이나 버그 제보는 <a href="../contact.html">문의하기</a> 또는 osy500133@gmail.com으로 보내 주세요.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:760px">
+        <h2 style="font-size:1.1rem;margin:2.4em 0 .8em">함께 보면 좋은 글</h2>
+        <div class="related">
+          <a href="pickle-gakoongi-rhythm.html">
+            <small>쿵미니게임</small>
+            <strong>쿵이 게임 — 런웨이 리듬</strong>
+          </a>
+          <a href="../articles/3d-web-guide.html">
+            <small>읽을거리</small>
+            <strong>설치 없이 웹에서 즐기는 3D 게임의 원리</strong>
+          </a>
+          <a href="../articles/ai-music-guide.html">
+            <small>읽을거리</small>
+            <strong>AI 음악·비주얼 제작 트렌드 5분 정리</strong>
+          </a>
+        </div>
+
+        <div class="ad-slot" id="ad-runway-bottom" data-ad-ready="false" data-ad-slot="runway-bottom">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lang-en">
+  <div class="page-head">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../index.html?cat=game">Koong Mini Games</a><span>/</span><strong>Koong 3D Runway</strong>
+      </nav>
+      <span class="eyebrow">Game · 3D Stage</span>
+      <h1>Koong 3D Runway</h1>
+      <p class="lede">
+        The stage does not sit still. <strong>Turn it with your finger and the runway turns with you.</strong>
+        Lighting switches between four moods, video plays on the showcases either side, and load your own music and the light follows its beat.
+        An interactive 3D showcase that opens in the browser — no install, no sign-up.
+      </p>
+      <div class="page-meta">
+        <span class="chip chip--dim">3D stage</span>
+        <span class="chip chip--dim">4 lighting moods</span>
+        <span class="chip chip--dim">Your music &amp; video</span>
+        <span class="chip chip--dim">Mobile &amp; PC</span>
+        <span class="chip chip--dim">Free</span>
+      </div>
+      <div class="btn-row" style="margin-top:26px">
+        <a class="btn btn--neon" href="koong-3d-runway-app.html">▶ Open the stage</a>
+        <a class="btn btn--ghost" href="#howto-en">Controls first</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ad-slot" id="ad-runway-top-en" data-ad-ready="false" data-ad-slot="runway-top">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="prose">
+        <div class="tldr">
+          <span class="tldr__label">TL;DR</span>
+          <ul>
+            <li><strong>What:</strong> an interactive 3D runway you turn by hand — the same stage as the Runway Rhythm game, pulled out as a showcase.</li>
+            <li><strong>Controls:</strong> drag to orbit, pinch (or scroll) to zoom, tap the stage for ripples and sparks.</li>
+            <li><strong>Staging:</strong> four lighting moods — NOIR, PEARL, CRIMSON, ICE — plus showcase video and your own music.</li>
+            <li><strong>Install or payment:</strong> none. Open the link in a current Chrome, Safari or Edge.</li>
+          </ul>
+        </div>
+
+        <h2 id="overview-en">The stage at a glance</h2>
+        <p>
+          <strong>Koong 3D Runway</strong> is a runway down the middle, a round platform at its end, and a lighting truss overhead.
+          Gold trim and rings shift colour with the lighting mood while fog and dust give the space depth.
+          The camera follows <strong>only as much as you move it</strong>. Switch on <b>Auto tour</b> and the stage drifts slowly, like a walk around the front row.
+        </p>
+        <div class="stat-row">
+          <div class="stat"><strong>4</strong><span>lighting moods</span></div>
+          <div class="stat"><strong>2</strong><span>showcase screens</span></div>
+          <div class="stat"><strong>360°</strong><span>free orbit</span></div>
+          <div class="stat"><strong>0</strong><span>install or payment</span></div>
+        </div>
+
+        <h2 id="howto-en">Controls — mobile and PC</h2>
+        <p>
+          There are no rules to memorise. Grab the stage and turn it; wherever you stop is the picture that stays.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Controls on mobile and PC</caption>
+            <thead>
+              <tr><th scope="col">Action</th><th scope="col">Mobile (touch)</th><th scope="col">PC (mouse)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Orbit the stage</td><td>Drag with one finger</td><td>Drag with the mouse</td></tr>
+              <tr><td>Zoom</td><td>Pinch out or in</td><td>Mouse wheel</td></tr>
+              <tr><td>Touch the stage</td><td>Tap the floor or the sculpture</td><td>Click the floor or the sculpture</td></tr>
+              <tr><td>Lighting mood</td><td colspan="2">Pick NOIR · PEARL · CRIMSON · ICE in the bottom bar</td></tr>
+              <tr><td>Sound</td><td colspan="2"><b>Sound on</b> — plays a built-in beat, or your own track once loaded</td></tr>
+              <tr><td>Add music</td><td colspan="2"><b>Add music</b> → choose an audio file from the device (the lighting follows its beat)</td></tr>
+              <tr><td>Change showcase video</td><td colspan="2"><b>Add video</b> → left / right / both → choose a video file</td></tr>
+              <tr><td>Auto tour</td><td colspan="2"><b>Auto tour</b> — the camera circles the stage slowly</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <strong>First time? Try this.</strong>
+          ① Turn the stage all the way round ② compare the lighting moods ③ leave <b>Auto tour</b> on and watch.
+          Video and music can come later.
+        </div>
+
+        <h2 id="themes-en">Four lighting moods</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Mood</th><th scope="col">Feel</th><th scope="col">Works well for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>NOIR</b></td><td>Cool silver, the default night stage</td><td>A first look, a quiet showcase</td></tr>
+              <tr><td><b>PEARL</b></td><td>Warm pearl light that spreads softly</td><td>Bright footage, calm music</td></tr>
+              <tr><td><b>CRIMSON</b></td><td>Red light washing the stage edges</td><td>Strong beats, dramatic moments</td></tr>
+              <tr><td><b>ICE</b></td><td>Blue ice light, as if the stage were frosted</td><td>Cool-toned footage, small hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          A mood changes more than the lamp colour: <strong>fog, dust and floor reflection move with it</strong>, so the same stage reads as four different scenes.
+        </p>
+
+        <h2 id="my-media-en">Your own music and video</h2>
+        <ol>
+          <li>Press <b>Add music</b> and choose an audio file (mp3, wav, m4a and so on).</li>
+          <li>As it plays, the stage lighting lifts on each low hit and keeps time.</li>
+          <li>Press <b>Add video</b>, choose left / right / both, then pick a video file to replace that showcase.</li>
+        </ol>
+        <div class="note">
+          <strong>Your files never leave the device.</strong> Chosen music and video play inside the browser and are not uploaded. Once the stage is open it keeps running offline.
+        </div>
+
+        <h2 id="with-rhythm-en">How is this different from the rhythm game?</h2>
+        <p>
+          Same stage, different purpose. <a href="pickle-gakoongi-rhythm.html">Koong Game — Runway Rhythm</a> is a <strong>game you play</strong>;
+          <strong>Koong 3D Runway</strong> is a <strong>showcase you look at and dress up</strong>. The rhythm game pins the camera for play, while here you can orbit freely.
+          Use the runway to feel a mood with your music first, then go and play it.
+        </p>
+
+        <h2 id="behind-en">Behind the build</h2>
+        <p>
+          Built <strong>with browser technology alone</strong>, no game engine. The stage is drawn with three.js on WebGL, and sound is read through the Web Audio API
+          to drive the lighting. Metal and glass reflections come from a pre-baked environment map, while dust, ripples and sparks are computed every frame —
+          which is why phones automatically reduce resolution and shadow size.
+        </p>
+        <p>
+          The part I worked on longest was <strong>the feel of turning it</strong>. Too sensitive and it makes you dizzy; too slow and it feels like a still image.
+          So the orbit carries some inertia, the vertical angle is limited, and a touch on the stage always answers back.
+        </p>
+
+        <h2 id="faq-en">FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Can I open it without installing anything?</summary>
+            <div class="faq__a"><p>Yes. Open the link in a current Chrome, Safari or Edge and the stage appears. No app, sign-up or payment. Only the first load of the 3D engine needs a connection.</p></div>
+          </details>
+          <details>
+            <summary>Does it work on a phone?</summary>
+            <div class="faq__a"><p>Drag with one finger to orbit and pinch to zoom. The bottom bar is laid out for fingers.</p></div>
+          </details>
+          <details>
+            <summary>What lighting moods are there?</summary>
+            <div class="faq__a"><p>NOIR (cool silver), PEARL (warm pearl), CRIMSON (red) and ICE (blue). A mood changes lighting, fog and sparkle colour together.</p></div>
+          </details>
+          <details>
+            <summary>Can I use my own music and video?</summary>
+            <div class="faq__a"><p>Yes. “Add music” makes the lighting follow your track; “Add video” replaces the showcase screens. Files stay on your device.</p></div>
+          </details>
+          <details>
+            <summary>There is no sound.</summary>
+            <div class="faq__a"><p>Browsers need one tap before audio starts — press <b>Sound on</b>. Also check that the device is not muted.</p></div>
+          </details>
+          <details>
+            <summary>The screen is black.</summary>
+            <div class="faq__a"><p>The browser may not support WebGL, or hardware acceleration may be off. Reopen it in a current version of Chrome or Safari.</p></div>
+          </details>
+        </div>
+        <div class="btn-row" style="margin:2.6em 0 0">
+          <a class="btn btn--neon" href="koong-3d-runway-app.html">▶ Open the stage now</a>
+          <a class="btn btn--ghost" href="pickle-gakoongi-rhythm.html">Play the rhythm game</a>
+        </div>
+        <div class="author-box">
+          <div class="author-box__avatar" aria-hidden="true">K</div>
+          <div>
+            <strong>Koong Family</strong>
+            <p>Notes from building and opening this myself. Send feedback or bug reports via <a href="../contact.html">contact</a> or osy500133@gmail.com.</p>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:760px">
+        <h2 style="font-size:1.1rem;margin:2.4em 0 .8em">Read next</h2>
+        <div class="related">
+          <a href="pickle-gakoongi-rhythm.html"><small>Koong Mini Games</small><strong>Koong Game — Runway Rhythm</strong></a>
+          <a href="../articles/3d-web-guide.html"><small>Guide</small><strong>How browser 3D games work</strong></a>
+          <a href="../articles/ai-music-guide.html"><small>Guide</small><strong>AI music and visuals in 2026</strong></a>
+        </div>
+        <div class="ad-slot" id="ad-runway-bottom-en" data-ad-ready="false" data-ad-slot="runway-bottom">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html"><span class="brand__mark">KOONG</span><span class="brand__dot" aria-hidden="true"></span><span class="brand__ko" data-ko="패밀리" data-en="FAMILY">패밀리</span></a>
+        <p class="lang-ko">설치 없이 브라우저에서 즐기는 게임과 테스트, 그리고 만드는 사람의 기록. 쿵이가족이 운영합니다.</p>
+        <p class="lang-en">Games and tests you can play without installing anything, plus notes from the person making them. Run by Koong Family.</p>
+      </div>
+      <div>
+        <h4>Play</h4>
+        <ul>
+          <li><a href="../games/pickle-gakoongi-rhythm.html" data-ko="쿵이 게임" data-en="Koong Game">쿵이 게임</a></li>
+          <li><a href="../games/koong-3d-runway.html" data-ko="쿵이 3D 무대" data-en="3D Runway">쿵이 3D 무대</a></li>
+          <li><a href="../tests/ai-persona-test.html" data-ko="심리테스트" data-en="Personality test">심리테스트</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="../articles/remarried-empress-review.html" data-ko="드라마 · 영화" data-en="Drama &amp; Film">드라마 · 영화</a></li>
+          <li><a href="../articles/intelligence-origin-review.html" data-ko="책 리뷰" data-en="Book review">책 리뷰</a></li>
+          <li><a href="../articles/ai-music-guide.html" data-ko="AI 가이드" data-en="AI guides">AI 가이드</a></li>
+          <li><a href="../about.html" data-ko="소개" data-en="About">소개</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a class="footer-mail" href="mailto:osy500133@gmail.com">osy500133@gmail.com</a></li>
+          <li><a href="../contact.html" data-ko="문의하기" data-en="Contact">문의하기</a></li>
+          <li><a href="../privacy.html" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a></li>
+          <li><a href="../terms.html" data-ko="이용약관" data-en="Terms">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> 쿵이가족 KOONG FAMILY. All rights reserved.</span>
+      <span class="legal">
+        <a href="../about.html" data-ko="소개" data-en="About">소개</a>
+        <a href="../privacy.html" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a>
+        <a href="../terms.html" data-ko="이용약관" data-en="Terms">이용약관</a>
+        <a href="../contact.html" data-ko="문의" data-en="Contact">문의</a>
+        <a href="../sitemap.xml" data-ko="사이트맵" data-en="Sitemap">사이트맵</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=20261127d"></script>
+</body>
+</html>

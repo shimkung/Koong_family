@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261127c">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261127d">
 
 <script type="application/ld+json">
 {
@@ -95,7 +95,7 @@
     </button>
     <nav class="nav" id="siteNav" aria-label="주요 메뉴" data-ko-aria="주요 메뉴" data-en-aria="Main menu">
       <a href="../index.html" data-ko="홈" data-en="Home">홈</a>
-      <a href="../index.html?cat=game" aria-current="page" data-ko="쿵게임" data-en="Koong Game">쿵게임</a>
+      <a href="../index.html?cat=game" aria-current="page" data-ko="쿵미니게임" data-en="Koong Mini Games">쿵미니게임</a>
       <a href="../index.html?cat=test" data-ko="쿵심리테스트" data-en="Koong Test">쿵심리테스트</a>
       <div class="nav-item">
         <a class="nav-item__link" href="../index.html#catalog" data-ko="읽을거리" data-en="Read">읽을거리</a>
@@ -202,9 +202,7 @@
             <tbody>
               <tr><td>레인 연주</td><td>화면 아래 4개 패드를 손가락으로 두드림</td><td><code>D</code> <code>F</code> <code>J</code> <code>K</code> 또는 <code>1</code> <code>2</code> <code>3</code> <code>4</code></td></tr>
               <tr><td>시작 / 일시정지</td><td>화면 아래 <b>게임 시작</b> 버튼</td><td><b>게임 시작</b> 버튼 또는 <code>Space</code></td></tr>
-              <tr><td>무대 시점 회전</td><td>빈 공간을 드래그</td><td>마우스로 드래그</td></tr>
-              <tr><td>확대 / 축소</td><td>두 손가락 핀치</td><td>마우스 휠</td></tr>
-              <tr><td>시점 고정 ↔ 자유</td><td colspan="2">오른쪽 아래 <b>시점 고정</b> 버튼으로 전환 (고정 시 판정선이 정면에 붙어 연주에 집중)</td></tr>
+              <tr><td>무대 시점</td><td colspan="2">연주에 맞춰 <b>항상 고정</b> — 따로 조작할 필요가 없습니다</td></tr>
               <tr><td>음악 교체</td><td colspan="2"><b>음악 넣기</b> → 기기에서 오디오 파일 선택</td></tr>
               <tr><td>쇼케이스 영상 교체</td><td colspan="2"><b>영상 넣기</b> → 왼쪽 / 오른쪽 / 양쪽 중 선택 → 동영상 파일 선택</td></tr>
               <tr><td>무드 테마</td><td colspan="2">NOIR · PEARL · CRIMSON · ICE 중 선택 (노트 색과 조명이 함께 바뀜)</td></tr>
@@ -214,7 +212,7 @@
         <div class="note">
           <strong>처음이라면 이렇게 시작해 보세요.</strong>
          ① 아무 설정 없이 <b>게임 시작</b>을 누르고 기본 트랙을 한 번 끝까지 플레이합니다.
-         ② 판정선이 어디인지 눈에 익으면 <b>시점 고정</b>으로 두고 다시 도전합니다.
+         ② 판정선이 어디인지 눈에 익으면 같은 자리에서 한 번 더 도전합니다. (무대 시점은 연주용으로 고정되어 있습니다)
          ③ 손이 익숙해지면 <b>음악 넣기</b>로 좋아하는 곡을 넣어 봅니다.
         </div>
 
@@ -273,10 +271,10 @@
           노트가 날아오는 궤적을 쫓으면 시선이 위로 끌려 판정이 늦어집니다. 시선은 <strong>판정선 위에 고정</strong>하고,
           노트는 시야 가장자리로만 감지하세요. 리듬게임 상급자들이 공통으로 말하는 첫 번째 원칙입니다.
         </p>
-        <h3>2. 시점을 고정한다</h3>
+        <h3>2. 판정선과 패드의 거리를 몸에 익힌다</h3>
         <p>
-          카메라를 돌리는 재미는 크지만, 기록을 노린다면 <b>시점 고정</b>이 유리합니다. 레인과 판정선이 매 프레임 같은 위치에
-          고정되므로 손가락이 외운 위치를 그대로 쓸 수 있습니다.
+          무대 시점은 연주에 맞춰 자동으로 고정되니 신경 쓰지 않아도 됩니다. 대신 판정선과 손가락 사이의 <strong>거리와 높이</strong>를
+          매번 같은 자리에서 느껴 두세요. 화면을 확대하거나 회전하지 않고 그대로 두는 편이 손가락이 위치를 외우기 쉽습니다.
         </p>
         <h3>3. 손가락은 홈 포지션에</h3>
         <p>
@@ -399,6 +397,10 @@
             <small>읽을거리</small>
             <strong>AI 음악·비주얼 제작 트렌드 5분 정리</strong>
           </a>
+          <a href="koong-3d-runway.html">
+            <small>쿵미니게임</small>
+            <strong>쿵이 3D 무대 — 같은 무대를 손으로 돌려 보기</strong>
+          </a>
           <a href="../tests/ai-persona-test.html">
             <small>심리테스트</small>
             <strong>나는 어떤 크리에이터·리더 유형일까?</strong>
@@ -494,9 +496,7 @@
             <tbody>
               <tr><td>Play a lane</td><td>Tap one of the four pads at the bottom</td><td><code>D</code> <code>F</code> <code>J</code> <code>K</code> or <code>1</code> <code>2</code> <code>3</code> <code>4</code></td></tr>
               <tr><td>Start / pause</td><td><b>Start</b> button at the bottom</td><td><b>Start</b> button or <code>Space</code></td></tr>
-              <tr><td>Orbit the stage</td><td>Drag an empty area</td><td>Drag with the mouse</td></tr>
-              <tr><td>Zoom</td><td>Two-finger pinch</td><td>Mouse wheel</td></tr>
-              <tr><td>Fixed ↔ free camera</td><td colspan="2"><b>Fixed cam</b> button at bottom right (fixed keeps the judge line face-on for playing)</td></tr>
+              <tr><td>Stage camera</td><td colspan="2"><b>Always fixed</b> for play — there is nothing to adjust</td></tr>
               <tr><td>Change the track</td><td colspan="2"><b>Add music</b> → pick an audio file from the device</td></tr>
               <tr><td>Change showcase video</td><td colspan="2"><b>Add video</b> → left / right / both → pick a video file</td></tr>
               <tr><td>Mood theme</td><td colspan="2">NOIR · PEARL · CRIMSON · ICE (note colours and lighting change together)</td></tr>
@@ -506,7 +506,7 @@
         <div class="note">
           <strong>First time? Try this order.</strong>
           ① Press <b>Start</b> with no settings and play the built-in track once to the end.
-          ② Once the judge line is familiar, switch to <b>Fixed cam</b> and try again.
+          ② Once the judge line is familiar, go again from the same spot (the stage camera is fixed for play).
           ③ When your hands settle, use <b>Add music</b> to load a song you like.
         </div>
 
@@ -560,9 +560,10 @@
           Following the notes as they fly pulls your eyes upward and your timing late. Keep your gaze <strong>on the judge line</strong> and track notes only at
           the edge of your vision. It is the first rule every good rhythm-game player gives.
         </p>
-        <h3>2. Fix the camera</h3>
+        <h3>2. Learn the distance to the pads</h3>
         <p>
-          Orbiting is fun, but for scores <b>Fixed cam</b> wins: lanes and judge line stay in the same place every frame, so your fingers can rely on muscle memory.
+          The stage camera is fixed automatically for play, so nothing to adjust. What matters is learning the <strong>distance and height</strong> between the judge
+          line and your fingers. Keep the page at the same zoom and orientation so your hands can build muscle memory.
         </p>
         <h3>3. Keep fingers in home position</h3>
         <p>
@@ -672,6 +673,7 @@
         <div class="related">
           <a href="../articles/3d-web-guide.html"><small>Guide</small><strong>How browser 3D games work</strong></a>
           <a href="../articles/ai-music-guide.html"><small>Guide</small><strong>AI music and visuals in 2026</strong></a>
+          <a href="koong-3d-runway.html"><small>Koong Mini Games</small><strong>Koong 3D Runway — orbit the same stage</strong></a>
           <a href="../tests/ai-persona-test.html"><small>Test</small><strong>What kind of creator are you?</strong></a>
         </div>
         <div class="ad-slot" id="ad-game-bottom-en" data-ad-ready="false" data-ad-slot="game-bottom">
@@ -696,6 +698,7 @@
         <h4>Play</h4>
         <ul>
           <li><a href="../games/pickle-gakoongi-rhythm.html" data-ko="쿵이 게임" data-en="Koong Game">쿵이 게임</a></li>
+          <li><a href="../games/koong-3d-runway.html" data-ko="쿵이 3D 무대" data-en="3D Runway">쿵이 3D 무대</a></li>
           <li><a href="../games/pickle-gakoongi-rhythm-app.html" data-ko="게임 바로 플레이" data-en="Play now">게임 바로 플레이</a></li>
           <li><a href="../tests/ai-persona-test.html" data-ko="심리테스트" data-en="Personality test">심리테스트</a></li>
         </ul>
@@ -732,6 +735,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/site.js?v=20261127c"></script>
+<script src="../assets/js/site.js?v=20261127d"></script>
 </body>
 </html>
