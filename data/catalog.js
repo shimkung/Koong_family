@@ -12,6 +12,28 @@
    ========================================================================== */
 window.KOONG_CATALOG = [
   {
+    id: 'remarried-empress-test',
+    cat: 'test',
+    emoji: '💌',
+    title: {
+      ko: '이혼 통보를 받았다, 나의 선택은? 《재혼황후》 캐릭터 테스트',
+      en: 'Served with Divorce Papers, What’s Your Move? The Remarried Empress Character Test'
+    },
+    desc: {
+      ko: '궁정 정치·로맨스·위기 대처 12문항. 나비에·하인리·소비에슈·라스타·에르기·카우프만 중 나와 닮은 캐릭터와 강점·주의점·궁합까지, 약 2분.',
+      en: 'Twelve court, romance and crisis scenes — find out whether you are Navier, Heinrey, Sovieshu, Rashta, Ergy or Kaufmann, with strengths, watch-outs and matches.'
+    },
+    href: 'tests/remarried-empress-test.html',
+    tag: { ko: '캐릭터 테스트', en: 'Character Test' },
+    meta: [
+      { ko: '12문항', en: '12 questions' },
+      { ko: '약 2분', en: 'About 2 min' },
+      { ko: '결과 6캐릭터', en: '6 characters' }
+    ],
+    date: '2026-11-27',
+    new: true
+  },
+  {
     id: 'mbti-6axis-test',
     cat: 'test',
     emoji: '🧩',
